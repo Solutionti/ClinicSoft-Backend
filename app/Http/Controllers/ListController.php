@@ -67,6 +67,8 @@ class ListController extends Controller {
           "descripcion" => "Otro"
         ),
       );
+
+      return $sex;
     }
 
     public function getAcademics() {
@@ -96,6 +98,8 @@ class ListController extends Controller {
           "descripcion" => "Superior"
         ),
       );
+
+      return $academic;
     }
 
     public function getCivilStatus() {
@@ -125,6 +129,8 @@ class ListController extends Controller {
           "descripcion" => "Otro(a)"
         ),
       );
+
+      return $civilStatus;
     }
 
     public function getMeasures() {
@@ -145,7 +151,9 @@ class ListController extends Controller {
           "codigo" => "USD",
           "descripcion" => "Dolares ( USD )",
         ),
-      );    
+      );
+
+      return $curreny;
     }
 
     public function getusers() {

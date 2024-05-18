@@ -36,7 +36,7 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getusers', 'getusers');
 });
 
-//
+// RUTASD
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
