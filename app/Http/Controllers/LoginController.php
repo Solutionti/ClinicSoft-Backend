@@ -10,15 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
-    
+
     public function registerUser(Request $request) {
-    
+
     try {
       $request->validate([
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed'
       ]);
-      
+
       $user = new User();
       $user->usuario = $request->usuario;
       $user->ip = $request->ip;
@@ -48,7 +48,7 @@ class LoginController extends Controller
     }
 
     public function updateUser(Request $request) {
-    
+
     try {
       $users = [
         "ip" => $request->ip,
@@ -60,9 +60,9 @@ class LoginController extends Controller
         "rol_usuario" => $request->rol_usuario,
         "estado" => $request->estado,
         "usuario_creacion" => $request->usuario_creacion,
-        "cmp" => $request->cmp, 
+        "cmp" => $request->cmp,
       ];
-      
+
       $user = new User();
       $user::where('email', $request->email)
             ->update($users);
