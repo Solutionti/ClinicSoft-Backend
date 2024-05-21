@@ -43,8 +43,8 @@ class Patient extends Model
         "provincia" => $data["provincia"],
         "distrito" => $data["distrito"],
         "usuario" => $data["usuario"],
-        "estado" => "Activo",
-        "password" => ""
+        "estado" => $data["estado"],
+        "password" => $data["password"]
       ];
       
       DB::table("pacientes")

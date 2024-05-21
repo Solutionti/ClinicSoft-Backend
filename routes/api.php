@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //IMPORTACION DE CONTROLADORES
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\AdmissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,10 +37,13 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getusers', 'getusers');  
 });
 
-// RUTASD 
+// RUTAS ADMISIONES
+Route::controller(AdmissionController::class)->group(function () {
+  Route::get('getPatient', 'getPatient');
+  Route::post('createPatient', 'createPatient');
+});
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
   
-
 });
 
