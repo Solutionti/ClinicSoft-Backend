@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller{
 
   public function __construct(request $request) {
+    $this->Patient = new Patient();
   }
 
   //MODULO DE PACIENTES
-  public function getPatient() {
+  public function getPatient(Request $request) {
+
+    $documento = $request->input("documento");
+    return $this->Patient->getPatient($documento);
 
   }
 
   public function createPatient(Request $request) {
-
+    
   }
 
   public function updatePatient(Request $request){

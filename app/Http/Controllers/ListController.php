@@ -27,7 +27,7 @@ class ListController extends Controller {
     public function getProvince(Request $request) {
       $departamento = $request->input("departamento");
 
-      return $this->ListModel->getDepartaments($departamento);
+      return $this->ListModel->getProvince($departamento);
     }
 
     public function getDistrict() {
