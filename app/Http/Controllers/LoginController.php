@@ -108,13 +108,10 @@ class LoginController extends Controller
         }
         else {
 
-          return response(
-            [
+          return response()->json([
               "message" => "El Usuario o Contraseña no son correctos.",
               "status" => 401
-            ],
-            Response::HTTP_UNAUTHORIZED
-          );
+            ]);
 
         }
     }
