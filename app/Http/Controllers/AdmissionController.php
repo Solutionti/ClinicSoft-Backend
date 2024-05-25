@@ -64,7 +64,45 @@ class AdmissionController extends Controller{
   }
 
   public function updatePatient(Request $request){
+  try {
 
+    $patients = [
+      "url_imagen" => "",
+      "nombre" => $request->input("nombre"),
+      "apellido" => $request->input("apellido"),
+      "email" => $request->input("email"),
+      "direccion" => $request->input("direccion"),
+      "telefono" => $request->input("telefono"),
+      "sexo" => $request->input("sexo"),
+      "fecha_nacimiento" => $request->input("fecha_nacimiento"),
+      "edad" => $request->input("edad"),
+      "menor_edad" => $request->input("menor_edad"),
+      "familiar_documento" => $request->input("familiar_documento"),
+      "gruposangunieo" => $request->input("gruposangunieo"),
+      "ocupacion" => $request->input("ocupacion"),
+      "grado_academico" => $request->input("grado_academico"),
+      "estado_civil" => $request->input("estado_civil"),
+      "departamento" => $request->input("departamento"),
+      "provincia" => $request->input("provincia"),
+      "distrito" => $request->input("distrito"),
+      "usuario" => $request->input("usuario"),
+      "estado" => "Activo",
+      "password" => ""
+    ];
+    
+    $this->Patient->updatePatient($patients, $request->input("documento"));
+
+    return response()->json([
+      'message' => 'El paciente se ha actualizado en la base de datos',
+      'status' => 200
+    ]);
+  }
+    catch(\exception $e) {
+      return response()->json([
+        'status' => 400,
+        'message' => $e->getMessage()
+      ]);
+    }
   }
 
   public function getClinicHistory() {
