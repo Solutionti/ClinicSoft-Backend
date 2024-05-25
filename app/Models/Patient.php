@@ -13,10 +13,10 @@ class Patient extends Model
     public function getPatient($documento) {
       $patient = DB::table("pacientes")
                  ->select("*")
-                 ->where("docucumento", $documento)
+                 ->where("documento", $documento)
                  ->get()
                  ->first();
-        
+
       return $patient;
     }
 
@@ -35,6 +35,7 @@ class Patient extends Model
         "edad" => $data["edad"],
         "menor_edad" => $data["menor_edad"],
         "familiar_documento" => $data["familiar_documento"],
+        "familiar_nombre" => "",
         "gruposangunieo" => $data["gruposangunieo"],
         "ocupacion" => $data["ocupacion"],
         "grado_academico" => $data["grado_academico"],
@@ -46,8 +47,8 @@ class Patient extends Model
         "estado" => $data["estado"],
         "password" => $data["password"]
       ];
-      
+
       DB::table("pacientes")
-      ->insert($patients);    
+      ->insert($patients);
     }
 }

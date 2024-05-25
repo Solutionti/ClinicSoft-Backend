@@ -40,7 +40,7 @@ Route::controller(ListController::class)->group(function () {
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
   Route::get('getPatient', 'getPatient');
-  Route::post('createPatient', 'createPatient');
+  Route::post('createPatient', 'createPatient')->middleware('cors');
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
