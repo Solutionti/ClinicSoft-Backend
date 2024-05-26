@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\Admission;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller{
 
   public function __construct(request $request) {
     $this->Patient = new Patient();
+    $this->Admission = new Admission();
   }
 
   //MODULO DE PACIENTES
@@ -19,7 +21,25 @@ class AdmissionController extends Controller{
 
   public function getPatientId(Request $request) {
     $documento = $request->input("documento");
-    return $this->Patient->getPatientId($documento);
+
+    try {
+      $patient = $this->Patient->getPatientId($documento);
+
+      if($patient == "") {
+        throw new \Exception("El paciente no existe en la base de datos");
+      }
+
+      return response()->json([
+        'data' => $patient,
+        'status' => 200
+      ]);
+    }
+      catch(\exception $e) {
+        return response()->json([
+          'status' => 400,
+          'message' => $e->getMessage()
+        ]);
+    }
   }
 
   public function createPatient(Request $request) {
@@ -124,10 +144,38 @@ class AdmissionController extends Controller{
 
   // MODULO DE ADMISIONES
   public function getAdmission() {
-
+    return $this->Admission->getAdmission();
   }
 
-  public function createAdmission() {
+  public function createAdmission(Request $request) {
+    $documento = $request->input("documento");
+    $medico = $request->input("medico");
+    $especialidad = $request->input("especialidad");
+    $cola_atencion = $request->input("cola_atencion");
+    $costo = $request->input("costo");
+    $comision = $request->input("comision");
+    $turno = $request->input("turno");
+    $usuario = $request->input("usuario");
+    $orden__ = $request->input("orden__");
+
+    $admission = [
+      "documento" => $documento,
+      "medico" => $medico,
+      "especialidad" => $especialidad,
+      "cola_atencion" => $cola_atencion,
+      "costo" => $costo,
+      "comision" => $comision,
+      "estado" => "Registrado",
+      "turno" => $turno,
+      "usuario" => $usuario,
+      "orden__" => $orden__,
+    ];
+    $this->Admission->createAdmission($admission);
+
+    return response()->json([
+      'message' => 'La admision se ha creado en la base de datos',
+      'status' => 200
+    ]);
 
   }
 
