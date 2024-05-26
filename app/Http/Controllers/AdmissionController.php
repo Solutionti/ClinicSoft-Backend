@@ -12,11 +12,14 @@ class AdmissionController extends Controller{
   }
 
   //MODULO DE PACIENTES
-  public function getPatient(Request $request) {
 
+  public function getPatients() {
+    return $this->Patient->getPatients();
+  }
+
+  public function getPatientId(Request $request) {
     $documento = $request->input("documento");
-    return $this->Patient->getPatient($documento);
-
+    return $this->Patient->getPatientId($documento);
   }
 
   public function createPatient(Request $request) {
@@ -105,8 +108,18 @@ class AdmissionController extends Controller{
     }
   }
 
-  public function getClinicHistory() {
-
+  public function getClinicHistory(Request $request) {
+    $documento = $request->input("documento");
+    //DATOS DEL PACIENTE
+    //ULTIMO TRIAGE REALIZADO
+    // ARCHIVOS DE PACIENTE
+    //ALERGIAS DEL PACIENTE
+    // ANTECEDENTES
+    // ANTECEDENTES GINECO- OBSTETRICOS
+    // VACUNACION
+    //MEDICAMENTOS
+    // CITAS 
+    // HISTORIAL DE CONSULTAS ULTIMAS 2
   }
 
   // MODULO DE ADMISIONES

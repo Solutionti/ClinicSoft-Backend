@@ -15,7 +15,7 @@ class CreateLaboratoriosTable extends Migration
     {
         Schema::create('laboratorios', function (Blueprint $table) {
             $table->id();
-            $table->string("dni_paciente");
+            $table->string("paciente");
             $table->integer("medico");
             $table->string("tipo_deposito");
             $table->string("descripcion");

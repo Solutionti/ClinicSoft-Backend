@@ -39,8 +39,12 @@ Route::controller(ListController::class)->group(function () {
 
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
-  Route::get('getPatient', 'getPatient');
+  // RUTAS DE PACIENTES
+  Route::get('getPatients', 'getPatients');
+  Route::get('getPatientId', 'getPatientId');
   Route::post('createPatient', 'createPatient');
+  Route::post('updatePatient', 'updatePatient');
+  // 
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
