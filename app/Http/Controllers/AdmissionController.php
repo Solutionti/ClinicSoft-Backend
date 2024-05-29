@@ -176,7 +176,12 @@ class AdmissionController extends Controller{
       'message' => 'La admision se ha creado en la base de datos',
       'status' => 200
     ]);
+  }
 
+  public function getEspecialidadCosto(Request $request) {
+    $codigo =  $request->input("especialidad");
+    
+    return $this->Admission->getEspecialidadCosto($codigo);
   }
 
   // MODULO DE TRIAGE

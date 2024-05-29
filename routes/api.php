@@ -48,6 +48,11 @@ Route::controller(AdmissionController::class)->group(function () {
   // RUTAS DE ADMISIONES
   Route::get('getAdmission', 'getAdmission');
   Route::post('createAdmission', 'createAdmission');
+  Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
+
+  //
+  Route::get('getProducts', 'getProducts');
+
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function() {

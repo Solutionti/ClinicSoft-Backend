@@ -11,8 +11,9 @@ class admission extends Model
     use HasFactory;
 
     public function getAdmission() {
-      $admissions = DB::table("admisiones")
+      $admissions = DB::table("atenciones")
                     ->select("*")
+                    ->where("estado", "Registrado")
                     ->get();
 
       return $admissions;
@@ -34,6 +35,16 @@ class admission extends Model
 
       DB::table("admisiones")
         ->insert($admissions);
+    }
+
+    public function getEspecialidadCosto($codigo) {
+      $especiality = DB::table("especialidades")
+                      ->select('comision_aproximada', 'costo')
+                      ->where("codigo_especialidad", $codigo)
+                      ->get()
+                      ->first();
+
+      return $especiality;
     }
 
 
