@@ -35,6 +35,7 @@ class ListModel extends Model{
 
       return $departament;
     }
+    
     public function getProvince($departament) {
       $province = DB::table('provincia')
                   ->select('*')
@@ -43,6 +44,7 @@ class ListModel extends Model{
 
       return $province;
     }
+
     public function getDistrict($province, $departament) {
       $district = DB::table('distritos')
                   ->select('*')
