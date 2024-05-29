@@ -133,10 +133,6 @@ class ListController extends Controller {
       return $civilStatus;
     }
 
-    public function getMeasures() {
-      //pendiente extraer medidas inventarios
-    }
-
     public function getCurrency() {
       $curreny = array(
         array(

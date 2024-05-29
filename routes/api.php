@@ -52,7 +52,8 @@ Route::controller(AdmissionController::class)->group(function () {
 
   //
   Route::get('getProducts', 'getProducts');
-
+  Route::post('createProduct', 'createProduct');
+  
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
