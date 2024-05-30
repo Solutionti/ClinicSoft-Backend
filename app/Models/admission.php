@@ -10,10 +10,10 @@ class admission extends Model
 {
     use HasFactory;
 
-    public function getAdmission() {
+    public function getAdmission($estado) {
       $admissions = DB::table("atenciones")
                     ->select("*")
-                    ->where("estado", "Registrado")
+                    ->where("estado", $estado)
                     ->get();
 
       return $admissions;

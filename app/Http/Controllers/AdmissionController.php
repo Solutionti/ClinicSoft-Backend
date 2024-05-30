@@ -143,8 +143,9 @@ class AdmissionController extends Controller{
   }
 
   // MODULO DE ADMISIONES
-  public function getAdmission() {
-    return $this->Admission->getAdmission();
+  public function getAdmission(Request $request) {
+    $estado = $request->input("estado");
+    return $this->Admission->getAdmission($estado);
   }
 
   public function createAdmission(Request $request) {

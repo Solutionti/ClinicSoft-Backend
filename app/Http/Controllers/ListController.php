@@ -46,8 +46,8 @@ class ListController extends Controller {
 
     }
 
-    public function categories() {
-      return $this->ListModel->categories();
+    public function getCategories() {
+      return $this->ListModel->getCategories();
     }
 
 
@@ -131,10 +131,6 @@ class ListController extends Controller {
       );
 
       return $civilStatus;
-    }
-
-    public function getMeasures() {
-      //pendiente extraer medidas inventarios
     }
 
     public function getCurrency() {

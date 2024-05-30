@@ -28,7 +28,7 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getDistrict', 'getDistrict');
   Route::get('getActivities', 'getActivities');
   Route::get('getProducts', 'getProducts');
-  Route::get('categories', 'categories');
+  Route::get('getCategories', 'getCategories');
   Route::get('getSex', 'getSex');
   Route::get('getAcademics', 'getAcademics');
   Route::get('getCivilStatus', 'getCivilStatus');
@@ -39,10 +39,7 @@ Route::controller(ListController::class)->group(function () {
 
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
-<<<<<<< HEAD
-  Route::get('getPatient', 'getPatient');
-  Route::post('createPatient', 'createPatient')->middleware('cors');
-=======
+
   // RUTAS DE PACIENTES
   Route::get('getPatients', 'getPatients');
   Route::get('getPatientId', 'getPatientId');
@@ -56,8 +53,9 @@ Route::controller(AdmissionController::class)->group(function () {
 
   //
   Route::get('getProducts', 'getProducts');
+  Route::post('createProduct', 'createProduct');
 
->>>>>>> 17262be7b2fcaab301dae4a1015ca906a14ba591
+
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
