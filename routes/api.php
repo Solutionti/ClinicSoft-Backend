@@ -28,7 +28,7 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getDistrict', 'getDistrict');  
   Route::get('getActivities', 'getActivities');  
   Route::get('getProducts', 'getProducts');  
-  Route::get('categories', 'categories');  
+  Route::get('getCategories', 'getCategories');  
   Route::get('getSex', 'getSex');  
   Route::get('getAcademics', 'getAcademics');  
   Route::get('getCivilStatus', 'getCivilStatus');  

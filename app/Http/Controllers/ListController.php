@@ -46,8 +46,8 @@ class ListController extends Controller {
 
     }
 
-    public function categories() {
-      return $this->ListModel->categories();
+    public function getCategories() {
+      return $this->ListModel->getCategories();
     }
 
 
