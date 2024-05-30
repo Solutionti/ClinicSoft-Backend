@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Patient;
 use App\Models\Admission;
+use App\Models\Laboratory;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller{
@@ -11,6 +12,7 @@ class AdmissionController extends Controller{
   public function __construct(request $request) {
     $this->Patient = new Patient();
     $this->Admission = new Admission();
+    $this->Laboratory = new Laboratory();
   }
 
   //MODULO DE PACIENTES
@@ -195,7 +197,7 @@ class AdmissionController extends Controller{
 
   // MODULO DE LABORATORIO
   public function getLaboratoryTable(){
-
+    return $this->Laboratory->getLaboratoryTable();
   }
 
   public function CreateExamenLaboratory() {

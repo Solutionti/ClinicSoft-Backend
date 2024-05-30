@@ -50,11 +50,16 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::post('createAdmission', 'createAdmission');
   Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
 
-  //
-  Route::get('getProducts', 'getProducts');
-  Route::post('createProduct', 'createProduct');
-  
+  // TRIAGE
+
+  //LABORATORIO
+  Route::get('getLaboratoryTable', 'getLaboratoryTable');
+
 });
+
+// INVENTARIOS 
+// Route::get('getProducts', 'getProducts');
+// Route::post('createProduct', 'createProduct');
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
   
