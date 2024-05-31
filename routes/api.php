@@ -52,7 +52,6 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
 
   //
-  Route::get('getProducts', 'getProducts');
   Route::post('createProduct', 'createProduct');
 
 

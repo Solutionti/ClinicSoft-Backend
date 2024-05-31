@@ -51,7 +51,7 @@ class ListController extends Controller {
     }
 
 
-    // LISTAS QUEMADAS EN EL CODIGO 
+    // LISTAS QUEMADAS EN EL CODIGO
     public function getSex(){
       $sex = array(
         array(
@@ -174,7 +174,7 @@ class ListController extends Controller {
           "codigo" => "P",
           "descripcion" => "patologo",
         ),
-        
+
       );
 
       return $user;
