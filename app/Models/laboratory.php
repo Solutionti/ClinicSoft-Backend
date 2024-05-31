@@ -11,7 +11,7 @@ class laboratory extends Model
     use HasFactory;
 
     public function getLaboratoryTable(){
-        $laboratories = DB::table("precio_laboratorios")
+        $laboratories = DB::table("precio_laboratorio")
         ->select("*")
         ->get();
 

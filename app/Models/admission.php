@@ -12,8 +12,11 @@ class admission extends Model
 
     public function getAdmission($estado) {
       $admissions = DB::table("atenciones")
-                    ->select("*")
-                    ->where("estado", $estado)
+                    ->select('atenciones.*', 'doctores.nombre as medicos', 'especialidades.descripcion as especialidades', 'pacientes.nombre', 'pacientes.apellido')
+                    ->join('pacientes', 'atenciones.paciente', '=', 'pacientes.documento')
+                    ->join('doctores', 'atenciones.medico', '=', 'doctores.codigo_doctor')
+                    ->join('especialidades', 'atenciones.especialidad', '=', 'especialidades.codigo_especialidad')
+                    ->where("atenciones.estado", $estado)
                     ->get();
 
       return $admissions;
@@ -35,6 +38,7 @@ class admission extends Model
 
       DB::table("admisiones")
         ->insert($admissions);
+      
     }
 
     public function getEspecialidadCosto($codigo) {
@@ -45,6 +49,15 @@ class admission extends Model
                       ->first();
 
       return $especiality;
+    }
+
+    public function PasateStatusAdmission($estado, $atencion) {
+      $admission = [
+        "estado" => $estado
+      ];
+      DB::table("atenciones")
+          ->where("paciente", $atencion)
+          ->update($admission);
     }
 
 

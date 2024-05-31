@@ -11,9 +11,6 @@ class InventoryController extends Controller{
     }
 
     // MODULO DE PRODUCTOS  
-    public function getProducts() {
-      return  $this->Product->getProducts();
-    }
 
     public function getProductsId(Request $request) {
       $producto = $request->input("producto");
@@ -31,7 +28,9 @@ class InventoryController extends Controller{
       $moneda = $request->input("moneda");
       $descripcion = $request->input("descripcion");
       $usuario = $request->input("usuario");
-      
+      $fecha = date("Y-m-d");
+      $hora = date('H:i');
+
       $product = [
         "categoria" => $categoria,
         "codigo" => $codigo,
@@ -50,10 +49,11 @@ class InventoryController extends Controller{
       ];
 
       $this->Product->createProduct($product);
-    }
 
-    public function updateProduct() {
-
+      return response()->json([
+        'message' => 'El producto se ha registrado en la base de datos',
+        'status' => 200
+      ]);
     }
 
     // INVENTARIOS

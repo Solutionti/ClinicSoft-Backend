@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProcedureController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +42,8 @@ Route::controller(ListController::class)->group(function () {
 
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
+  // GLOBAL
+  Route::post('PasateStatusAdmission', 'PasateStatusAdmission');
 
   // RUTAS DE PACIENTES
   Route::get('getPatients', 'getPatients');
@@ -51,9 +56,26 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::post('createAdmission', 'createAdmission');
   Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
 
-  //
-  Route::post('createProduct', 'createProduct');
+  // TRIAGE
+  Route::post('createTriage', 'createTriage');
 
+  //LABORATORIO
+  Route::get('getLaboratoryTable', 'getLaboratoryTable');
+
+});
+
+
+Route::controller(InventoryController::class)->group(function () {
+  //PRODUCTOS
+  Route::post('createProduct', 'createProduct');
+  // INVENTARIOS
+
+  //KARDEX
+});
+
+Route::controller(ProcedureController::class)->group(function () {+
+  Route::get('getColposcopias', 'getColposcopias');
+  Route::post('createColposcopia', 'createColposcopia');
 
 });
 

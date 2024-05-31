@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
-class product extends Model
+class Product extends Model
 {
     use HasFactory;
 
@@ -36,41 +37,26 @@ class product extends Model
         "medida" => $data["medida"],
         "precio" => $data["precio"],
         "moneda" => $data["moneda"],
-        "stock" => $data["descripcion"],
+        "stock" => 0,
         "estado" => $data["estado"],
         "cantidad" => $data["cantidad"],
         "fecha" => $data["fecha"],
         "hora" => $data["hora"],
         "usuario" => $data["usuario"],
+        "descripcion" => $data["descripcion"],
       ];
       
       DB::table("productos")
-          ->insert($products);
+          ->updateOrInsert(
+            [
+              "codigo" => $data["codigo"],
+            ],
+            $products);
     }
 
-    public function updateProduct() {
-        $products = [
-            "categoria" => $data["categoria"],
-            "codigo" => $data["codigo"],
-            "codigo_barras" => $data["codigo_barras"],
-            "nombre" => $data["nombre"],
-            "medida" => $data["medida"],
-            "precio" => $data["precio"],
-            "moneda" => $data["moneda"],
-            "stock" => $data["descripcion"],
-            "estado" => $data["estado"],
-            "cantidad" => $data["cantidad"],
-            "fecha" => $data["fecha"],
-            "hora" => $data["hora"],
-            "usuario" => $data["usuario"],
-          ];
-          
-          DB::table("productos")
-              ->update($products);
-    }
-
+    
     public function getInventoryProducts() {
-      $inventories = DB::table("prodcutos")
+      $inventories = DB::table("productos")
                         ->select("*")
                         ->where();
 
