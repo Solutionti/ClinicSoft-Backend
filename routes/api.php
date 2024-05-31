@@ -8,6 +8,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InventoryController;
+use App\Http\Controllers\ProcedureController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +73,8 @@ Route::controller(InventoryController::class)->group(function () {
   //KARDEX 
 });
 
-Route::controller(ProcedureController::class)->group(function () {
+Route::controller(ProcedureController::class)->group(function () {+
+  Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
   
 });
