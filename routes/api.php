@@ -71,6 +71,11 @@ Route::controller(InventoryController::class)->group(function () {
   //KARDEX 
 });
 
+Route::controller(ProcedureController::class)->group(function () {
+  Route::post('createColposcopia', 'createColposcopia');
+  
+});
+
 Route::group(['middleware' => ['auth:sanctum']], function() {
   
 });
