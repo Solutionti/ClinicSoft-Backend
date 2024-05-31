@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Models\Admission;
 use App\Models\Laboratory;
+use App\Models\Triage;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller{
@@ -13,6 +14,7 @@ class AdmissionController extends Controller{
     $this->Patient = new Patient();
     $this->Admission = new Admission();
     $this->Laboratory = new Laboratory();
+    $this->Triage = new Triage();
   }
 
   //MODULO DE PACIENTES
@@ -188,11 +190,55 @@ class AdmissionController extends Controller{
   }
 
   // MODULO DE TRIAGE
-  public function getTriage() {
-    
+
+  public function createTriage(Request $request) {
+    $presion_arterial = $request->input("presion_arterial");
+    $temperatura = $request->input("temperatura");
+    $frecuencia_respiratoria = $request->input("frecuencia_respiratoria");
+    $frecuencia_cardiaca = $request->input("frecuencia_cardiaca");
+    $saturacion = $request->input("saturacion");
+    $peso = $request->input("peso");
+    $talla = $request->input("talla");
+    $imc = $request->input("imc");
+    $paciente  = $request->input("paciente");
+    $doctor  = $request->input("doctor");
+    $especialidad = $request->input("especialidad");
+    $estado = $request->input("estado");
+    $usuario = $request->input("usuario");
+
+    $triage = [
+      "presion_arterial" => $presion_arterial,
+      "temperatura" => $temperatura,
+      "frecuencia_respiratoria" => $frecuencia_respiratoria,
+      "frecuencia_cardiaca" => $frecuencia_cardiaca,
+      "saturacion" => $saturacion,
+      "peso" => $peso,
+      "talla" => $talla,
+      "imc" => $imc,
+      "paciente" => $paciente,
+      "doctor" => $doctor,
+      "especialidad" => $especialidad,
+      "estado" => $estado,
+      "usuario" => $usuario,
+    ];
+    $this->Triage->createTriage($triage);
+
+    return response()->json([
+      'message' => 'El triage se ha registrado en la base de datos',
+      'status' => 200
+    ]);
   }
-  public function createTriage() {
-    
+
+  public function PasateStatusAdmission(Request $request) {
+    $estado = $request->input("estado");
+    $atencion = $request->input("atencion");
+
+    $this->Admission->PasateStatusAdmission($estado, $atencion);
+
+    return response()->json([
+      'message' => 'La admision se ha cambiado de estado correctamente',
+      'status' => 200
+    ]);
   }
 
   // MODULO DE LABORATORIO

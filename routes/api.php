@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\AdmissionController;
+use App\Http\Controllers\InventoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ Route::controller(ListController::class)->group(function () {
 
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
+  // GLOBAL
+  Route::post('PasateStatusAdmission', 'PasateStatusAdmission');
+
   // RUTAS DE PACIENTES
   Route::get('getPatients', 'getPatients');
   Route::get('getPatientId', 'getPatientId');
@@ -51,15 +55,21 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
 
   // TRIAGE
+  Route::post('createTriage', 'createTriage');
 
   //LABORATORIO
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
 
 });
 
-// INVENTARIOS 
-// Route::get('getProducts', 'getProducts');
-// Route::post('createProduct', 'createProduct');
+
+Route::controller(InventoryController::class)->group(function () {
+  //PRODUCTOS 
+  Route::post('createProduct', 'createProduct');
+  // INVENTARIOS
+  
+  //KARDEX 
+});
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
   

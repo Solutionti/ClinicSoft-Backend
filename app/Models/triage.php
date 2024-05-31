@@ -18,20 +18,11 @@ class triage extends Model
       return $triages;
     }
 
-    public function getTriageId() {
-        $triage = DB::table("triages")
-                   ->select("*")
-                   ->where("documento", $documento)
-                   ->get();
-
-        return $triage;
-      }
-
     public function createTriage($data) {
       $triages = [
         "presion_arterial" => $data["presion_arterial"],
         "temperatura" => $data["temperatura"],
-        "frecuencia_respiratoria	" => $data["frecuencia_respiratoria	"],
+        "frecuencia_respiratoria" => $data["frecuencia_respiratoria"],
         "frecuencia_cardiaca" => $data["frecuencia_cardiaca"],
         "saturacion" => $data["saturacion"],
         "peso" => $data["peso"],
@@ -44,7 +35,12 @@ class triage extends Model
         "usuario" => $data["usuario"],
       ];
 
-      DB::table("triages")
-         ->insert($triages);
+      DB::table("triajes")
+         ->updateOrInsert(
+          [
+            "paciente" => $data["paciente"],
+          ],
+          $triages
+         );
     }
 }

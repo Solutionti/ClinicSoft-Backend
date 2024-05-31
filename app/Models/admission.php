@@ -38,6 +38,7 @@ class admission extends Model
 
       DB::table("admisiones")
         ->insert($admissions);
+      
     }
 
     public function getEspecialidadCosto($codigo) {
@@ -48,6 +49,15 @@ class admission extends Model
                       ->first();
 
       return $especiality;
+    }
+
+    public function PasateStatusAdmission($estado, $atencion) {
+      $admission = [
+        "estado" => $estado
+      ];
+      DB::table("atenciones")
+          ->where("paciente", $atencion)
+          ->update($admission);
     }
 
 
