@@ -73,7 +73,7 @@ Route::controller(InventoryController::class)->group(function () {
   //KARDEX
 });
 
-Route::controller(ProcedureController::class)->group(function () {+
+Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
 
