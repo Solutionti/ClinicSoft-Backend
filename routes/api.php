@@ -76,7 +76,10 @@ Route::controller(InventoryController::class)->group(function () {
 Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 21b9b0c1472b437d7b76179c03a6c03a67118064
 });
 
 Route::group(['middleware' => ['auth:sanctum']], function() {

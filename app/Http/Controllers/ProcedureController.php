@@ -16,7 +16,7 @@ class ProcedureController extends Controller
       return $this->Colposcopia->getColposcopias();
     }
 
-    public function createColposcopia () {
+    public function createColposcopia (Request $request) {
       $paciente = $request->input("paciente");
       $fecha = $request->input("fecha");
       $medico = $request->input("medico");

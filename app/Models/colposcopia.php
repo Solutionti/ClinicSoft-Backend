@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class colposcopia extends Model
+class Colposcopia extends Model
 {
     use HasFactory;
 
@@ -18,12 +18,12 @@ class colposcopia extends Model
       return $colposcopias;
     }
 
-    public function createColposcopia () {
+    public function createColposcopia ($data) {
       $colposcopias = [
-       "paciente" => $data["documento"],
+       "paciente" => $data["paciente"],
        "fecha" => $data["fecha"],
        "medico" => $data["medico"],
-       "escamo_columnar	" => $data["escamo_columnar	"],
+       "escamo_columnar" => $data["escamo_columnar"],
        "endo_cervix" => $data["endo_cervix"],
        "perineo" => $data["perineo"],
        "region_parianal" => $data["region_parianal"],
