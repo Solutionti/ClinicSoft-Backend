@@ -25,6 +25,7 @@ class ProcedureController extends Controller
       $perineo = $request->input("perineo");
       $region_parianal = $request->input("region_parianal");
       $biopsia = $request->input("biopsia");
+      $vagina = $request->input("vagina");
       $papanicolaou = $request->input("papanicolaou");
       $conclusiones = $request->input("conclusiones");
       $imagen1 = $request->input("imagen1");
@@ -46,6 +47,7 @@ class ProcedureController extends Controller
         "imagen1" => $imagen1,
         "imagen2" => $imagen2,
         "usuario" => $usuario,
+        "vagina" => $vagina,
         "cmp" => $cmp,
       ];
       $this->Colposcopia->createColposcopia($colposcopia);
