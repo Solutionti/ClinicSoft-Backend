@@ -26,6 +26,7 @@ class ProcedureController extends Controller
       $region_parianal = $request->input("region_parianal");
       $biopsia = $request->input("biopsia");
       $vagina = $request->input("vagina");
+      $vulva = $request->input("vulva");
       $papanicolaou = $request->input("papanicolaou");
       $conclusiones = $request->input("conclusiones");
       $imagen1 = $request->input("imagen1");
@@ -40,6 +41,7 @@ class ProcedureController extends Controller
         "escamo_columnar" => $escamo_columnar,
         "endo_cervix" => $endo_cervix,
         "perineo" => $perineo,
+        "vulva" => $vulva,
         "region_parianal" => $region_parianal,
         "biopsia" => $biopsia,
         "papanicolaou" => $papanicolaou,
