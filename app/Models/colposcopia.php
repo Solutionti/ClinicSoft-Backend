@@ -26,6 +26,7 @@ class Colposcopia extends Model
        "escamo_columnar" => $data["escamo_columnar"],
        "endo_cervix" => $data["endo_cervix"],
        "perineo" => $data["perineo"],
+       "vagina" => $data["vagina"],
        "region_parianal" => $data["region_parianal"],
        "biopsia" => $data["biopsia"],
        "papanicolaou" => $data["papanicolaou"],
