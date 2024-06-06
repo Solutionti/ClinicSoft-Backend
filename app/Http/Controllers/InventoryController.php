@@ -84,7 +84,7 @@ class InventoryController extends Controller{
 
     }
 
-    public function Creatstart(Request $request) {
+    public function creatStart(Request $request) {
       $producto = $request->input("producto");
       $cantidad = $request->input("cantidad");
       $stock = $request->input("stock");
