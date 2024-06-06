@@ -21,7 +21,7 @@ class kardex extends Model
     }
 
 
-    public function CreatstartEnd($data) {
+    public function creatStartEnd($data) {
       $kadexs = [
         "id_producto" => $data["id_producto"],
         "tp_documento" => $data["tp_documento"],

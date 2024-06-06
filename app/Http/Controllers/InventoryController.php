@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Kardex;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller{
     
     public function __construct(request $request) {
       $this->Product = new Product(); 
+      $this->Kardex = new Kardex(); 
     }
 
     // MODULO DE PRODUCTOS  
@@ -58,8 +60,11 @@ class InventoryController extends Controller{
 
     // INVENTARIOS
 
-    public function getInventories() {
+    public function getInventories(Request $request) {
+      $fechainicial = $request->input("fechainicial");
+      $fechafinal = $request->input("fechafinal");
 
+      return $this->Product->getInventories($fechainicial, $fechafinal);
     }
 
     public function pdfInventory() {
@@ -67,19 +72,65 @@ class InventoryController extends Controller{
     }
 
     //MODULO DE KARDEX
-    public function getKardex() {
-
+    public function getKardex(Request $request) {
+      $producto = $request->input("producto");
+      $fechaInicial = $request->input("fechaInicial");
+      $fechaFinal = $request->input("fechaFinal");
+      
+      return $this->Kardex->getKardex($producto,$fechaInicial,$fechaFinal);
     }
 
     public function pdfKardex() {
 
     }
 
-    public function Creatstart() {
+    public function Creatstart(Request $request) {
+      $producto = $request->input("producto");
+      $cantidad = $request->input("cantidad");
+      $stock = $request->input("stock");
+      $seccion = $request->input("seccion");
+      $motivo = $request->input("motivo");
+      $comentarios = $request->input("comentarios");
+      
+      $entrada = [
+        "id_producto" => $producto,
+        "tp_documento" => "NE",
+        "entrada" => $cantidad,
+        "salida" => 0,
+        "fecha" => $fecha,
+        "hora" => $hora,
+        "descripcion" => $comentarios,
+        "usuario" => $usuario,
+        "sede" => $sede,
+        "motivo" => $motivo,
+        "saldo" => $saldo,
+      ];
 
+      $this->Kardex->creatStartEnd($entrada);
     }
+    
+    public function createEnd(Request $request) {
+      $producto = $request->input("producto");
+      $cantidad = $request->input("cantidad");
+      $stock = $request->input("stock");
+      $seccion = $request->input("seccion");
+      $motivo = $request->input("motivo");
+      $comentarios = $request->input("comentarios");
 
-    public function createEnd() {
-        
+      $entrada = [
+        "id_producto" => $producto,
+        "tp_documento" => "FO",
+        "entrada" => 0,
+        "salida" => $cantidad,
+        "fecha" => $fecha,
+        "hora" => $hora,
+        "descripcion" => $comentarios,
+        "usuario" => $usuario,
+        "sede" => $sede,
+        "motivo" => $motivo,
+        "saldo" => $saldo,
+      ];
+
+      $this->Kardex->creatStartEnd($entrada);
     }
 }

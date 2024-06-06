@@ -68,9 +68,14 @@ Route::controller(AdmissionController::class)->group(function () {
 Route::controller(InventoryController::class)->group(function () {
   //PRODUCTOS 
   Route::post('createProduct', 'createProduct');
+
   // INVENTARIOS
-  
+  Route::get('getInventories', 'getInventories');
+
   //KARDEX 
+  Route::get('getKardex', 'getKardex');
+  Route::post('Creatstart', 'Creatstart');
+  
 });
 
 Route::controller(ProcedureController::class)->group(function () {
