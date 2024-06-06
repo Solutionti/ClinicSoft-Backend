@@ -74,7 +74,8 @@ Route::controller(InventoryController::class)->group(function () {
 
   //KARDEX 
   Route::get('getKardex', 'getKardex');
-  Route::post('Creatstart', 'Creatstart');
+  Route::post('creatStart', 'creatStart');
+  Route::post('createEnd', 'createEnd');
   
 });
 

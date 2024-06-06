@@ -66,8 +66,8 @@ class Product extends Model
     public function getInventories($fechainicial, $fechafinal) {
       $inventories = DB::table("productos")
                          ->select("*")
-                         ->where("fecha >=", $fechainicial)
-                         ->where("fecha <=", $fechafinal)
+                         ->where("fecha",'>=', $fechainicial)
+                         ->where("fecha",'<=', $fechafinal)
                          ->get();
                         
       return $inventories;
