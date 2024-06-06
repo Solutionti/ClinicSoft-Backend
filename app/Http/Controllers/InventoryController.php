@@ -76,7 +76,7 @@ class InventoryController extends Controller{
       $producto = $request->input("producto");
       $fechaInicial = $request->input("fechaInicial");
       $fechaFinal = $request->input("fechaFinal");
-      
+
       return $this->Kardex->getKardex($producto,$fechaInicial,$fechaFinal);
     }
 
@@ -97,13 +97,13 @@ class InventoryController extends Controller{
         "tp_documento" => "NE",
         "entrada" => $cantidad,
         "salida" => 0,
-        "fecha" => $fecha,
-        "hora" => $hora,
+        "fecha" => "2024-01-01",
+        "hora" => "12:00",
         "descripcion" => $comentarios,
         "usuario" => $usuario,
         "sede" => $sede,
         "motivo" => $motivo,
-        "saldo" => $saldo,
+        "saldo" => 0,
       ];
 
       $this->Kardex->creatStartEnd($entrada);
@@ -122,13 +122,13 @@ class InventoryController extends Controller{
         "tp_documento" => "FO",
         "entrada" => 0,
         "salida" => $cantidad,
-        "fecha" => $fecha,
-        "hora" => $hora,
+        "fecha" => "2024-01-01",
+        "hora" => "12:00",
         "descripcion" => $comentarios,
         "usuario" => $usuario,
         "sede" => $sede,
         "motivo" => $motivo,
-        "saldo" => $saldo,
+        "saldo" => 0,
       ];
 
       $this->Kardex->creatStartEnd($entrada);
