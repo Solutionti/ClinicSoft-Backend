@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class kardex extends Model
 {
     use HasFactory;
 
-    public function getKardex($product,$fechaInicial,$fechaFinal) {
+    public function getKardex($product) {
       $kadexs = DB::table("productos")
                     ->select("*")
-                    ->where("id_producto", $product)
-                    ->where("fecha >", $fechaInicial)
-                    ->where("fecha <=", $fechaFinal)
+                    ->where("id", $product)
                     ->get();
 
         return $kadexs;

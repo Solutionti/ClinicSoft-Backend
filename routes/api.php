@@ -74,14 +74,9 @@ Route::controller(InventoryController::class)->group(function () {
 
   //KARDEX
   Route::get('getKardex', 'getKardex');
-<<<<<<< HEAD
-  Route::post('Creatstart', 'Creatstart');
-
-=======
   Route::post('creatStart', 'creatStart');
   Route::post('createEnd', 'createEnd');
-  
->>>>>>> 4a0eeadf8671996c215c605da9dcba0526b3e74b
+
 });
 
 Route::controller(ProcedureController::class)->group(function () {

@@ -6,13 +6,13 @@ use App\Models\Kardex;
 use Illuminate\Http\Request;
 
 class InventoryController extends Controller{
-    
+
     public function __construct(request $request) {
-      $this->Product = new Product(); 
-      $this->Kardex = new Kardex(); 
+      $this->Product = new Product();
+      $this->Kardex = new Kardex();
     }
 
-    // MODULO DE PRODUCTOS  
+    // MODULO DE PRODUCTOS
 
     public function getProductsId(Request $request) {
       $producto = $request->input("producto");
@@ -74,10 +74,9 @@ class InventoryController extends Controller{
     //MODULO DE KARDEX
     public function getKardex(Request $request) {
       $producto = $request->input("producto");
-      $fechaInicial = $request->input("fechaInicial");
-      $fechaFinal = $request->input("fechaFinal");
 
-      return $this->Kardex->getKardex($producto,$fechaInicial,$fechaFinal);
+
+      return $this->Kardex->getKardex($producto);
     }
 
     public function pdfKardex() {
@@ -91,7 +90,7 @@ class InventoryController extends Controller{
       $seccion = $request->input("seccion");
       $motivo = $request->input("motivo");
       $comentarios = $request->input("comentarios");
-      
+
       $entrada = [
         "id_producto" => $producto,
         "tp_documento" => "NE",
@@ -108,7 +107,7 @@ class InventoryController extends Controller{
 
       $this->Kardex->creatStartEnd($entrada);
     }
-    
+
     public function createEnd(Request $request) {
       $producto = $request->input("producto");
       $cantidad = $request->input("cantidad");
