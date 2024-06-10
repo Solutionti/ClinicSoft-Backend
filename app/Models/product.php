@@ -63,11 +63,11 @@ class Product extends Model
       return $inventories;
     }
 
-    public function getInventories($fechainicial, $fechafinal) {
+    public function getInventories($cantidad) {
+
       $inventories = DB::table("productos")
                          ->select("*")
-                         ->where("fecha", '2024-01-01')
-                         ->where("fecha",'2024-04-31')
+                         ->where('stock', $cantidad)
                          ->get();
                         
       return $inventories;

@@ -61,10 +61,10 @@ class InventoryController extends Controller{
     // INVENTARIOS
 
     public function getInventories(Request $request) {
-      $fechainicial = $request->input("fechainicial");
-      $fechafinal = $request->input("fechafinal");
+      $cantidad = $request->input("cantidad");
+      $cantidad = $request->input("selector");
 
-      return $this->Product->getInventories($fechainicial, $fechafinal);
+      return $this->Product->getInventories($cantidad);
     }
 
     public function pdfInventory() {
@@ -74,8 +74,11 @@ class InventoryController extends Controller{
     //MODULO DE KARDEX
     public function getKardex(Request $request) {
       $producto = $request->input("producto");
-      $fechaInicial = $request->input("fechaInicial");
-      $fechaFinal = $request->input("fechaFinal");
+      $fechaInicial = $request->input("fechainicial");
+      $fechaFinal = $request->input("fechafinal");
+
+      $fechaInicial = date("Y-m-d", strtotime($fechaInicial));
+      $$fechaFinal = date("Y-m-d", strtotime($fechaFinal));
 
       return $this->Kardex->getKardex($producto,$fechaInicial,$fechaFinal);
     }
@@ -91,14 +94,18 @@ class InventoryController extends Controller{
       $seccion = $request->input("seccion");
       $motivo = $request->input("motivo");
       $comentarios = $request->input("comentarios");
-      
+      $usuario = $request->input("usuario");
+      $sede = "001";
+      $fecha = date('Y-m-d');
+      $hora = date('h:i');
+
       $entrada = [
         "id_producto" => $producto,
         "tp_documento" => "NE",
         "entrada" => $cantidad,
         "salida" => 0,
-        "fecha" => "2024-01-01",
-        "hora" => "12:00",
+        "fecha" => $fecha,
+        "hora" => $hora ,
         "descripcion" => $comentarios,
         "usuario" => $usuario,
         "sede" => $sede,
@@ -116,14 +123,18 @@ class InventoryController extends Controller{
       $seccion = $request->input("seccion");
       $motivo = $request->input("motivo");
       $comentarios = $request->input("comentarios");
+      $usuario = $request->input("usuario");
+      $sede = "001";
+      $fecha = date('Y-m-d');
+      $hora = date('h:i');
 
       $entrada = [
         "id_producto" => $producto,
         "tp_documento" => "FO",
         "entrada" => 0,
         "salida" => $cantidad,
-        "fecha" => "2024-01-01",
-        "hora" => "12:00",
+        "fecha" => $fecha,
+        "hora" => $hora,
         "descripcion" => $comentarios,
         "usuario" => $usuario,
         "sede" => $sede,
