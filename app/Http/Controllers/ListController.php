@@ -180,4 +180,10 @@ class ListController extends Controller {
       return $user;
     }
 
+    public function getDocumentosPdfPacientes(Request $request) {
+      $paciente = $request->input("paciente");
+
+      return $this->ListModel->getDocumentosPdfPacientes($paciente);
+    }
+
 }

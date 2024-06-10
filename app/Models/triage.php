@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\DB;
 class triage extends Model
 {
     use HasFactory;
+    
+    public function getTriageId($paciente) {
+      $triage = DB::table("triajes")
+                 ->select("*")
+                 ->where("paciente", $paciente)
+                 ->get();
+
+      return $triage;
+    }
 
     public function getTriage() {
       $triages = DB::table("triages")

@@ -37,7 +37,9 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getCivilStatus', 'getCivilStatus');  
   Route::get('getMeasures', 'getMeasures');  
   Route::get('getCurrency', 'getCurrency');  
-  Route::get('getusers', 'getusers');  
+  Route::get('getusers', 'getusers');
+  Route::get('getDocumentosPdfPacientes', 'getDocumentosPdfPacientes');
+  
 });
 
 // RUTAS ADMISIONES
@@ -57,6 +59,7 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
 
   // TRIAGE
+  Route::get('getTriageId', 'getTriageId');
   Route::post('createTriage', 'createTriage');
 
   //LABORATORIO
