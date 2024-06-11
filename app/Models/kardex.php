@@ -18,7 +18,7 @@ class kardex extends Model
                     ->where('id_producto', $product)
                     ->get();
 
-        return $kadexs;
+      return $kadexs;
     }
 
 
