@@ -24,7 +24,6 @@ Route::post('login', [LoginController::class, 'login']);
 
 //RUTAS DE LAS LISTAS DESPLEGABLES DE LA APLICACION
 Route::controller(ListController::class)->group(function () {
-<<<<<<< HEAD
   Route::get('getSpecialties', 'getSpecialties');
   Route::get('getDoctor', 'getDoctor');
   Route::get('getDepartaments', 'getDepartaments');
@@ -39,24 +38,8 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getMeasures', 'getMeasures');
   Route::get('getCurrency', 'getCurrency');
   Route::get('getusers', 'getusers');
-=======
-  Route::get('getSpecialties', 'getSpecialties');  
-  Route::get('getDoctor', 'getDoctor');  
-  Route::get('getDepartaments', 'getDepartaments');  
-  Route::get('getProvince', 'getProvince');  
-  Route::get('getDistrict', 'getDistrict');  
-  Route::get('getActivities', 'getActivities');  
-  Route::get('getProducts', 'getProducts');  
-  Route::get('getCategories', 'getCategories');  
-  Route::get('getSex', 'getSex');  
-  Route::get('getAcademics', 'getAcademics');  
-  Route::get('getCivilStatus', 'getCivilStatus');  
-  Route::get('getMeasures', 'getMeasures');  
-  Route::get('getCurrency', 'getCurrency');  
-  Route::get('getusers', 'getusers');
   Route::get('getDocumentosPdfPacientes', 'getDocumentosPdfPacientes');
-  
->>>>>>> c7f8e529c982d7d1691bbfc4729c9ddd77cdac2e
+
 });
 
 // RUTAS ADMISIONES

@@ -62,7 +62,6 @@ class InventoryController extends Controller{
 
     public function getInventories(Request $request) {
       $cantidad = $request->input("cantidad");
-      $cantidad = $request->input("selector");
 
       return $this->Product->getInventories($cantidad);
     }
@@ -74,14 +73,11 @@ class InventoryController extends Controller{
     //MODULO DE KARDEX
     public function getKardex(Request $request) {
       $producto = $request->input("producto");
-<<<<<<< HEAD
-=======
       $fechaInicial = $request->input("fechainicial");
       $fechaFinal = $request->input("fechafinal");
 
       $fechaInicial = date("Y-m-d", strtotime($fechaInicial));
       $$fechaFinal = date("Y-m-d", strtotime($fechaFinal));
->>>>>>> c7f8e529c982d7d1691bbfc4729c9ddd77cdac2e
 
 
       return $this->Kardex->getKardex($producto);
@@ -98,13 +94,10 @@ class InventoryController extends Controller{
       $seccion = $request->input("seccion");
       $motivo = $request->input("motivo");
       $comentarios = $request->input("comentarios");
-<<<<<<< HEAD
-=======
       $usuario = $request->input("usuario");
       $sede = "001";
       $fecha = date('Y-m-d');
       $hora = date('h:i');
->>>>>>> c7f8e529c982d7d1691bbfc4729c9ddd77cdac2e
 
       $entrada = [
         "id_producto" => $producto,
