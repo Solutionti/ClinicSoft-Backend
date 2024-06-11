@@ -71,5 +71,14 @@ class ListModel extends Model{
       return $product;
       
     }
+
+    public function getDocumentosPdfPacientes($paciente) {
+      $product = DB::table('documentos_pacientes')
+                   ->select('*')
+                   ->where('paciente', $paciente)
+                   ->get();
+
+      return $product;
+    }
     
 }

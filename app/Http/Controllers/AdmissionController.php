@@ -190,7 +190,10 @@ class AdmissionController extends Controller{
   }
 
   // MODULO DE TRIAGE
-
+  public function getTriageId(Request $request) {
+    $paciente = $request->input("paciente");
+    return $this->Triage->getTriageId($paciente);
+  }
   public function createTriage(Request $request) {
     $presion_arterial = $request->input("presion_arterial");
     $temperatura = $request->input("temperatura");
