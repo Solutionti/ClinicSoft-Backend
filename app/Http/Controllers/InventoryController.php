@@ -101,6 +101,7 @@ class InventoryController extends Controller{
       $seccion = $request->input("seccion");
       $motivo = $request->input("motivo");
       $comentarios = $request->input("comentarios");
+      $devolucion = "0";
       $usuario = $request->input("usuario");
       $sede = "001";
       $fecha = date('Y-m-d');
@@ -111,6 +112,7 @@ class InventoryController extends Controller{
         "tp_documento" => "NE",
         "entrada" => $cantidad,
         "salida" => 0,
+        "devolucion" => $devolucion,
         "fecha" => $fecha,
         "hora" => $hora ,
         "descripcion" => $comentarios,
@@ -136,6 +138,7 @@ class InventoryController extends Controller{
       $motivo = $request->input("motivo");
       $comentarios = $request->input("comentarios");
       $usuario = $request->input("usuario");
+      $devolucion = "0";
       $sede = "001";
       $fecha = date('Y-m-d');
       $hora = date('h:i');
@@ -145,6 +148,7 @@ class InventoryController extends Controller{
         "tp_documento" => "FO",
         "entrada" => 0,
         "salida" => $cantidad,
+        "devolucion" => $devolucion,
         "fecha" => $fecha,
         "hora" => $hora,
         "descripcion" => $comentarios,
