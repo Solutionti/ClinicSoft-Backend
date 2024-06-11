@@ -122,6 +122,11 @@ class InventoryController extends Controller{
       ];
 
       $this->Kardex->creatStartEnd($entrada);
+
+      return response()->json([
+        'message' => 'El movimiento entrada de kardex se ha creado en la base de datos',
+        'status' => 200
+      ]);
     }
 
     public function createEnd(Request $request) {
@@ -151,5 +156,10 @@ class InventoryController extends Controller{
       ];
 
       $this->Kardex->creatStartEnd($entrada);
+
+      return response()->json([
+        'message' => 'El movimiento salida de kardex se ha creado en la base de datos',
+        'status' => 200
+      ]);
     }
 }
