@@ -62,9 +62,15 @@ class InventoryController extends Controller{
 
     public function getInventories(Request $request) {
       $cantidad = $request->input("cantidad");
-      $cantidad = $request->input("selector");
+      // $selector = $request->input("selector");
 
-      return $this->Product->getInventories($cantidad);
+      return $this->Product->getInventories($selector,$cantidad);
+
+      return response()->json([
+        'message' => 'El stock  de los productos se ha encontrado',
+        'status' => 200
+      ]);
+
     }
 
     public function pdfInventory() {
