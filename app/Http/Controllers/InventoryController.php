@@ -91,7 +91,7 @@ class InventoryController extends Controller{
     }
 
     public function pdfKardex() {
-
+      
     }
 
     public function creatStart(Request $request) {
