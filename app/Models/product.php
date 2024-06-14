@@ -45,7 +45,7 @@ class Product extends Model
         "usuario" => $data["usuario"],
         "descripcion" => $data["descripcion"],
       ];
-      
+
       DB::table("productos")
           ->updateOrInsert(
             [
@@ -54,7 +54,7 @@ class Product extends Model
             $products);
     }
 
-    
+
     public function getInventoryProducts() {
       $inventories = DB::table("productos")
                         ->select("*")
@@ -70,7 +70,7 @@ class Product extends Model
                          ->join('categorias', 'productos.categoria', '=', 'categorias.codigo_categoria')
                          ->where('stock',$cantidad)
                          ->get();
-                        
+
       return $inventories;
     }
 

@@ -84,19 +84,15 @@ Route::controller(InventoryController::class)->group(function () {
 
 });
 
-// RUTAS DE PROCEDIMIENTOS 
+// RUTAS DE PROCEDIMIENTOS
 Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
 });
 
-<<<<<<< HEAD
-Route::group(['middleware' => ['auth:sanctum']], function() {
-=======
-// RUTAS DE CONTABILIDAD 
+// RUTAS DE CONTABILIDAD
 Route::controller(AccountingController::class)->group(function () {
   Route::get('getPayments', 'getPayments');
->>>>>>> 49b169f470d4e54233958a58796838219a535c3d
 
 });
 
@@ -106,6 +102,6 @@ Route::controller(AccountingController::class)->group(function () {
 
 
 // Route::group(['middleware' => ['auth:sanctum']], function() {
-  
+
 // });
 
