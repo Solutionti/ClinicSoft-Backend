@@ -65,7 +65,8 @@ class ListModel extends Model{
 
     public function getProducts() {
       $product = DB::table('productos')
-                 ->select('*')
+                 ->select('productos.*', 'categorias.nombre as categoria')
+                 ->join('categorias', 'productos.categoria', '=', 'categorias.codigo_categoria')
                  ->get();
 
       return $product;

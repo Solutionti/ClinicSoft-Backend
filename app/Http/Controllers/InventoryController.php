@@ -81,11 +81,11 @@ class InventoryController extends Controller{
     //MODULO DE KARDEX
     public function getKardex(Request $request) {
       $producto = $request->input("producto");
-      $fechaInicial = $request->input("fechainicial");
-      $fechaFinal = $request->input("fechafinal");
+      $fechainicial = $request->input("fechainicial");
+      $fechafinal = $request->input("fechafinal");
 
-      $fechaInicial = date("Y-m-d", strtotime($fechaInicial));
-      $$fechaFinal = date("Y-m-d", strtotime($fechaFinal));
+      $fechainicial = date("Y-m-d", strtotime($fechainicial));
+      $$fechafinal = date("Y-m-d", strtotime($fechafinal));
 
 
       return $this->Kardex->getKardex($producto);
