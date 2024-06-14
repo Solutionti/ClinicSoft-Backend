@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\payment;
 
 use Illuminate\Http\Request;
-
 class AccountingController extends Controller{
     
     public function __construct(request $request) {
+        $this->Payment = new Payment();
     }
-
-    public function getPagos() {
-
+    // PAGOS 
+    public function getPayments() {
+      return $this->Payment->getPayments();
     }
 
     // GASTOS

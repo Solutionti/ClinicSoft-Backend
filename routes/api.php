@@ -9,6 +9,7 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProcedureController;
+use App\Http\Controllers\AccountingController;
 
 
 /*
@@ -44,6 +45,7 @@ Route::controller(ListController::class)->group(function () {
 
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
+
   // GLOBAL
   Route::post('PasateStatusAdmission', 'PasateStatusAdmission');
 
@@ -67,7 +69,7 @@ Route::controller(AdmissionController::class)->group(function () {
 
 });
 
-
+// RUTAS DE INVENTARIOS
 Route::controller(InventoryController::class)->group(function () {
   //PRODUCTOS 
   Route::post('createProduct', 'createProduct');
@@ -82,12 +84,24 @@ Route::controller(InventoryController::class)->group(function () {
   
 });
 
+// RUTAS DE PROCEDIMIENTOS 
 Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
 });
 
-Route::group(['middleware' => ['auth:sanctum']], function() {
-  
+// RUTAS DE CONTABILIDAD 
+Route::controller(AccountingController::class)->group(function () {
+  Route::get('getPayments', 'getPayments');
+
 });
+
+
+
+
+
+
+// Route::group(['middleware' => ['auth:sanctum']], function() {
+  
+// });
 
