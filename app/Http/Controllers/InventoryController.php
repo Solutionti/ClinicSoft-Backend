@@ -87,11 +87,10 @@ class InventoryController extends Controller{
       $fechainicial = date("Y-m-d", strtotime($fechainicial));
       $fechafinal = date("Y-m-d", strtotime($fechafinal));
 
-      return $this->Kardex->getKardex($producto,$$fechainicial,$fechafinal);
+      return $this->Kardex->getKardex($producto, $fechainicial, $fechafinal);
     }
 
     public function pdfKardex() {
-
     }
 
     public function creatStart(Request $request) {
