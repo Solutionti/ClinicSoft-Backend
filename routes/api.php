@@ -10,6 +10,7 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\AccountingController;
+use App\Http\Controllers\PdfsController;
 
 
 /*
@@ -48,6 +49,9 @@ Route::controller(AdmissionController::class)->group(function () {
 
   // GLOBAL
   Route::post('PasateStatusAdmission', 'PasateStatusAdmission');
+
+  // CITAS
+  Route::get('getQuotePatient', 'getQuotePatient');
 
   // RUTAS DE PACIENTES
   Route::get('getPatients', 'getPatients');
@@ -96,8 +100,10 @@ Route::controller(AccountingController::class)->group(function () {
 
 });
 
+Route::controller(PdfsController::class)->group(function () {
+  Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
 
-
+});
 
 
 
