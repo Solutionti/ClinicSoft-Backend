@@ -6,6 +6,7 @@ use App\Models\Patient;
 use App\Models\Admission;
 use App\Models\Laboratory;
 use App\Models\Triage;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller{
@@ -15,6 +16,7 @@ class AdmissionController extends Controller{
     $this->Admission = new Admission();
     $this->Laboratory = new Laboratory();
     $this->Triage = new Triage();
+    $this->Quote = new Quote();
   }
 
   //MODULO DE PACIENTES
@@ -251,5 +253,15 @@ class AdmissionController extends Controller{
 
   public function CreateExamenLaboratory() {
 
+  }
+
+  public function getQuotePatient(Request $request) {
+    $documento = $request->input("documento");
+
+    $quotes = $this->Quote->getQuotePatient($documento);
+
+    return response()->json([
+     'data' => $quotes
+    ]);
   }
 }

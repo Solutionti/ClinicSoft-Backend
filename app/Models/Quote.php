@@ -10,10 +10,15 @@ class Quote extends Model
 {
     use HasFactory;
 
-    public function getQuotePatient() {
+    public function getQuotePatient($documento) {
+       $fecha = date("Y-m-d");
        $quotes = DB::table("citas")
                    ->select("*")
-                   ->where()
-                   ->get();
+                   ->where("documento", $documento)
+                   ->where("fecha", '>', $fecha)
+                   ->orderByDesc('codigo_cita')
+                   ->first();
+
+       return $quotes;
     }
 }
