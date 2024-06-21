@@ -102,6 +102,9 @@ Route::controller(AccountingController::class)->group(function () {
 
 Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
+  Route::get('pdfColposcopia', 'pdfColposcopia');
+  Route::get('pdfKardex', 'pdfKardex');
+  Route::get('pdfInventario', 'pdfInventario');
 
 });
 
