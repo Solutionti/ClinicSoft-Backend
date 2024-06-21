@@ -110,12 +110,67 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', '', 6);
       $pdf->cell(36,5, 'SOLTERO', 1,'L', false);
       $pdf->Ln(9);
+
       // DATOS DEL TRIAGE
       $pdf->SetFillColor(115,115,115);
       $pdf->Rect(10,  70,  196,  6, 'F');
       $pdf->SetFont('Courier', 'B', 8);
       $pdf->SetTextColor(255,255,255);
-      $pdf->cell(196,6, '2. DATOS DEL TRIGE', 0, 0, 'L');
+      $pdf->cell(196,6, '2. SIGNOS VITALES', 0, 0, 'L');
+
+      $pdf->SetTextColor(0,0,0);
+      $pdf->Ln(6);
+
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(20,5, 'ESTATURA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(20,5, '172 CM', 1,'C', false);
+
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(20,5, 'PESO', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(20,5, '80 KG', 1,'C', false);
+
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(20,5, 'IMC', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(20,5, '15 IMC', 1,'C', false);
+
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(20,5, 'TEMPERATURA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(20,5,utf8_decode('25 C°'), 1,'C', false);
+
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(20,5, '% GRASA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(16,5,'20%', 1,'C', false);
+
+      $pdf->Ln(5);
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(40,5, 'FRECUENCIA RESPIRATORIA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(20,5,'10 R/M', 1,'C', false);
+
+      $pdf->SetFont('Arial', 'B', 6);
+      $pdf->cell(40,5, 'FRECUENCIA CARDIACA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 6);
+      $pdf->cell(20,5,'20 MMHG', 1,'C', false);
+
+      // DATOS DEL TRIAGE
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  70,  196,  6, 'F');
+      $pdf->SetFont('Courier', 'B', 8);
+      $pdf->SetTextColor(255,255,255);
+      $pdf->cell(196,6, '2. SIGNOS VITALES', 0, 0, 'L');
+
 
       $pdf->Output();
       exit;

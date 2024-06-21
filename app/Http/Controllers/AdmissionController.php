@@ -134,6 +134,7 @@ class AdmissionController extends Controller{
     }
   }
 
+  // HISTORIA CLINICA
   public function getClinicHistory(Request $request) {
     $documento = $request->input("documento");
     //DATOS DEL PACIENTE
@@ -146,6 +147,23 @@ class AdmissionController extends Controller{
     //MEDICAMENTOS
     // CITAS 
     // HISTORIAL DE CONSULTAS ULTIMAS 2
+  }
+
+  public function SubirArchivosPdf() {
+
+
+  }
+  
+  public function SubirArchivosImagenes() {
+    $dir_subida = 'public/colposcopia/';
+    $fichero_subido = $dir_subida.basename($_FILES['imagen1']['name']);
+
+		move_uploaded_file($_FILES['imagen1']['tmp_name'], $fichero_subido);
+			$datos = array
+      (
+			  "id" => $id,
+				"icono" => $_FILES['imagen1']['name']
+			);
   }
 
   // MODULO DE ADMISIONES
@@ -177,6 +195,8 @@ class AdmissionController extends Controller{
       "usuario" => $usuario,
       "orden__" => $orden__,
     ];
+
+    // $this->Admission->ValidateAdmision->($documento);
     $this->Admission->createAdmission($admission);
 
     return response()->json([
