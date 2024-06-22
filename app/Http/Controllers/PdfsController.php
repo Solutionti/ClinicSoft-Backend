@@ -434,13 +434,271 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(30,5, 'ACTIVO', 1,'L', false);
 
+      $pdf->Output();
+      exit;
+
+    }
+
+    public function pdfCaja() {
+
+      $pdf = new Fpdf('p', 'mm', 'A4');
+      $pdf->AddPage();
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 10);
+      $pdf->cell(128,5, '', 0,'L', false);
+      $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0,'L', false);
+      $pdf->Ln(5);
+      $pdf->cell(124,5, '', 0,'L', false);
+      $pdf->cell(44,5, 'INFORME DIARIO DE CIERRE DE CAJA', 0,'L', false);
 
 
+      $pdf->Ln(20);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'FECHA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'CONSULTA 2023-12-17', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'RESPONSABLE', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
+
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(196,5, 'REPORTE DIARIO 2024-06-17', 0,'L', false);
 
 
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(46,5, 'PACIENTE', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(10,5, 'No', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(55,5, 'MEDICO', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(55,5, 'ESPECIALIDAD', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(15,5, 'EFECTIVO', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(15,5, 'TARJETA', 1,'L', false);
+
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(46,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(10,5, '10', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(55,5, 'CUNIA PEREZ MARLENI', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(55,5, 'ECOGRAFIA TRANSVAGINAL', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(15,5, '60', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(15,5, '100', 1,'L', false);
+
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(111,5, '', 0,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(55,5, 'TOTAL DOCTOR', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, '$ 2.000.000', 1,'L', false);
+
+      $pdf->Ln(20);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'IMPRESION', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(45,5, '23:28 PM  17-06-2024', 1,'L', false);
 
       $pdf->Output();
       exit;
 
     }
+
+    public function pdfGastos() {
+
+      $pdf = new Fpdf('p', 'mm', 'A4');
+      $pdf->AddPage();
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 10);
+      $pdf->cell(128,5, '', 0,'L', false);
+      $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0,'L', false);
+      $pdf->Ln(5);
+      $pdf->cell(138,5, '', 0,'L', false);
+      $pdf->cell(30,5, 'INFORME DE GASTOS', 0,'L', false);
+
+
+      $pdf->Ln(20);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'FECHA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'CONSULTA 2023-12-17', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'RESPONSABLE', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
+
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(196,5, 'REPORTE DE GASTOS', 0,'L', false);
+
+
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'RAZON SOCIAL', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(50,5, 'DESCRIPCION', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'FE RECEPCION', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'COLABORADOR', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'COMPROBANTE', 1,'L', false);
+
+
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(140,5, '', 0,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'TOTAL  $', 1,'L', false);
+
+      $pdf->Output();
+      exit;
+    }
+
+    public function pdfLaboratorio() {
+
+      $pdf = new Fpdf('p', 'mm', 'A4');
+      $pdf->AddPage();
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 10);
+      $pdf->cell(128,5, '', 0,'L', false);
+      $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0,'L', false);
+      $pdf->Ln(5);
+      $pdf->cell(115,5, '', 0,'L', false);
+      $pdf->cell(53,5, 'INFORME LABORATORIO DE CIERRE DE CAJA', 0,'L', false);
+
+
+      $pdf->Ln(20);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'FECHA', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'CONSULTA 2023-12-17', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'RESPONSABLE', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
+
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(196,5, 'REPORTE DIARIO', 0,'L', false);
+
+
+
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(15,5, 'No', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(60,5, 'PACIENTE', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(80,5, 'ESPECIALIDAD', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(20,5, 'PAGO', 1,'L', false);
+
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(20,5, 'VALOR', 1,'L', false);
+
+
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(15,5, '05', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(60,5, 'GALVEZ ENSUNCHO', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(80,5, '17 KETOESTEROIDES', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(20,5, 'EFECTIVO', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(20,5, '90.000', 1,'L', false);
+
+
+
+      $pdf->Ln(15);
+      $pdf->SetTextColor(0,0,0);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(145,5, '',0,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(20,5, 'TOTAL', 1,'L', false);
+
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, '$ 90.000', 1,'L', false);
+
+      $pdf->Output();
+      exit;
+
+    }
+
 }

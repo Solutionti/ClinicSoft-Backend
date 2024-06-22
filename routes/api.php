@@ -105,6 +105,9 @@ Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfColposcopia', 'pdfColposcopia');
   Route::get('pdfKardex', 'pdfKardex');
   Route::get('pdfInventario', 'pdfInventario');
+  Route::get('pdfCaja', 'pdfCaja');
+  Route::get('pdfGastos', 'pdfGastos');
+  Route::get('pdfLaboratorio', 'pdfLaboratorio');
 
 });
 
