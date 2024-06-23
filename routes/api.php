@@ -102,7 +102,9 @@ Route::controller(AccountingController::class)->group(function () {
 
 Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
-
+  Route::get('pdfFacturaAdmision', 'pdfFacturaAdmision');
+  Route::get('pdfFacturaLaboratorio', 'pdfFacturaLaboratorio');
+  
 });
 
 

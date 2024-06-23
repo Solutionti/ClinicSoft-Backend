@@ -18,6 +18,41 @@ class laboratory extends Model
         return $laboratories;
     }
 
+    public function CreateLaboratory() {
+      $laboratory = [
+        "nombre"  => $nombre,
+        "precio"  => $precio,
+        "estado"  => $estado,
+        "usuario" => $usuario,
+      ];
+
+      DB::table("precio_laboratorio")
+        ->updateOrInsert(
+          [
+            "codigo" => $data["codigo"],
+          ],
+          $laboratory
+        );
+    }
+
+    public function CreateEspeciality() {
+      $especiality = [
+        "comision_aproximada"  => $comision_aproximada,
+        "estado"  => $estado,
+        "descripcion"  => $descripcion,
+        "costo" => $costo,
+        "usuario" => $usuario,
+      ];
+
+      DB::table("especialidades")
+        ->updateOrInsert(
+          [
+            "codigo" => $data["codigo"],
+          ],
+          $especiality
+        );
+    }
+
     public function CreateExamenLaboratory() {
       $laboratories = [
         "paciente" => $data["documento"],

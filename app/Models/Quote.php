@@ -15,7 +15,7 @@ class Quote extends Model
        $quotes = DB::table("citas")
                    ->select("*")
                    ->where("documento", $documento)
-                   ->where("fecha", '>', $fecha)
+                   ->where("fecha", '>=', $fecha)
                    ->orderByDesc('codigo_cita')
                    ->first();
 
