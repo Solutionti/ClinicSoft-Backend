@@ -10,14 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends Controller
 {
+
+    public function getUsers() {
+      $user = new User();
+      return $user::all();
+    }
     
     public function registerUser(Request $request) {
     
     try {
-      $request->validate([
-        'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed'
-      ]);
       
       $user = new User();
       $user->usuario = $request->usuario;

@@ -21,7 +21,9 @@ use App\Http\Controllers\PdfsController;
 */
 
 //LOGIN APLICACION
-Route::post('register', [LoginController::class, 'registerUser']); 
+Route::post('register', [LoginController::class, 'registerUser']);
+Route::get('getUsers', [LoginController::class, 'getUsers']);
+
 Route::post('login', [LoginController::class, 'login']); 
 
 //RUTAS DE LAS LISTAS DESPLEGABLES DE LA APLICACION 
@@ -96,15 +98,24 @@ Route::controller(ProcedureController::class)->group(function () {
 
 // RUTAS DE CONTABILIDAD 
 Route::controller(AccountingController::class)->group(function () {
+  
   Route::get('getPayments', 'getPayments');
-
+  Route::get('getGasto', 'getGasto');
+  Route::post('CreateEspeciality', 'CreateEspeciality');
+  Route::post('CreateLaboratory', 'CreateLaboratory');
+  
 });
 
 Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
   Route::get('pdfFacturaAdmision', 'pdfFacturaAdmision');
   Route::get('pdfFacturaLaboratorio', 'pdfFacturaLaboratorio');
-  
+  Route::get('pdfColposcopia', 'pdfColposcopia');
+  Route::get('pdfKardex', 'pdfKardex');
+  Route::get('pdfInventario', 'pdfInventario');
+  Route::get('pdfCaja', 'pdfCaja');
+  Route::get('pdfGastos', 'pdfGastos');
+  Route::get('pdfLaboratorio', 'pdfLaboratorio');
 });
 
 
