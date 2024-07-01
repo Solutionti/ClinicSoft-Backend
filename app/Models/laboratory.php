@@ -30,6 +30,7 @@ class laboratory extends Model
         ->insert($laboratory);
     }
 
+    
     public function CreateEspeciality($data) {
       $especiality = [
         "comision_aproximada"  => $data['comision_aproximada'],
@@ -43,9 +44,9 @@ class laboratory extends Model
         ->insert($especiality);
     }
 
-    public function CreateExamenLaboratory() {
+    public function CreateExamenLaboratory($data) {
       $laboratories = [
-        "paciente" => $data["documento"],
+        "dni_paciente" => $data["documento"],
         "medico" => $data["medico"],
         "tipo_deposito" => $data["tipo_deposito"],
         "descripcion" => $data["descripcion"],
@@ -56,7 +57,22 @@ class laboratory extends Model
         "usuario" => $data["usuario"],
       ];
 
-      DB::table("laboratorios")
-        ->insert($laboratories);
+      $id = DB::table("laboratorio")
+        ->insertGetId($laboratories);
+
+      return $id;
+    }
+
+    public function CreateDetalleLaboratorio($data) {
+      $detalle_laboratrorios = [
+        "id_laboratorio" => $data["id_laboratorio"],
+        "servicio" => $data["servicio"],
+        "fecha" => $data["fecha"],
+        "hora" => $data["hora"],
+        "usuario" => $data["usuario"],
+      ];
+      
+      DB::table("detalle_pago_laboratorio")
+        ->insert($detalle_laboratrorios);
     }
 }

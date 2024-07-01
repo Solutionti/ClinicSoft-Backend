@@ -10,6 +10,7 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\AccountingController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PdfsController;
 
 
@@ -72,7 +73,8 @@ Route::controller(AdmissionController::class)->group(function () {
 
   //LABORATORIO
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
-
+  Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
+  
 });
 
 // RUTAS DE INVENTARIOS
@@ -103,6 +105,19 @@ Route::controller(AccountingController::class)->group(function () {
   Route::get('getGasto', 'getGasto');
   Route::post('CreateEspeciality', 'CreateEspeciality');
   Route::post('CreateLaboratory', 'CreateLaboratory');
+  
+});
+
+Route::controller(ReportController::class)->group(function () {
+  Route::get('countPatients', 'countPatients');
+  Route::get('countHistory', 'countHistory');
+  Route::get('countPagos', 'countPagos');
+  Route::get('CountDoctors', 'CountDoctors');
+  Route::get('newPatients', 'newPatients');
+
+  Route::get('countEfectivo', 'countEfectivo');
+  Route::get('countTargeta', 'countTargeta');
+  Route::get('getTransacciones', 'getTransacciones');
   
 });
 
