@@ -23,7 +23,54 @@ class AccountingController extends Controller{
       return  $this->Gastos->getGasto();  
     }
     public function createGasto(Request $request){
-     
+      $tipo_doc = $request->input("tipo_doc");
+      $nro_doc = $request->input("nro_doc");
+      $razon_social = $request->input("razon_social");
+      $descripcion = $request->input("descripcion");
+      $f_recepcion = $request->input("f_recepcion");
+      $f_emision = $request->input("f_emision");
+      $tipo_cpe = $request->input("tipo_cpe");
+      $serie = $request->input("serie");
+      $numero = $request->input("numero");
+      $sub_total = $request->input("sub_total");
+      $igv = $request->input("igv");
+      $op_grav = $request->input("op_grav");
+      $op_inafec = $request->input("op_inafec");
+      $op_exone = $request->input("op_exone");
+      $monto = $request->input("monto");
+      $rpta_sunat = $request->input("rpta_sunat");
+      $estado = $request->input("estado");
+      $codigo_usuario = $request->input("codigo_usuario");
+      $codigo_usuario_sys = $request->input("codigo_usuario_sys");
+
+      $datos = [
+        "tipo_doc" => $tipo_doc,
+        "nro_doc" => $nro_doc,
+        "razon_social" => $razon_social,
+        "descripcion" => $descripcion,
+        "f_recepcion" => $f_recepcion,
+        "f_emision" => $f_emision,
+        "tipo_cpe" => $tipo_cpe,
+        "serie" => $serie,
+        "numero" => $numero,
+        "sub_total" => $sub_total,
+        "igv" => $igv,
+        "op_grav" => $op_grav,
+        "op_inafec" => $op_inafec,
+        "op_exone" => $op_exone,
+        "monto" => $monto,
+        "rpta_sunat" => $rpta_sunat,
+        "estado" => $estado,
+        "codigo_usuario" => $codigo_usuario,
+        "codigo_usuario_sys" => $codigo_usuario_sys,
+      ];
+
+      $this->Gastos->createGasto($datos);
+
+      return response()->json([
+        'message' => 'El gasto se ha creado en la base de datos',
+        'status' => 200
+      ]);
     }
 
     public function updateGasto(Request $request){
