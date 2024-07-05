@@ -10,6 +10,7 @@ use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\AccountingController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PdfsController;
 
 
@@ -22,6 +23,8 @@ use App\Http\Controllers\PdfsController;
 
 //LOGIN APLICACION
 Route::post('register', [LoginController::class, 'registerUser']);
+Route::get('getUsers', [LoginController::class, 'getUsers']);
+
 Route::post('login', [LoginController::class, 'login']);
 
 //RUTAS DE LAS LISTAS DESPLEGABLES DE LA APLICACION
@@ -70,6 +73,7 @@ Route::controller(AdmissionController::class)->group(function () {
 
   //LABORATORIO
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
+  Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
 
 });
 
@@ -96,13 +100,37 @@ Route::controller(ProcedureController::class)->group(function () {
 
 // RUTAS DE CONTABILIDAD
 Route::controller(AccountingController::class)->group(function () {
+
   Route::get('getPayments', 'getPayments');
+  Route::get('getGasto', 'getGasto');
+  Route::post('CreateEspeciality', 'CreateEspeciality');
+  Route::post('CreateLaboratory', 'CreateLaboratory');
+
+});
+
+Route::controller(ReportController::class)->group(function () {
+  Route::get('countPatients', 'countPatients');
+  Route::get('countHistory', 'countHistory');
+  Route::get('countPagos', 'countPagos');
+  Route::get('CountDoctors', 'CountDoctors');
+  Route::get('newPatients', 'newPatients');
+
+  Route::get('countEfectivo', 'countEfectivo');
+  Route::get('countTargeta', 'countTargeta');
+  Route::get('getTransacciones', 'getTransacciones');
 
 });
 
 Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
-
+  Route::get('pdfFacturaAdmision', 'pdfFacturaAdmision');
+  Route::get('pdfFacturaLaboratorio', 'pdfFacturaLaboratorio');
+  Route::get('pdfColposcopia', 'pdfColposcopia');
+  Route::get('pdfKardex', 'pdfKardex');
+  Route::get('pdfInventario', 'pdfInventario');
+  Route::get('pdfCaja', 'pdfCaja');
+  Route::get('pdfGastos', 'pdfGastos');
+  Route::get('pdfLaboratorio', 'pdfLaboratorio');
 });
 
 

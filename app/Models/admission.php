@@ -38,7 +38,16 @@ class admission extends Model
 
       DB::table("admisiones")
         ->insert($admissions);
-      
+    }
+
+    public function ValidateAdmision($documento) {
+      $admission = DB::table("admisiones")
+                      ->where("paciente", $documento)
+                      ->where("estado", "Registrado")
+                      ->get();
+
+      return $admission;
+
     }
 
     public function getEspecialidadCosto($codigo) {

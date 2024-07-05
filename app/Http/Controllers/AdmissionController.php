@@ -134,6 +134,7 @@ class AdmissionController extends Controller{
     }
   }
 
+  // HISTORIA CLINICA
   public function getClinicHistory(Request $request) {
     $documento = $request->input("documento");
     //DATOS DEL PACIENTE
@@ -146,6 +147,23 @@ class AdmissionController extends Controller{
     //MEDICAMENTOS
     // CITAS 
     // HISTORIAL DE CONSULTAS ULTIMAS 2
+  }
+
+  public function SubirArchivosPdf() {
+
+
+  }
+  
+  public function SubirArchivosImagenes() {
+    $dir_subida = 'public/colposcopia/';
+    $fichero_subido = $dir_subida.basename($_FILES['imagen1']['name']);
+
+		move_uploaded_file($_FILES['imagen1']['tmp_name'], $fichero_subido);
+			$datos = array
+      (
+			  "id" => $id,
+				"icono" => $_FILES['imagen1']['name']
+			);
   }
 
   // MODULO DE ADMISIONES
@@ -177,6 +195,8 @@ class AdmissionController extends Controller{
       "usuario" => $usuario,
       "orden__" => $orden__,
     ];
+
+    // $this->Admission->ValidateAdmision->($documento);
     $this->Admission->createAdmission($admission);
 
     return response()->json([
@@ -251,10 +271,6 @@ class AdmissionController extends Controller{
     return $this->Laboratory->getLaboratoryTable();
   }
 
-  public function CreateExamenLaboratory() {
-
-  }
-
   public function getQuotePatient(Request $request) {
     $documento = $request->input("documento");
 
@@ -263,5 +279,49 @@ class AdmissionController extends Controller{
     return response()->json([
      'data' => $quotes
     ]);
+  }
+
+  public function CreateExamenLaboratory(Request $request) {
+    $dni_paciente = $request->input("dni_paciente");
+    $medico = $request->input("medico");
+    $tipo_deposito = $request->input("tipo_deposito");
+    $descripcion = $request->input("descripcion");
+    $estado = $request->input("estado");
+    $fecha = $request->input("fecha");
+    $hora = $request->input("hora");
+    $total = $request->input("total");
+    $usuario = $request->input("usuario");
+    $analisis = $request->input("analisis");
+
+    $datos = [
+      "documento" => $dni_paciente,
+      "medico" => $medico,
+      "tipo_deposito" => $tipo_deposito,
+      "descripcion" => $descripcion,
+      "estado" => $estado,
+      "fecha" => date('Y-m-d'),
+      "hora" => date('h:i A'),
+      "total" => $total,
+      "usuario" => $usuario,
+    ];
+
+    $id = $this->Laboratory->CreateExamenLaboratory($datos);
+    
+    foreach($analisis as $laboratorio){
+      $detalle = [
+        "id_laboratorio" => $id,
+        "servicio" => $laboratorio["codigo"],
+        "fecha" => date('Y-m-d'),
+        "hora" => date('h:i A'),
+        "usuario" => $usuario,
+      ];
+      $this->Laboratory->CreateDetalleLaboratorio($detalle);
+    }
+
+    return response()->json([
+      'message' => 'La orden de labratorio se ha creado correctamente',
+      'status' => 200
+    ]);
+
   }
 }
