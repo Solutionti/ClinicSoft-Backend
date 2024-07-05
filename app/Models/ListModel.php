@@ -35,7 +35,7 @@ class ListModel extends Model{
 
       return $departament;
     }
-    
+
     public function getProvince($departament) {
       $province = DB::table('provincia')
                   ->select('*')
@@ -70,7 +70,7 @@ class ListModel extends Model{
                  ->get();
 
       return $product;
-      
+
     }
 
     public function getDocumentosPdfPacientes($paciente) {
@@ -83,11 +83,11 @@ class ListModel extends Model{
     }
 
     public function getUsersAll() {
-      $users = DB::table('users')
-                   ->select('id', 'usuario')
+      $users = DB::table('usuarios')
+                   ->select('codigo_usuario', 'usuario')
                    ->get();
 
       return $users;
     }
-    
+
 }

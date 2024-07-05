@@ -36,7 +36,7 @@ class Gastos extends Model
         'op_exone' => $data['op_exone'],
         'rpta_sunat' => $data['rpta_sunat'],
         'estado' => $data['estado'],
-        'codigo_usuario ' => $data['codigo_usuario '],
+        'codigo_usuario' => $data['codigo_usuario'],
         'codigo_usuario_sys' => $data['codigo_usuario_sys'],
       ];
 
@@ -65,9 +65,9 @@ class Gastos extends Model
           'codigo_usuario ' => $data['codigo_usuario '],
           'codigo_usuario_sys' => $data['codigo_usuario_sys'],
         ];
-  
+
         DB::table('cpe_gastos')
           ->where('iddoc_cpe', $iddoc_cpe)
-          ->update($gastos);  
+          ->update($gastos);
       }
 }
