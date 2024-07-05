@@ -50,6 +50,10 @@ class ListController extends Controller {
       return $this->ListModel->getCategories();
     }
 
+    public function getUsersAll() {
+      return $this->ListModel->getUsersAll();
+    }
+
 
     // LISTAS QUEMADAS EN EL CODIGO 
     public function getSex(){

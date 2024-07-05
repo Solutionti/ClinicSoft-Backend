@@ -81,5 +81,13 @@ class ListModel extends Model{
 
       return $product;
     }
+
+    public function getUsersAll() {
+      $users = DB::table('users')
+                   ->select('id', 'usuario')
+                   ->get();
+
+      return $users;
+    }
     
 }
