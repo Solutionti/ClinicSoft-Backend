@@ -29,8 +29,8 @@ class PdfsController extends Controller
       $pdf->SetFont('Courier', 'B', 8);
       $pdf->SetTextColor(255,255,255);
       $pdf->cell(65,6, '1. DATOS GENERALES', 0, 0, 'L');
-    
-      // DATOS PERSONALES   
+
+      // DATOS PERSONALES
       $pdf->Ln(6);
       $pdf->SetTextColor(0,0,0);
 
@@ -197,7 +197,7 @@ class PdfsController extends Controller
       $pdf->SetTextColor(255,255,255);
       $pdf->cell(196,6, 'FACTURA DE ADMISION', 0, 0, 'L');
 
-      // DATOS PERSONALES   
+      // DATOS PERSONALES
       $pdf->Ln(6);
       $pdf->SetTextColor(0,0,0);
 
@@ -278,7 +278,7 @@ class PdfsController extends Controller
       $pdf->SetTextColor(255,255,255);
       $pdf->cell(196,6, 'FACTURA DE LABORATORIO', 0, 0, 'L');
 
-      // DATOS PERSONALES   
+      // DATOS PERSONALES
       $pdf->Ln(6);
       $pdf->SetTextColor(0,0,0);
 
@@ -488,6 +488,11 @@ class PdfsController extends Controller
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  44,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  64,  196,  6, 'F');
       $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
@@ -510,6 +515,40 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(196,5, 'MOVIMIENTOS DE KARDEX DEL PRODUCTO CATETER NA 24', 0,'L', false);
 
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(25,5, 'TIPO', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(50,5, 'MOTIVO', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(25,5, 'FECHA', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(26,5, 'ENTRADA', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'SALIDA', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'USUARIO', 1,'L', false);
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(25,5, 'NE3', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(50,5, 'COMPRA', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(25,5, '2024-07-08', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(26,5, '02', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, '0', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(40,5, 'CESAR ANTONIO PEREZ', 1,'L', false);
+
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', '', 8);
+      $pdf->MultiCell(195,5, 'DESCRIPCION:', 0,'L', false);
+
       $pdf->Output();
       exit;
     }
@@ -518,14 +557,19 @@ class PdfsController extends Controller
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  44,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  74,  196,  6, 'F');
       $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
       $pdf->cell(128,5, '', 0,'L', false);
       $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0,'L', false);
       $pdf->Ln(5);
-      $pdf->cell(128,5, '', 0,'L', false);
-      $pdf->cell(40,5, 'INFORME DE EXISTENCIA DE INVENTARIO', 0,'L', false);
+      $pdf->cell(123,5, '', 0,'L', false);
+      $pdf->cell(45,5, 'INFORME DE EXISTENCIA DE INVENTARIO', 0,'L', false);
       $pdf->Ln(20);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', 'B', 7);
@@ -537,7 +581,7 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
       $pdf->Ln(20);
-      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->SetFont('Arial', 'B', 8);
       $pdf->cell(196,5, 'CONSULTA DE INVENTARIO DE FECHA 17-06-2024', 0,'L', false);
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
@@ -574,6 +618,14 @@ class PdfsController extends Controller
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  44,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  69,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  99,  75,  6, 'F');
       $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
@@ -648,6 +700,11 @@ class PdfsController extends Controller
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  44,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  69,  196,  6, 'F');
       $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
@@ -667,7 +724,7 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
       $pdf->Ln(15);
-      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->SetFont('Arial', 'B', 8);
       $pdf->cell(196,5, 'REPORTE DE GASTOS', 0,'L', false);
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
@@ -697,6 +754,11 @@ class PdfsController extends Controller
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  44,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  69,  196,  6, 'F');
       $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
@@ -716,7 +778,7 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
       $pdf->Ln(15);
-      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->SetFont('Arial', 'B', 8);
       $pdf->cell(196,5, 'REPORTE DIARIO', 0,'L', false);
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
@@ -755,5 +817,5 @@ class PdfsController extends Controller
       exit;
 
     }
-    
+
 }
