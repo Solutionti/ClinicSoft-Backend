@@ -46,16 +46,12 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getusers', 'getusers');
   Route::get('getUsersAll', 'getUsersAll');
   Route::get('getDocumentosPdfPacientes', 'getDocumentosPdfPacientes');
-<<<<<<< HEAD
-
-=======
 });
 
 Route::controller(GenericController::class)->group(function () {
-  Route::post('createTransaccionTraza', 'createTransaccionTraza');  
+  Route::post('createTransaccionTraza', 'createTransaccionTraza');
   Route::get('getTransaccion', 'getTransaccion');
-  
->>>>>>> 2b0a08ec2c7b27695fa02712faa51b1669db69b6
+
 });
 
 // RUTAS ADMISIONES
