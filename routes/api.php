@@ -133,6 +133,7 @@ Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfCaja', 'pdfCaja');
   Route::get('pdfGastos', 'pdfGastos');
   Route::get('pdfLaboratorio', 'pdfLaboratorio');
+  Route::get('pdfPagos', 'pdfPagos');
 });
 
 

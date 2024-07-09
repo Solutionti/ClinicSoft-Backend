@@ -818,4 +818,91 @@ class PdfsController extends Controller
 
     }
 
+    public function pdfPagos() {
+      $pdf = new Fpdf('p', 'mm', 'A4');
+      $pdf->AddPage();
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  44,  196,  6, 'F');
+      $pdf->SetDrawColor(0,24,0);
+      $pdf->SetFillColor(115,115,115);
+      $pdf->Rect(10,  69,  196,  6, 'F');
+      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 10);
+      $pdf->cell(128,5, '', 0,'L', false);
+      $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0,'L', false);
+      $pdf->Ln(5);
+      $pdf->cell(128,5, '', 0,'L', false);
+      $pdf->cell(40,5, 'INFORME PAGO', 0,'L', false);
+      $pdf->Ln(20);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'FECHA', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'CONSULTA 2023-12-17', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(40,5, 'RESPONSABLE', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1,'L', false);
+      $pdf->Ln(15);
+      $pdf->SetFont('Arial', 'B', 8);
+      $pdf->cell(196,5, 'CONSULTA DE PAGO', 0,'L', false);
+
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(15,5, 'FACTURA', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(50,5, 'PACIENTE', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(45,5, 'MEDICO', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(41,5, 'CONCEPTO', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(20,5, 'FECHA', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(25,5, 'TIPO DE PAGO', 1,'L', false);
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(15,5, '15', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(50,5, 'MAURICIO TOVAR CUESTA', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(45,5, 'DOCTOR CHAPATIN', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(41,5, 'MUJERIEGO', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(20,5, '2024-07-08', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(25,5, 'EFECTIVO', 1,'L', false);
+
+      $pdf->Ln(10);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->cell(136,5, '', 0,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'DESCUENTO', 1,'L', false);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,5, 'TOTAL', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->cell(136,5, '', 0,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, '10%', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, '$ 20.000', 1,'L', false);
+      $pdf->SetFont('Arial', '', 7);
+
+
+
+
+
+
+      $pdf->Output();
+      exit;
+
+    }
+
 }
