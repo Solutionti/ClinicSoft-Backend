@@ -731,19 +731,19 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(30,5, 'RAZON SOCIAL', 1,'L', false);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(50,5, 'DESCRIPCION', 1,'L', false);
+      $pdf->cell(56,5, 'DESCRIPCION', 1,'L', false);
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(30,5, 'FE RECEPCION', 1,'L', false);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(30,5, 'COLABORADOR', 1,'L', false);
+      $pdf->cell(40,5, 'COLABORADOR', 1,'L', false);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(30,5, 'COMPROBANTE', 1,'L', false);
+      $pdf->cell(40,5, 'COMPROBANTE', 1,'L', false);
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(140,5, '', 0,'L', false);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(30,5, 'TOTAL  $', 1,'L', false);
+      $pdf->cell(56,5, 'TOTAL  $', 1,'L', false);
 
       $pdf->Output();
       exit;
