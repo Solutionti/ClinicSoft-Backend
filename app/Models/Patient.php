@@ -14,8 +14,7 @@ class Patient extends Model
       $patients = DB::table("pacientes")
                   ->select("*")
                   ->where("documento", $documento)
-                  ->get()
-                  ->first();
+                  ->get();
       return $patients;
     }
 
