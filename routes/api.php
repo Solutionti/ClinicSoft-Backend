@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 //IMPORTACION DE CONTROLADORES
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\GenericController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProcedureController;
@@ -45,33 +46,32 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getusers', 'getusers');
   Route::get('getUsersAll', 'getUsersAll');
   Route::get('getDocumentosPdfPacientes', 'getDocumentosPdfPacientes');
+});
+
+Route::controller(GenericController::class)->group(function () {
+  Route::post('createTransaccionTraza', 'createTransaccionTraza');  
+  Route::get('getTransaccion', 'getTransaccion');
   
 });
 
 // RUTAS ADMISIONES
 Route::controller(AdmissionController::class)->group(function () {
-
   // GLOBAL
   Route::post('PasateStatusAdmission', 'PasateStatusAdmission');
-
   // CITAS
   Route::get('getQuotePatient', 'getQuotePatient');
-
   // RUTAS DE PACIENTES
   Route::get('getPatients', 'getPatients');
   Route::get('getPatientId', 'getPatientId');
   Route::post('createPatient', 'createPatient');
   Route::post('updatePatient', 'updatePatient');
-
   // RUTAS DE ADMISIONES
   Route::get('getAdmission', 'getAdmission');
   Route::post('createAdmission', 'createAdmission');
   Route::get('getEspecialidadCosto', 'getEspecialidadCosto');
-
   // TRIAGE
   Route::get('getTriageId', 'getTriageId');
   Route::post('createTriage', 'createTriage');
-
   //LABORATORIO
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
   Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
