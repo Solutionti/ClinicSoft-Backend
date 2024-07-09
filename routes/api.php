@@ -125,21 +125,15 @@ Route::controller(ReportController::class)->group(function () {
 
 Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
-<<<<<<< HEAD
   Route::get('pdfFacturaAdmision', 'pdfFacturaAdmision');
   Route::get('pdfFacturaLaboratorio', 'pdfFacturaLaboratorio');
-=======
->>>>>>> 08f85862da60f1f36f35a15c6ba29835a9d7b62b
   Route::get('pdfColposcopia', 'pdfColposcopia');
   Route::get('pdfKardex', 'pdfKardex');
   Route::get('pdfInventario', 'pdfInventario');
   Route::get('pdfCaja', 'pdfCaja');
   Route::get('pdfGastos', 'pdfGastos');
   Route::get('pdfLaboratorio', 'pdfLaboratorio');
-<<<<<<< HEAD
-=======
-
->>>>>>> 08f85862da60f1f36f35a15c6ba29835a9d7b62b
+  Route::get('pdfPagos', 'pdfPagos');
 });
 
 
