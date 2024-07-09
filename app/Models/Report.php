@@ -46,18 +46,18 @@ class Report extends Model
 
     public function countEfectivo() {
       $efectivo = DB::table("pagos")
-                    ->select("SELECT SUM(total) as efectivo")
                     ->where("tipo_deposito", "Efectivo")
-                    ->get();
+                    ->sum('total');
+                    
 
       return $efectivo;
     }
 
     public function countTargeta() {
         $tarjeta = DB::table("pagos")
-                     ->select("SELECT SUM(total) as tarjeta")
                      ->where("tipo_deposito", "Tarjeta")
-                     ->get();
+                     ->sum('total');
+                     
 
         return $tarjeta;
     }
