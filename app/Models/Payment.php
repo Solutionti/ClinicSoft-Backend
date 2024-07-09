@@ -18,7 +18,7 @@ class Payment extends Model
                     ->join('pacientes', 'pagos.dni_paciente', '=', 'pacientes.documento')
                     ->join('doctores', 'pagos.medico', '=', 'doctores.codigo_doctor')
                     ->select('pagos.*', 'pacientes.nombre', 'pacientes.apellido', 'doctores.nombre as medico')
-                    ->where('pagos.fecha', $fecha)
+                    // ->where('pagos.fecha', $fecha)
                     ->get();
 
       return  $payments;
