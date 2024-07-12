@@ -905,4 +905,8 @@ class PdfsController extends Controller
 
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b0ad098e369270437b8c9ea6d3a0fc92bf32b3f9
