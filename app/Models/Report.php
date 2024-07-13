@@ -45,8 +45,10 @@ class Report extends Model
     }
 
     public function countEfectivo() {
+      $fecha = date('Y-m-d');
       $efectivo = DB::table("pagos")
                     ->where("tipo_deposito", "Efectivo")
+                    ->where("fecha", $fecha)
                     ->sum('total');
                     
 
@@ -54,8 +56,10 @@ class Report extends Model
     }
 
     public function countTargeta() {
+        $fecha = date('Y-m-d');
         $tarjeta = DB::table("pagos")
                      ->where("tipo_deposito", "Tarjeta")
+                     ->where("fecha", $fecha)
                      ->sum('total');
                      
 

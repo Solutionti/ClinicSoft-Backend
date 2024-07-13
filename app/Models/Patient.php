@@ -15,6 +15,7 @@ class Patient extends Model
                   ->select("*")
                   ->where("documento", $documento)
                   ->get();
+                  
       return $patients;
     }
 
