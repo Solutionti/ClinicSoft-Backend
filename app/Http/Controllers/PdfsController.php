@@ -16,7 +16,7 @@ class PdfsController extends Controller
       $pdf->SetDrawColor(0,24,0);
       $pdf->SetFillColor(115,115,115);
       $pdf->Rect(10,  40,  196,  6, 'F');
-      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      // $pdf->Image('https://cdn.pixabay.com/photo/2017/09/01/00/15/png-2702691_640.png', 10, 5, 30, 0, 'PNG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
       $pdf->cell(128,5, '', 0,'L', false);

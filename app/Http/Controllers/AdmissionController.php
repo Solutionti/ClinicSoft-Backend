@@ -154,6 +154,103 @@ class AdmissionController extends Controller{
 
 
   }
+
+  public function createHistoriaClinica(Request $request) {
+    $tphistoria = $request->input("tphistoria");
+    try {
+
+      if($tphistoria == "1") {
+        $anamnesis = $$request->input("anamnesis");
+        $empresa = $$request->input("empresa");
+        $compania = $$request->input("compania");
+        $iafa = $$request->input("iafa");
+        $nombre_acompanante = $$request->input("nombre_acompanante");
+        $dni = $$request->input("dni");
+        $celular = $$request->input("celular");
+        $motivo_consulta = $$request->input("motivo_consulta");
+        $tratamiento_anterior = $$request->input("tratamiento_anterior");
+        $enfermedad_actual = $$request->input("enfermedad_actual");
+        $tiempo = $$request->input("tiempo");
+        $inicio = $$request->input("inicio");
+        $curso = $$request->input("curso");
+        $sintomas = $$request->input("sintomas");
+        $cabeza = $$request->input("cabeza");
+        $cuello = $$request->input("cuello");
+        $ap_respiratoria = $$request->input("ap_respiratoria");
+        $ap_cardio = $$request->input("ap_cardio");
+        $abdomen = $$request->input("abdomen");
+        $ap_genitourinario = $$request->input("ap_genitourinario");
+        $loco_motor = $$request->input("loco_motor");
+        $apetito = $$request->input("apetito");
+        $sed = $$request->input("sed");
+        $orina = $$request->input("orina");
+        $sistema_nervioso = $$request->input("sistema_nervioso");
+        $examen_dx = $$request->input("examen_dx");
+        $procedimientos = $$request->input("procedimientos");
+        $interconsultas = $$request->input("interconsultas");
+        $tratamiento = $$request->input("tratamiento");
+        $plan_trabajo = $$request->input("plan_trabajo");
+        $referencia = $$request->input("referencia");
+        $proxima_cita = $$request->input("proxima_cita");
+        $firma_medico = $$request->input("firma_medico");
+        $usuario = $$request->input("usuario");
+  
+        return response()->json([
+          'message' => 'La historia general se ha creado en la base de datos',
+          'status' => 200
+        ]);
+      }
+      else if($tphistoria == "2") {
+        $familiares = $request->input("familiares");
+        $patologicos = $request->input("patologicos");
+        $gineco_obstetrico = $request->input("gineco_obstetrico");
+        $fum = $request->input("fum");
+        $rm = $request->input("rm");
+        $flujo_genital = $request->input("flujo_genital");
+        $no_de_parejas = $request->input("no_de_parejas");
+        $gestas = $request->input("gestas");
+        $partos = $request->input("partos");
+        $abortos = $request->input("abortos");
+        $anticonceptivos = $request->input("anticonceptivos");
+        $tipo = $request->input("tipo");
+        $tiempo = $request->input("tiempo");
+        $cirugia_ginecologica = $request->input("cirugia_ginecologica");
+        $otros = $request->input("otros");
+        $fecha_pap = $request->input("fecha_pap");
+        $no_hijos = $request->input("no_hijos");
+        $motivo_consulta = $request->input("motivo_consulta");
+        $signossintomas = $request->input("signossintomas");
+        $piel_tscs = $request->input("piel_tscs");
+        $tiroides = $request->input("tiroides");
+        $mamas = $request->input("mamas");
+        $arespiratorio = $request->input("arespiratorio");
+        $acardiovascular = $request->input("acardiovascular");
+        $abdomen = $request->input("abdomen");
+        $genito_urinario = $request->input("genito_urinario");
+        $tacto_rectal = $request->input("tacto_rectal");
+        $locomotor = $request->input("locomotor");
+        $sistema_nervioso = $request->input("sistema_nervioso");
+        $examenes_auxiiliares = $request->input("examenes_auxiiliares");
+        $plan_trabajo = $request->input("plan_trabajo");
+        $tratamiento = $request->input("tratamiento");
+        $proxima_cita = $request->input("proxima_cita");
+        $firma_medico = $request->input("firma_medico");
+        $estado = $request->input("estado");
+        $usuario = $request->input("usuario");
+  
+        return response()->json([
+          'message' => 'La historia ginecologica se ha creado en la base de datos',
+          'status' => 200
+        ]);
+      }
+    }
+    catch(\exception $e) {
+      return response()->json([
+        'status' => 400,
+        'message' => $e->getMessage()
+      ]);
+    }
+  }
   
   public function SubirArchivosImagenes() {
     $dir_subida = 'public/colposcopia/';
