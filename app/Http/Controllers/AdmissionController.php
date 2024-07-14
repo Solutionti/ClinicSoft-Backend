@@ -7,6 +7,7 @@ use App\Models\Admission;
 use App\Models\Laboratory;
 use App\Models\Triage;
 use App\Models\Quote;
+use App\Models\History;
 use Illuminate\Http\Request;
 
 class AdmissionController extends Controller{
@@ -17,6 +18,7 @@ class AdmissionController extends Controller{
     $this->Laboratory = new Laboratory();
     $this->Triage = new Triage();
     $this->Quote = new Quote();
+    $this->History = new History();
   }
 
   //MODULO DE PACIENTES
@@ -160,84 +162,162 @@ class AdmissionController extends Controller{
     try {
 
       if($tphistoria == "1") {
-        $anamnesis = $$request->input("anamnesis");
-        $empresa = $$request->input("empresa");
-        $compania = $$request->input("compania");
-        $iafa = $$request->input("iafa");
-        $nombre_acompanante = $$request->input("nombre_acompanante");
-        $dni = $$request->input("dni");
-        $celular = $$request->input("celular");
-        $motivo_consulta = $$request->input("motivo_consulta");
-        $tratamiento_anterior = $$request->input("tratamiento_anterior");
-        $enfermedad_actual = $$request->input("enfermedad_actual");
-        $tiempo = $$request->input("tiempo");
-        $inicio = $$request->input("inicio");
-        $curso = $$request->input("curso");
-        $sintomas = $$request->input("sintomas");
-        $cabeza = $$request->input("cabeza");
-        $cuello = $$request->input("cuello");
-        $ap_respiratoria = $$request->input("ap_respiratoria");
-        $ap_cardio = $$request->input("ap_cardio");
-        $abdomen = $$request->input("abdomen");
-        $ap_genitourinario = $$request->input("ap_genitourinario");
-        $loco_motor = $$request->input("loco_motor");
-        $apetito = $$request->input("apetito");
-        $sed = $$request->input("sed");
-        $orina = $$request->input("orina");
-        $sistema_nervioso = $$request->input("sistema_nervioso");
-        $examen_dx = $$request->input("examen_dx");
-        $procedimientos = $$request->input("procedimientos");
-        $interconsultas = $$request->input("interconsultas");
-        $tratamiento = $$request->input("tratamiento");
-        $plan_trabajo = $$request->input("plan_trabajo");
-        $referencia = $$request->input("referencia");
-        $proxima_cita = $$request->input("proxima_cita");
-        $firma_medico = $$request->input("firma_medico");
-        $usuario = $$request->input("usuario");
-  
+        $anamnesis = $request->input("anamnesis");
+        $empresa = $request->input("empresa");
+        $compania = $request->input("compania");
+        $iafa = $request->input("iafa");
+        $nombre_acompanante = $request->input("nombre_acompanante");
+        $dni = $request->input("dni");
+        $celular = $request->input("celular");
+        $motivo_consulta = $request->input("motivo_consulta");
+        $tratamiento_anterior = $request->input("tratamiento_anterior");
+        $enfermedad_actual = $request->input("enfermedad_actual");
+        $tiempo = $request->input("tiempo");
+        $inicio = $request->input("inicio");
+        $curso = $request->input("curso");
+        $sintomas = $request->input("sintomas");
+        $cabeza = $request->input("cabeza");
+        $cuello = $request->input("cuello");
+        $ap_respiratoria = $request->input("ap_respiratoria");
+        $ap_cardio = $request->input("ap_cardio");
+        $abdomen = $request->input("abdomen");
+        $ap_genitourinario = $request->input("ap_genitourinario");
+        $loco_motor = $request->input("loco_motor");
+        $apetito = $request->input("apetito");
+        $sed = $request->input("sed");
+        $orina = $request->input("orina");
+        $sistema_nervioso = $request->input("sistema_nervioso");
+        $examen_dx = $request->input("examen_dx");
+        $procedimientos = $request->input("procedimientos");
+        $interconsultas = $request->input("interconsultas");
+        $tratamiento = $request->input("tratamiento");
+        $plan_trabajo = $request->input("plan_trabajo");
+        $referencia = $request->input("referencia");
+        $proxima_cita = $request->input("proxima_cita");
+        $firma_medico = $request->input("firma_medico");
+        $usuario = $request->input("usuario");
+
+        $data = [
+         "anamnesis" => $anamnesis,
+         "empresa" => $empresa,
+         "compania" => $compania,
+         "iafa" => $iafa,
+         "nombre_acompanante" => $nombre_acompanante,
+         "dni" => $dni,
+         "celular" => $celular,
+         "motivo_consulta" => $motivo_consulta,
+         "tratamiento_anterior" => $tratamiento_anterior,
+         "enfermedad_actual" => $enfermedad_actual,
+         "tiempo" => $tiempo,
+         "inicio" => $inicio,
+         "curso" => $curso,
+         "sintomas" => $sintomas,
+         "cabeza" => $cabeza,
+         "cuello" => $cuello,
+         "ap_respiratoria" => $ap_respiratoria,
+         "ap_cardio" => $ap_cardio,
+         "abdomen" => $abdomen,
+         "ap_genitourinario" => $ap_genitourinario,
+         "loco_motor" => $loco_motor,
+         "apetito" => $apetito,
+         "sed" => $sed,
+         "orina" => $orina,
+         "sistema_nervioso" => $sistema_nervioso,
+         "examen_dx" => $examen_dx,
+         "procedimientos" => $procedimientos,
+         "interconsultas" => $interconsultas,
+         "tratamiento" => $tratamiento,
+         "plan_trabajo" => $plan_trabajo,
+         "referencia" => $referencia,
+         "proxima_cita" => $proxima_cita,
+         "firma_medico" => $firma_medico,
+         "usuario" => $usuario,
+        ];
+        $this->History->createHistoriaGeneral($data);
+
         return response()->json([
           'message' => 'La historia general se ha creado en la base de datos',
           'status' => 200
         ]);
       }
       else if($tphistoria == "2") {
-        $familiares = $request->input("familiares");
-        $patologicos = $request->input("patologicos");
-        $gineco_obstetrico = $request->input("gineco_obstetrico");
-        $fum = $request->input("fum");
-        $rm = $request->input("rm");
-        $flujo_genital = $request->input("flujo_genital");
-        $no_de_parejas = $request->input("no_de_parejas");
-        $gestas = $request->input("gestas");
-        $partos = $request->input("partos");
-        $abortos = $request->input("abortos");
-        $anticonceptivos = $request->input("anticonceptivos");
-        $tipo = $request->input("tipo");
-        $tiempo = $request->input("tiempo");
-        $cirugia_ginecologica = $request->input("cirugia_ginecologica");
-        $otros = $request->input("otros");
-        $fecha_pap = $request->input("fecha_pap");
-        $no_hijos = $request->input("no_hijos");
-        $motivo_consulta = $request->input("motivo_consulta");
-        $signossintomas = $request->input("signossintomas");
-        $piel_tscs = $request->input("piel_tscs");
-        $tiroides = $request->input("tiroides");
-        $mamas = $request->input("mamas");
-        $arespiratorio = $request->input("arespiratorio");
-        $acardiovascular = $request->input("acardiovascular");
-        $abdomen = $request->input("abdomen");
-        $genito_urinario = $request->input("genito_urinario");
-        $tacto_rectal = $request->input("tacto_rectal");
-        $locomotor = $request->input("locomotor");
-        $sistema_nervioso = $request->input("sistema_nervioso");
-        $examenes_auxiiliares = $request->input("examenes_auxiiliares");
-        $plan_trabajo = $request->input("plan_trabajo");
-        $tratamiento = $request->input("tratamiento");
-        $proxima_cita = $request->input("proxima_cita");
-        $firma_medico = $request->input("firma_medico");
-        $estado = $request->input("estado");
-        $usuario = $request->input("usuario");
-  
+        $familiares1 = $request->input("familiares11");
+        $patologicos1 = $request->input("patologicos1");
+        $gineco_obstetrico1 = $request->input("gineco_obstetrico1");
+        $fum1 = $request->input("fum1");
+        $rm1 = $request->input("rm1");
+        $flujo_genital1 = $request->input("flujo_genital1");
+        $no_de_parejas1 = $request->input("no_de_parejas1");
+        $gestas1 = $request->input("gestas1");
+        $partos1 = $request->input("partos1");
+        $abortos1 = $request->input("abortos1");
+        $anticonceptivos1 = $request->input("anticonceptivos1");
+        $tipo1 = $request->input("tipo1");
+        $tiempo1 = $request->input("tiempo1");
+        $cirugia_ginecologica1 = $request->input("cirugia_ginecologica1");
+        $otros1 = $request->input("otros1");
+        $fecha_pap1 = $request->input("fecha_pap1");
+        $no_hijos1 = $request->input("no_hijos1");
+        $motivo_consulta1 = $request->input("motivo_consulta1");
+        $signossintomas1 = $request->input("signossintomas1");
+        $piel_tscs1 = $request->input("piel_tscs1");
+        $tiroides1 = $request->input("tiroides1");
+        $mamas1 = $request->input("mamas1");
+        $arespiratorio1 = $request->input("arespiratorio1");
+        $acardiovascular1 = $request->input("acardiovascular1");
+        $abdomen1 = $request->input("abdomen1");
+        $genito_urinario1 = $request->input("genito_urinario1");
+        $tacto_rectal1 = $request->input("tacto_rectal1");
+        $locomotor1 = $request->input("locomotor1");
+        $sistema_nervioso1 = $request->input("sistema_nervioso1");
+        $examenes_auxiiliares1 = $request->input("examenes_auxiiliares1");
+        $plan_trabajo1 = $request->input("plan_trabajo1");
+        $tratamiento1 = $request->input("tratamiento1");
+        $proxima_cita1 = $request->input("proxima_cita1");
+        $firma_medico1 = $request->input("firma_medico1");
+        $estado1 = $request->input("estado1");
+        $usuario1 = $request->input("usuario1");
+
+        $data = [
+           "familiares" => $familiares1,
+           "patologicos" => $patologicos1,
+           "gineco_obstetrico" => $gineco_obstetrico1,
+           "fum" => $fum1,
+           "rm" => $rm1,
+           "flujo_genital" => $flujo_genital1,
+           "no_de_parejas" => $no_de_parejas1,
+           "gestas" => $gestas1,
+           "partos" => $partos1,
+           "abortos" => $abortos1,
+           "anticonceptivos" => $anticonceptivos1,
+           "tipo" => $tipo1,
+           "tiempo" => $tiempo1,
+           "cirugia_ginecologica" => $cirugia_ginecologica1,
+           "otros" => $otros1,
+           "fecha_pap" => $fecha_pap1,
+           "no_hijos" => $no_hijos1,
+           "motivo_consulta" => $motivo_consulta1,
+           "signossintomas" => $signossintomas1,
+           "piel_tscs" => $piel_tscs1,
+           "tiroides" => $tiroides1,
+           "mamas" => $mamas1,
+           "arespiratorio" => $arespiratorio1,
+           "acardiovascular" => $acardiovascular1,
+           "abdomen" => $abdomen1,
+           "genito_urinario" => $genito_urinario1,
+           "tacto_rectal" => $tacto_rectal1,
+           "locomotor" => $locomotor1,
+           "sistema_nervioso" => $sistema_nervioso1,
+           "examenes_auxiiliares" => $examenes_auxiiliares1,
+           "plan_trabajo" => $plan_trabajo1,
+           "tratamiento" => $tratamiento1,
+           "proxima_cita" => $proxima_cita1,
+           "firma_medico" => $firma_medico1,
+           "estado" => $estado1,
+           "usuario" => $usuario1,
+        ];
+        
+        $this->History->createHistoriaGinecologica($data);
         return response()->json([
           'message' => 'La historia ginecologica se ha creado en la base de datos',
           'status' => 200
