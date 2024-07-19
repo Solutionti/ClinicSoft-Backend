@@ -52,7 +52,7 @@ class AdmissionController extends Controller{
   }
 
   public function createPatient(Request $request) {
-  
+
   try{
     $patients = [
       "hc" => $request->input("hc"),
@@ -121,7 +121,7 @@ class AdmissionController extends Controller{
       "estado" => "Activo",
       "password" => ""
     ];
-    
+
     $this->Patient->updatePatient($patients, $request->input("documento"));
 
     return response()->json([
@@ -148,7 +148,7 @@ class AdmissionController extends Controller{
     // ANTECEDENTES GINECO- OBSTETRICOS
     // VACUNACION
     //MEDICAMENTOS
-    // CITAS 
+    // CITAS
     // HISTORIAL DE CONSULTAS ULTIMAS 2
   }
 
@@ -158,10 +158,12 @@ class AdmissionController extends Controller{
   }
 
   public function createHistoriaClinica(Request $request) {
+
     $tphistoria = $request->input("tphistoria");
     try {
 
       if($tphistoria == "1") {
+
         $anamnesis = $request->input("anamnesis");
         $empresa = $request->input("empresa");
         $compania = $request->input("compania");
@@ -316,7 +318,7 @@ class AdmissionController extends Controller{
            "estado" => $estado1,
            "usuario" => $usuario1,
         ];
-        
+
         $this->History->createHistoriaGinecologica($data);
         return response()->json([
           'message' => 'La historia ginecologica se ha creado en la base de datos',
@@ -331,7 +333,7 @@ class AdmissionController extends Controller{
       ]);
     }
   }
-  
+
   public function SubirArchivosImagenes() {
     $dir_subida = 'public/colposcopia/';
     $fichero_subido = $dir_subida.basename($_FILES['imagen1']['name']);
@@ -385,7 +387,7 @@ class AdmissionController extends Controller{
 
   public function getEspecialidadCosto(Request $request) {
     $codigo =  $request->input("especialidad");
-    
+
     return $this->Admission->getEspecialidadCosto($codigo);
   }
 
@@ -484,7 +486,7 @@ class AdmissionController extends Controller{
     ];
 
     $id = $this->Laboratory->CreateExamenLaboratory($datos);
-    
+
     foreach($analisis as $laboratorio){
       $detalle = [
         "id_laboratorio" => $id,

@@ -76,8 +76,9 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
   Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
 
-  // 
+  // HISTORIA CLINICA
 
+  Route::post('createHistoriaClinica', 'createHistoriaClinica');
 });
 
 // RUTAS DE INVENTARIOS
