@@ -12,7 +12,9 @@ class Colposcopia extends Model
 
     public function getColposcopias() {
       $colposcopias = DB::table("colposcopias")
-                      ->select("*")
+                      ->select("colposcopias.*", 'doctores.nombre as medico')
+                      ->join('doctores', 'colposcopias.medico', 'doctores.codigo_doctor')
+                      ->orderBy('codigo_colposcopia', 'DESC')
                       ->get();
 
       return $colposcopias;
@@ -35,7 +37,7 @@ class Colposcopia extends Model
        "imagen1" => $data["imagen1"],
        "imagen2" => $data["imagen2"],
        "usuario" => $data["usuario"],
-       "cmp" => $data["cmp"],
+       "cpm" => $data["cmp"],
       ];
 
       DB::table("colposcopias")
