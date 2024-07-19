@@ -22,6 +22,7 @@ class History extends Model
         "motivo_consulta" => $data["motivo_consulta"],
         "tratamiento_anterior" => $data["tratamiento_anterior"],
         "enfermedad_actual" => $data["enfermedad_actual"],
+        "tiempo" => "",
         "inicio" => $data["inicio"],
         "curso" => $data["curso"],
         "sintomas" => $data["sintomas"],

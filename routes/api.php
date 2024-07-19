@@ -77,6 +77,7 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
 
   // 
+  Route::post('createHistoriaClinica', 'createHistoriaClinica');
 
 });
 
