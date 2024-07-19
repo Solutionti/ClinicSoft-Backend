@@ -92,4 +92,17 @@ class History extends Model
       DB::table("h_ginecologias")
          ->insert($ginecologia);
     }
+
+    public function subirArchivosPdf($datos) {
+      $pdf = [
+        "paciente" => $datos["paciente"],
+        "tp_documento" => $datos["tp_documento"],
+        "titulo" => $datos["titulo"],
+        "url_documento" => $datos["url_documento"],
+        "usuario" => $datos["usuario"],
+        "fecha" => $datos["fecha"],
+      ];
+      DB::table("documentos_pacientes")
+        ->insert($pdf);
+    }
 }

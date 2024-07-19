@@ -76,6 +76,8 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
   Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
 
+  // 
+
 });
 
 // RUTAS DE INVENTARIOS
@@ -97,6 +99,10 @@ Route::controller(InventoryController::class)->group(function () {
 Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
+
+  Route::post('subirArchivosPdf', 'subirArchivosPdf');
+
+
 });
 
 // RUTAS DE CONTABILIDAD
