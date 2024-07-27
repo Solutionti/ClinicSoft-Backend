@@ -49,6 +49,7 @@ Route::controller(ListController::class)->group(function () {
 
   Route::get('getDiagnosticos', 'getDiagnosticos');
   Route::get('getProcedimientos', 'getProcedimientos');
+  Route::get('getDocumentosPaciente', 'getDocumentosPaciente');
   
 });
 
