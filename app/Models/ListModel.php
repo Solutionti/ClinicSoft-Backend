@@ -90,4 +90,12 @@ class ListModel extends Model{
       return $users;
     }
 
+    public function getDiagnosticos() {
+      $diagnosticos = DB::table('diagnosticoscie10')
+                   ->select('clave', 'descripcion')
+                   ->get();
+
+      return $diagnosticos;
+    }
+
 }
