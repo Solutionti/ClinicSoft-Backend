@@ -90,4 +90,29 @@ class ListModel extends Model{
       return $users;
     }
 
+    public function getDiagnosticos() {
+      $diagnosticos = DB::table('diagnosticoscie10')
+                   ->select('clave', 'descripcion')
+                   ->get();
+
+      return $diagnosticos;
+    }
+
+    
+    public function getProcedimientos() {
+      $procedimientos = DB::table('procedimientos')
+      ->select('codigo_cpt', 'nombre')
+      ->get();
+      
+      return $diagnosticos;
+    }
+    
+    public function getDocumentosPaciente($paciente) {
+      $documentospaciente = DB::table('documentos_pacientes')
+                   ->select('tp_documento', 'titulo', 'url_documento', 'fecha')
+                   ->where("paciente", $paciente)
+                   ->get();
+
+      return $documentospaciente;
+    }
 }
