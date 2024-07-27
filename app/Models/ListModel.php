@@ -98,4 +98,12 @@ class ListModel extends Model{
       return $diagnosticos;
     }
 
+    public function getProcedimientos() {
+      $procedimientos = DB::table('procedimientos')
+                   ->select('codigo_cpt', 'nombre')
+                   ->get();
+
+      return $diagnosticos;
+    }
+
 }

@@ -194,4 +194,8 @@ class ListController extends Controller {
       return $this->ListModel->getDiagnosticos();
     }
 
+    public function getProcedimientos() {
+      return $this->ListModel->getProcedimientos();
+    }
+
 }

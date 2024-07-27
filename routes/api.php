@@ -46,8 +46,9 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getusers', 'getusers');
   Route::get('getUsersAll', 'getUsersAll');
   Route::get('getDocumentosPdfPacientes', 'getDocumentosPdfPacientes');
-  
+
   Route::get('getDiagnosticos', 'getDiagnosticos');
+  Route::get('getProcedimientos', 'getProcedimientos');
   
 });
 
