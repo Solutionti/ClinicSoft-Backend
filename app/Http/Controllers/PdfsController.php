@@ -10,7 +10,7 @@ class PdfsController extends Controller
     public function __construct(request $request) {
     }
 
-    public function pdfHistoriaClinica() {
+    public function pdfHistoriaClinica(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -176,7 +176,7 @@ class PdfsController extends Controller
       exit;
     }
 
-    public function pdfFacturaAdmision() {
+    public function pdfFacturaAdmision(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -257,7 +257,7 @@ class PdfsController extends Controller
       exit;
     }
 
-    public function pdfFacturaLaboratorio() {
+    public function pdfFacturaLaboratorio(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -337,7 +337,8 @@ class PdfsController extends Controller
       $pdf->Output();
       exit;
     }
-    public function pdfColposcopia() {
+
+    public function pdfColposcopia(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -484,7 +485,7 @@ class PdfsController extends Controller
       exit;
     }
 
-    public function pdfKardex() {
+    public function pdfKardex(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -553,7 +554,7 @@ class PdfsController extends Controller
       exit;
     }
 
-    public function pdfInventario() {
+    public function pdfInventario(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -613,7 +614,7 @@ class PdfsController extends Controller
 
     }
 
-    public function pdfCaja() {
+    public function pdfCaja(Request $request) {
 
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -695,7 +696,7 @@ class PdfsController extends Controller
 
     }
 
-    public function pdfGastos() {
+    public function pdfGastos(Request $request) {
 
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -749,7 +750,7 @@ class PdfsController extends Controller
       exit;
     }
 
-    public function pdfLaboratorio() {
+    public function pdfLaboratorio(Request $request) {
 
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -818,7 +819,7 @@ class PdfsController extends Controller
 
     }
 
-    public function pdfPagos() {
+    public function pdfPagos(Request $request) {
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -894,12 +895,6 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(30,5, '$ 20.000', 1,'L', false);
       $pdf->SetFont('Arial', '', 7);
-
-
-
-
-
-
       $pdf->Output();
       exit;
 
