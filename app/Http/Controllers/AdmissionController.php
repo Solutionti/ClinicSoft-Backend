@@ -22,10 +22,10 @@ class AdmissionController extends Controller{
   }
 
   //MODULO DE PACIENTES
-
   public function getPatients(Request $request) {
     $documento = $request->input("documento");
-    return $this->Patient->getPatients($documento);
+    $apellido = $request->input("apellido");
+    return $this->Patient->getPatients($documento, $apellido);
   }
 
   public function getPatientId(Request $request) {

@@ -10,14 +10,26 @@ class Pdf extends Model
 {
     use HasFactory;
 
+    public function getEmpresa($empresa){
+        $empresa = DB::table("empresas")
+        ->select("*")
+        ->where("empresa", $empresa)
+        ->get();
+
+        return $empresa; 
+    }
+
     public function pdfHistoriaClinica() {
        
     }
 
-    public function pdfFacturaAdmision() {
-      $admision = DB::table("")
-                    ->select("")
-                    ->where("")
+    public function pdfFacturaAdmision($admision) {
+      $admision = DB::table("admisiones")
+                    ->select("admisiones.*", "doctores.nombre as doctor", "especialidades.descripcion", "pacientes.nombre", "pacientes.apellido")
+                    ->join("doctores", 'admisiones.medico','doctores.codigo_doctor')
+                    ->join("pacientes", 'admisiones.paciente','pacientes.documento')
+                    ->join('especialidades', 'admisiones.especialidad','especialidades.codigo_especialidad')
+                    ->where("codigo_atencion", $admision)
                     ->get();
 
       return $admision;

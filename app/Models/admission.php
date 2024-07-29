@@ -66,7 +66,7 @@ class admission extends Model
       $admission = [
         "estado" => $estado
       ];
-      DB::table("atenciones")
+      DB::table("admisiones")
           ->where("paciente", $atencion)
           ->update($admission);
     }

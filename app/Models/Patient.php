@@ -10,10 +10,19 @@ class Patient extends Model
 {
     use HasFactory;
 
-    public function getPatients($documento) {
+    public function getPatients($documento, $apellido) {
       $patients = DB::table("pacientes")
                   ->select("*")
-                  ->where("documento", $documento)
+                  ->where(function ($query) use ($documento) {
+                    if($documento != null){
+                      $query->where('documento', $documento);
+                    }
+                  })
+                  ->where(function ($query) use ($apellido) {
+                    if($apellido != null){
+                      $query->where('apellido', 'Like' , "%$apellido%");
+                    }
+                  })
                   ->get();
                   
       return $patients;
