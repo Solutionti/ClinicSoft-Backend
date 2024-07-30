@@ -11,12 +11,12 @@ class admission extends Model
     use HasFactory;
 
     public function getAdmission($estado) {
-      $admissions = DB::table("atenciones")
-                    ->select('atenciones.*', 'doctores.nombre as medicos', 'especialidades.descripcion as especialidades', 'pacientes.nombre', 'pacientes.apellido')
-                    ->join('pacientes', 'atenciones.paciente', '=', 'pacientes.documento')
-                    ->join('doctores', 'atenciones.medico', '=', 'doctores.codigo_doctor')
-                    ->join('especialidades', 'atenciones.especialidad', '=', 'especialidades.codigo_especialidad')
-                    ->where("atenciones.estado", $estado)
+      $admissions = DB::table("admisiones")
+                    ->select('admisiones.*', 'doctores.nombre as medicos', 'especialidades.descripcion as especialidades', 'pacientes.nombre', 'pacientes.apellido')
+                    ->join('pacientes', 'admisiones.paciente', '=', 'pacientes.documento')
+                    ->join('doctores', 'admisiones.medico', '=', 'doctores.codigo_doctor')
+                    ->join('especialidades', 'admisiones.especialidad', '=', 'especialidades.codigo_especialidad')
+                    ->where("admisiones.estado", $estado)
                     ->get();
 
       return $admissions;
@@ -30,6 +30,8 @@ class admission extends Model
         "cola_atencion" => $data["cola_atencion"],
         "comision" => $data["comision"],
         "costo" => $data["costo"],
+        "fecha" => date("Y-m-d"),
+        "hora" => date("h:i"),
         "estado" => $data["estado"],
         "turno" => $data["turno"],
         "usuario" => $data["usuario"],
@@ -64,7 +66,7 @@ class admission extends Model
       $admission = [
         "estado" => $estado
       ];
-      DB::table("atenciones")
+      DB::table("admisiones")
           ->where("paciente", $atencion)
           ->update($admission);
     }
