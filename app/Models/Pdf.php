@@ -35,37 +35,52 @@ class Pdf extends Model
       return $admision;
     }
 
-    public function pdfFacturaLaboratorio() {
-        $laboratorio = DB::table("")
-        ->select("")
-        ->where("")
+    public function pdfFacturaLaboratorio($codigo, $paciente) {
+        $laboratorio = DB::table("laboratorio")
+        ->select("laboratorio.*", "doctores.nombre as doctor", "pacientes.nombre", "pacientes.apellido", "pacientes.password")
+        ->join("pacientes", "laboratorio.dni_paciente", "pacientes.documento")
+        ->join("doctores", "laboratorio.medico", "doctores.codigo_doctor")
+        ->where("laboratorio.codigo_laboratorio", $codigo)
+        ->where("laboratorio.dni_paciente", $paciente)
         ->get();
 
         return $laboratorio;
     }
 
-    public function pdfColposcopia() {
-        $colposcopias = DB::table("")
-        ->select("")
-        ->where("")
+    public function getDetalleLaboratorio($idlaboratorio) {
+      $detalleLaboratorio = DB::table("detalle_pago_laboratorio")
+                            ->select("*")
+                            ->where("id_laboratorio", $idlaboratorio)
+                            ->get();
+
+      return $detalleLaboratorio;
+    }
+
+    public function pdfColposcopia($codigo) {
+        $colposcopias = DB::table("colposcopias")
+        ->select("colposcopias.*", "pacientes.*")
+        ->join("pacientes", "colposcopias.paciente", "pacientes.documento")
+        ->where("colposcopias.codigo_colposcopia", $codigo)
         ->get();
 
         return $colposcopias;
     }
 
-    public function pdfKardex() {
-        $kardex = DB::table("")
-        ->select("")
-        ->where("")
+    public function pdfKardex($producto, $fechainicial, $fechafinal) {
+        $kardex = DB::table("kardex")
+        ->select("*")
+        ->where("id_producto", $producto)
+        ->where("fecha", ">=" ,$fechainicial)
+        ->where("fecha", "<=", $fechafinal)
         ->get();
 
         return $kardex;
     }
 
-    public function pdfInventario() {
-        $inventario = DB::table("")
-        ->select("")
-        ->where("")
+    public function pdfInventario($codigo) {
+        $inventario = DB::table("productos")
+        ->select("*")
+        ->where("codigo", $codigo)
         ->get();
 
         return $inventario;
