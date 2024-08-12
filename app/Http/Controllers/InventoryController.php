@@ -62,9 +62,9 @@ class InventoryController extends Controller{
 
     public function getInventories(Request $request) {
       $cantidad = $request->input("cantidad");
-      // $selector = $request->input("selector");
+      $signo = $request->input("signo");
 
-      $data = $this->Product->getInventories($cantidad);
+      $data = $this->Product->getInventories($cantidad, $signo);
 
       return response()->json([
         'data' => $data,

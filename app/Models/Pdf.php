@@ -95,28 +95,33 @@ class Pdf extends Model
         return $caja;
     }
 
-    public function pdfGastos() {
-        $gastos = DB::table("")
-        ->select("")
-        ->where("")
+    public function pdfGastos($fecha) {
+        $gastos = DB::table("cpe_gastos")
+        ->select("*")
+        ->where("f_recepcion", $fecha)
         ->get();
 
         return $gastos;
     }
 
     public function pdfLaboratorio() {
-        $laboratorio = DB::table("")
-        ->select("")
-        ->where("")
+        $laboratorio = DB::table("detalle_pago_laboratorio")
+        ->select("laboratorio.dni_paciente","laboratorio.estado","laboratorio.total","laboratorio.tipo_deposito", "detalle_pago_laboratorio.*", "pacientes.nombre", "pacientes.apellido", "precio_laboratorio.nombre as descripcion")
+        ->join("laboratorio", "detalle_pago_laboratorio.id_laboratorio", "laboratorio.codigo_laboratorio")
+        ->join("pacientes", "laboratorio.dni_paciente", "pacientes.documento")
+        ->join("precio_laboratorio", "detalle_pago_laboratorio.servicio", "precio_laboratorio.codigo")
+        // ->where("detalle_pago_laboratorio.id_laboratorio", 2)
         ->get();
 
         return $laboratorio;
     }
 
     public function pdfPagos() {
-        $pagos = DB::table("")
-        ->select("")
-        ->where("")
+        $pagos = DB::table("pagos")
+        ->select("pagos.*", "pacientes.nombre", "pacientes.apellido", "doctores.nombre as doctor", "especialidades.descripcion as especialidad")
+        ->join("pacientes", "pagos.dni_paciente", "pacientes.documento")
+        ->join("doctores", "pagos.medico", "doctores.codigo_doctor")
+        ->join("especialidades", "pagos.especialidad", "especialidades.codigo_especialidad")
         ->get();
 
         return $pagos;

@@ -690,19 +690,22 @@ class PdfsController extends Controller
     }
 
     public function pdfGastos(Request $request) {
-
+      $empresa = $this->Pdf->getEmpresa("1");
+      $gastos = $this->Pdf->pdfGastos('2023-08-07');
+      // print_r($gastos);
+      // exit;
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
       $pdf->SetFillColor(115,115,115);
-      $pdf->Rect(10,  49,  196,  6, 'F');
+      $pdf->Rect(10,  44,  196,  6, 'F');
       $pdf->SetDrawColor(0,24,0);
       $pdf->SetFillColor(115,115,115);
-      $pdf->Rect(10,  74,  196,  6, 'F');
-      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Rect(10,  69,  196,  6, 'F');
+      $pdf->Image($empresa[0]->logo, 10, 12, 25, 0, 'PNG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
-      $pdf->cell(128,5, '', 0,'L', false);
+      $pdf->cell(128,5, '', 0);
       $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0);
       $pdf->Ln(5);
       $pdf->cell(138,5, '', 0);
@@ -720,6 +723,7 @@ class PdfsController extends Controller
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 8);
       $pdf->cell(196,5, 'REPORTE DE GASTOS', 0);
+
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', 'B', 7);
@@ -731,7 +735,21 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(40,5, 'COLABORADOR', 1);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(40,5, 'COMPROBANTE', 1);
+      $pdf->cell(40,5, 'TOTAL', 1);
+
+      $pdf->Ln(5);
+      $pdf->SetTextColor(0,0,0);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, $gastos[0]->razon_social, 1);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(56,5, $gastos[0]->descripcion, 1);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(30,5, $gastos[0]->f_recepcion, 1);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(40,5, $gastos[0]->nro_doc, 1);
+      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(40,5,'$'.$gastos[0]->monto, 1);
+
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', '', 7);
@@ -744,7 +762,9 @@ class PdfsController extends Controller
     }
 
     public function pdfLaboratorio(Request $request) {
-
+      $empresa = $this->Pdf->getEmpresa("1");
+      $laboratorio = $this->Pdf->pdfLaboratorio();
+      
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -753,7 +773,7 @@ class PdfsController extends Controller
       $pdf->SetDrawColor(0,24,0);
       $pdf->SetFillColor(115,115,115);
       $pdf->Rect(10,  69,  196,  6, 'F');
-      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Image($empresa[0]->logo, 10, 12, 25, 0, 'PNG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
       $pdf->cell(128,5, '', 0);
@@ -786,18 +806,21 @@ class PdfsController extends Controller
       $pdf->cell(20,5, 'PAGO', 1);
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(20,5, 'VALOR', 1);
-      $pdf->Ln(5);
-      $pdf->SetTextColor(0,0,0);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(15,5, '05', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(60,5, 'GALVEZ ENSUNCHO', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(80,5, '17 KETOESTEROIDES', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(20,5, 'EFECTIVO', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(20,5, '90.000', 1);
+
+      foreach($laboratorio as $laboratorios){
+        $pdf->Ln(5);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(15,5, 'LB'.$laboratorios->id_laboratorio, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(60,5, $laboratorios->nombre.' '.$laboratorios->apellido, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(80,5, $laboratorios->descripcion, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(20,5, $laboratorios->tipo_deposito, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(20,5, '$'.$laboratorios->total, 1);
+      }
       $pdf->Ln(15);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', '', 7);
@@ -813,6 +836,10 @@ class PdfsController extends Controller
     }
 
     public function pdfPagos(Request $request) {
+      $empresa = $this->Pdf->getEmpresa("1");
+      $pagos = $this->Pdf->pdfPagos();
+      // print_r($pagos);
+      // exit;
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -821,7 +848,7 @@ class PdfsController extends Controller
       $pdf->SetDrawColor(0,24,0);
       $pdf->SetFillColor(115,115,115);
       $pdf->Rect(10,  69,  196,  6, 'F');
-      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      $pdf->Image($empresa[0]->logo, 10, 12, 25, 0, 'PNG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
       $pdf->cell(128,5, '', 0);
@@ -856,22 +883,24 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(20,5, 'FECHA', 1);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(25,5, 'TIPO DE PAGO', 1);
-      $pdf->Ln(5);
-      $pdf->SetTextColor(0,0,0);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(15,5, '15', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(50,5, 'MAURICIO TOVAR CUESTA', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(45,5, 'DOCTOR CHAPATIN', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(41,5, 'MUJERIEGO', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(20,5, '2024-07-08', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(25,5, 'EFECTIVO', 1);
-
+      $pdf->cell(25,5, 'TOTAL', 1);
+      
+      foreach($pagos as $pago){
+        $pdf->Ln(5);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(15,5, 'FA'.$pago->codigo_pago, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(50,5, $pago->nombre.' '.$pago->apellido, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(45,5, $pago->doctor, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(41,5, utf8_decode($pago->especialidad), 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(20,5, $pago->fecha, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(25,5, $pago->total, 1);
+      }
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
       $pdf->cell(136,5, '', 0);
