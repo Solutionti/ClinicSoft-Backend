@@ -45,7 +45,7 @@ class admission extends Model
     public function ValidateAdmision($documento) {
       $admission = DB::table("admisiones")
                       ->where("paciente", $documento)
-                      ->where("estado", "Registrado")
+                      // ->where("estado", "Registrado")
                       ->get();
 
       return $admission;

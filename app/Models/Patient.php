@@ -70,6 +70,14 @@ class Patient extends Model
       ->insert($patients);
     }
 
+    public function validatePatient($documento) {
+      $patient = DB::table("pacientes")
+      ->where("documento", $documento)
+      ->get();
+
+      return $patient;
+    } 
+
     public function updatePatient($data,$documento) {
       $patients = [
         "url_imagen" => $data["url_imagen"],

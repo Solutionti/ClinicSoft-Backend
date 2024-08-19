@@ -116,6 +116,7 @@ Route::controller(ProcedureController::class)->group(function () {
 Route::controller(AccountingController::class)->group(function () {
 
   Route::get('getPayments', 'getPayments');
+  Route::post('createPayment', 'createPayment');
   Route::get('getGasto', 'getGasto');
   Route::post('createGasto', 'createGasto');
   Route::post('CreateEspeciality', 'CreateEspeciality');

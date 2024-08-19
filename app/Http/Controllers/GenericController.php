@@ -25,7 +25,7 @@ class GenericController extends Controller{
     public function createTransaccionTraza(Request $request) {
       $transaccion = $request->input("transaccion");
       $fecha = date("Y-m-d");
-      $hora = date("h: i");
+      $hora = date("H:i");
       $valor = $request->input("valor");
       $usuario = $request->input("usuario");
       $tipoingreso = $request->input("tipoingreso");

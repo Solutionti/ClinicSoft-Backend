@@ -54,6 +54,7 @@ class AdmissionController extends Controller{
   public function createPatient(Request $request) {
 
   try{
+
     $patients = [
       "hc" => $request->input("hc"),
       "url_imagen" => "",
@@ -79,6 +80,13 @@ class AdmissionController extends Controller{
       "estado" => "Activo",
       "password" => ""
     ];
+
+    $paciente = $this->Patient->validatePatient($request->input("documento"));
+
+    if(!$paciente->isEmpty()) {
+      throw new \Exception('Ya existe un paciente en la base de datos');
+    }
+
     $this->Patient->createPatient($patients);
 
     return response()->json([
@@ -376,13 +384,25 @@ class AdmissionController extends Controller{
       "orden__" => $orden__,
     ];
 
-    // $this->Admission->ValidateAdmision->($documento);
-    $this->Admission->createAdmission($admission);
+    $validation = $this->Admission->ValidateAdmision($documento);
+    
+    try {
 
-    return response()->json([
-      'message' => 'La admision se ha creado en la base de datos',
-      'status' => 200
-    ]);
+      if(!$validation->isEmpty()) {
+        throw new \Exception('Ya existe una admision abierta para el paciente');
+      }
+
+      $this->Admission->createAdmission($admission);
+
+      return response()->json([
+        'message' => 'La admisión se ha creado en la base de datos',
+        'status' => 200
+      ]);
+    }
+    catch(\Exception $e) {
+      return response()->json(['status' => 400,'message' => $e->getMessage()]);
+    }
+    
   }
 
   public function getEspecialidadCosto(Request $request) {
