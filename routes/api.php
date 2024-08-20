@@ -46,6 +46,11 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getusers', 'getusers');
   Route::get('getUsersAll', 'getUsersAll');
   Route::get('getDocumentosPdfPacientes', 'getDocumentosPdfPacientes');
+
+  Route::get('getDiagnosticos', 'getDiagnosticos');
+  Route::get('getProcedimientos', 'getProcedimientos');
+  Route::get('getDocumentosPaciente', 'getDocumentosPaciente');
+  
 });
 
 Route::controller(GenericController::class)->group(function () {
@@ -76,6 +81,10 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
   Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
 
+  //
+  Route::post('createHistoriaClinica', 'createHistoriaClinica');
+
+  Route::post('createHistoriaClinica', 'createHistoriaClinica');
 });
 
 // RUTAS DE INVENTARIOS
@@ -97,12 +106,17 @@ Route::controller(InventoryController::class)->group(function () {
 Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
+
+  Route::post('subirArchivosPdf', 'subirArchivosPdf');
+
+
 });
 
 // RUTAS DE CONTABILIDAD
 Route::controller(AccountingController::class)->group(function () {
 
   Route::get('getPayments', 'getPayments');
+  Route::post('createPayment', 'createPayment');
   Route::get('getGasto', 'getGasto');
   Route::post('createGasto', 'createGasto');
   Route::post('CreateEspeciality', 'CreateEspeciality');
@@ -130,6 +144,7 @@ Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfColposcopia', 'pdfColposcopia');
   Route::get('pdfKardex', 'pdfKardex');
   Route::get('pdfInventario', 'pdfInventario');
+  // 
   Route::get('pdfCaja', 'pdfCaja');
   Route::get('pdfGastos', 'pdfGastos');
   Route::get('pdfLaboratorio', 'pdfLaboratorio');

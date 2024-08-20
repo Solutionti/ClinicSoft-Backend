@@ -18,13 +18,30 @@ class Payment extends Model
                     ->join('pacientes', 'pagos.dni_paciente', '=', 'pacientes.documento')
                     ->join('doctores', 'pagos.medico', '=', 'doctores.codigo_doctor')
                     ->select('pagos.*', 'pacientes.nombre', 'pacientes.apellido', 'doctores.nombre as medico')
-                    // ->where('pagos.fecha', $fecha)
+                    ->where('pagos.fecha', $fecha)
                     ->get();
 
       return  $payments;
     }
 
-    public function createPayment() {
-      
+    public function createPayment($datos) {
+      $payment = [
+        "dni_paciente" => $datos["dni_paciente"],
+        "medico" => $datos["medico"],
+        "especialidad" => $datos["especialidad"],
+        "atencion" => $datos["atencion"],
+        "fecha" => $datos["fecha"],
+        "hora" => $datos["hora"],
+        "descuento" => $datos["descuento"],
+        "comision" => $datos["comision"],
+        "descripcion" => $datos["descripcion"],
+        "total" => $datos["total"],
+        "cantidad_recibida" => $datos["cantidad_recibida"],
+        "tipo_deposito" => $datos["tipo_deposito"],
+        "estado" => $datos["estado"],
+        "usuario" => $datos["usuario"],
+      ];
+      DB::table("pagos")
+      ->insert($payment);
     }
 }

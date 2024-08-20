@@ -18,6 +18,43 @@ class AccountingController extends Controller{
       return $this->Payment->getPayments();
     }
 
+    public function createPayment(Request $request) {
+      
+      $dni_paciente = $request->dni_paciente;
+      $medico = $request->medico;
+      $especialidad = $request->especialidad;
+      $atencion = $request->atencion;
+      $fecha = date("Y-m-d");
+      $hora = date("H:i");
+      $descuento = $request->descuento;
+      $comision = $request->comision;
+      $descripcion = $request->descripcion;
+      $total = $request->total;
+      $cantidad_recibida = $request->cantidad_recibida;
+      $tipo_deposito = $request->tipo_deposito;
+      $estado = $request->estado;
+      $usuario = $request->usuario;
+      
+      $payment = [
+        "dni_paciente" => $dni_paciente,
+        "medico" => $medico,
+        "especialidad" => $especialidad,
+        "atencion" => $atencion,
+        "fecha" => $fecha,
+        "hora" => $hora,
+        "descuento" => $descuento,
+        "comision" => $comision,
+        "descripcion" => $descripcion,
+        "total" => $total,
+        "cantidad_recibida" => $cantidad_recibida,
+        "tipo_deposito" => $tipo_deposito,
+        "estado" => $estado,
+        "usuario" => $usuario,
+      ];
+
+      $this->Payment->createPayment($payment);
+    }
+
     // GASTOS
     public function getGasto(){
       return  $this->Gastos->getGasto();  

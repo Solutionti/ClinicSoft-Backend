@@ -22,6 +22,7 @@ class History extends Model
         "motivo_consulta" => $data["motivo_consulta"],
         "tratamiento_anterior" => $data["tratamiento_anterior"],
         "enfermedad_actual" => $data["enfermedad_actual"],
+        "tiempo" => "",
         "inicio" => $data["inicio"],
         "curso" => $data["curso"],
         "sintomas" => $data["sintomas"],
@@ -91,5 +92,18 @@ class History extends Model
       ];
       DB::table("h_ginecologias")
          ->insert($ginecologia);
+    }
+
+    public function subirArchivosPdf($datos) {
+      $pdf = [
+        "paciente" => $datos["paciente"],
+        "tp_documento" => $datos["tp_documento"],
+        "titulo" => $datos["titulo"],
+        "url_documento" => $datos["url_documento"],
+        "usuario" => $datos["usuario"],
+        "fecha" => $datos["fecha"],
+      ];
+      DB::table("documentos_pacientes")
+        ->insert($pdf);
     }
 }

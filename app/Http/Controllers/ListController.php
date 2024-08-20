@@ -190,4 +190,18 @@ class ListController extends Controller {
       return $this->ListModel->getDocumentosPdfPacientes($paciente);
     }
 
+    public function getDiagnosticos() {
+      return $this->ListModel->getDiagnosticos();
+    }
+
+    public function getProcedimientos() {
+      return $this->ListModel->getProcedimientos();
+    }
+
+    public function getDocumentosPaciente(Request $request) {
+      $paciente = $request->input("paciente");
+
+      return $this->ListModel->getDocumentosPaciente($paciente);
+    }
+
 }
