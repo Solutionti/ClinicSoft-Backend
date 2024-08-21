@@ -524,4 +524,8 @@ class AdmissionController extends Controller{
     ]);
 
   }
+
+  public function getFarmaciaMedicamentos() {
+    return $this->Admission->getFarmaciaMedicamentos();
+  }
 }
