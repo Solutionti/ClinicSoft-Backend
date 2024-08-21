@@ -13,6 +13,7 @@ use App\Http\Controllers\ProcedureController;
 use App\Http\Controllers\AccountingController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PdfsController;
+use App\Http\Controllers\EcografiasController;
 
 
 /*
@@ -106,7 +107,6 @@ Route::controller(InventoryController::class)->group(function () {
 Route::controller(ProcedureController::class)->group(function () {
   Route::get('getColposcopias', 'getColposcopias');
   Route::post('createColposcopia', 'createColposcopia');
-
   Route::post('subirArchivosPdf', 'subirArchivosPdf');
 
 
@@ -130,11 +130,9 @@ Route::controller(ReportController::class)->group(function () {
   Route::get('countPagos', 'countPagos');
   Route::get('CountDoctors', 'CountDoctors');
   Route::get('newPatients', 'newPatients');
-
   Route::get('countEfectivo', 'countEfectivo');
   Route::get('countTargeta', 'countTargeta');
   Route::get('getTransacciones', 'getTransacciones');
-
 });
 
 Route::controller(PdfsController::class)->group(function () {
@@ -144,13 +142,15 @@ Route::controller(PdfsController::class)->group(function () {
   Route::get('pdfColposcopia', 'pdfColposcopia');
   Route::get('pdfKardex', 'pdfKardex');
   Route::get('pdfInventario', 'pdfInventario');
-  // 
   Route::get('pdfCaja', 'pdfCaja');
   Route::get('pdfGastos', 'pdfGastos');
   Route::get('pdfLaboratorio', 'pdfLaboratorio');
   Route::get('pdfPagos', 'pdfPagos');
 });
 
+Route::controller(EcografiasController::class)->group(function () {
+  
+});
 
 
 // Route::group(['middleware' => ['auth:sanctum']], function() {
