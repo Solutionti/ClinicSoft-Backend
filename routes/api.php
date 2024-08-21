@@ -51,7 +51,7 @@ Route::controller(ListController::class)->group(function () {
   Route::get('getDiagnosticos', 'getDiagnosticos');
   Route::get('getProcedimientos', 'getProcedimientos');
   Route::get('getDocumentosPaciente', 'getDocumentosPaciente');
-  
+
 });
 
 Route::controller(GenericController::class)->group(function () {
@@ -152,7 +152,9 @@ Route::controller(PdfsController::class)->group(function () {
 });
 
 Route::controller(EcografiasController::class)->group(function () {
-
+  Route::post('crearEcografiaGenetica', 'crearEcografiaGenetica');
+  Route::post('crearEcografiaMama', 'crearEcografiaMama');
+  Route::post('crearEcografiaMorfologica', 'crearEcografiaMorfologica');
 });
 
 
