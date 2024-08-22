@@ -135,6 +135,7 @@ class EcografiasController extends Controller {
          }
     }
 
+
     public function crearEcografiaMorfologica(Request $request){
         try{
             $documento_paciente = $request->documento_paciente;
@@ -210,5 +211,212 @@ class EcografiasController extends Controller {
         }
     }
 
+
+    public function crearEcografiaObstetrica(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $feto_embrion = $request->feto_embrion;
+            $situacion_feto = $request->situacion_feto;
+            $estado_feto = $request->estado_feto;
+            $placenta = $request->placenta;
+            $dpb = $request->dpb;
+            $lcf = $request->lcf;
+            $min = $request->min;
+            $cc = $request->cc;
+            $ca = $request->ca;
+            $lf = $request->lf;
+            $ila = $request->ila;
+            $percentil = $request->percentil;
+            $tipo_parto = $request->tipo_parto;
+            $conclusion = $request->conclusion;
+            $sugerencia = $request->sugerencia;
+            $fecha = date('Y-m-d');
+            $hora = date('H:i');
+            $usuario = $request->usuario;
+
+        $ecografia = [
+
+            "documento_paciente" => $documento_paciente,
+            "codigo_doctor" => $codigo_doctor,
+            "feto_embrion" => $feto_embrion,
+            "situacion_feto" => $situacion_feto,
+            "estado_feto" => $estado_feto,
+            "placenta" => $placenta,
+            "dpb" => $dpb,
+            "lcf" => $lcf,
+            "min" => $min,
+            "cc" => $cc,
+            "ca" => $ca,
+            "lf" => $lf,
+            "ila" => $ila,
+            "percentil" => $percentil,
+            "tipo_parto" => $tipo_parto,
+            "conclusion" => $conclusion,
+            "sugerencia" => $sugerencia,
+            "fecha" => $fecha,
+            "hora>" => $hora,
+            "usuario" => $usuario,
+        ];
+
+        $this->$ecografia->crearEcografiaObstetrica($ecografia);
+        return response()->json([
+            'message' => 'La ecografia obstetrica se ha creado en la base de datos',
+            'status' => 200
+          ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaPelvica(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $utero_tipo = $request->utero_tipo;
+            $superficie_tipo = $request->superficie_tipo;
+            $endometrio = $request->endometrio;
+            $tumor_anexial = $request->tumor_anexial;
+            $utero_dimensiones = $request->utero_dimensiones;
+            $utero_longitud = $request->utero_longitud;
+            $utero_tranverso = $request->utero_tranverso;
+            $utero_antpost = $request->utero_antpost;
+            $comentario_utero = $request->comentario_utero;
+            $ovarizq_dimensiones = $request->ovarizq_dimensiones;
+            $ovarizq_longitud = $request->ovarizq_longitud;
+            $ovarizq_tranverso = $request->ovarizq_tranverso;
+            $comentario_ovarizq = $request->comentario_ovarizq;
+            $ovarder_dimensiones = $request->ovarder_dimensiones;
+            $ovarder_longitud = $request->ovarder_longitud;
+            $ovarder_tranverso = $request->ovarder_tranverso;
+            $comentario_ovarder = $request->comentario_ovarder;
+            $fondo_saco = $request->fondo_saco;
+            $miometrio = $request->miometrio;
+            $conclusion = $request->conclusion;
+            $sugerencias = $request->sugerencias;
+            $fecha = date('Y-m-d');
+            $hora = date('H:i');
+            $usuario = $request->usuario;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "utero_tipo" => $utero_tipo,
+                "superficie_tipo" => $superficie_tipo,
+                "endometrio" => $endometrio,
+                "tumor_anexial" => $tumor_anexial,
+                "utero_dimensiones" => $utero_dimensiones,
+                "utero_longitud" => $utero_longitud,
+                "utero_tranverso" => $utero_tranverso,
+                "utero_antpost" => $utero_antpost,
+                "comentario_utero" => $comentario_utero,
+                "ovarizq_dimensiones" => $ovarizq_dimensiones,
+                "ovarizq_longitud" => $ovarizq_longitud,
+                "ovarizq_tranverso" => $ovarizq_tranverso,
+                "comentario_ovarizq" => $comentario_ovarizq,
+                "ovarder_dimensiones" => $ovarder_dimensiones,
+                "ovarder_longitud" => $ovarder_longitud,
+                "ovarder_tranverso" => $ovarder_tranverso,
+                "comentario_ovarder" => $comentario_ovarder,
+                "fondo_saco" => $fondo_saco,
+                "miometrio" => $miometrio,
+                "conclusion" => $conclusion,
+                "sugerencias" => $sugerencias,
+                "fecha" => $fecha,
+                "hora" => $hora,
+                "usuario" => $usuario,
+            ];
+
+            $this->$ecografia->crearEcografiaPelvica($ecografia);
+            return response()->json([
+                'message' => 'La ecografia pelvica se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaTransvaginal(Request $request){
+
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $utero_tipo = $request->utero_tipo;
+            $superficie_tipo = $request->superficie_tipo;
+            $endometrio = $request->endometrio;
+            $tumor_anexial = $request->tumor_anexial;
+            $utero_dimensiones = $request->utero_dimensiones;
+            $utero_longitud = $request->utero_longitud;
+            $utero_tranverso = $request->utero_tranverso;
+            $utero_antpost = $request->utero_antpost;
+            $comentario_utero = $request->comentario_utero;
+            $ovarizq_dimensiones = $request->ovarizq_dimensiones;
+            $ovarizq_longitud = $request->ovarizq_longitud;
+            $ovarizq_tranverso = $request->ovarizq_tranverso;
+            $comentario_ovarizq = $request->comentario_ovarizq;
+            $ovarder_dimensiones = $request->ovarder_dimensiones;
+            $ovarder_longitud = $request->ovarder_longitud;
+            $ovarder_tranverso = $request->ovarder_tranverso;
+            $comentario_ovarder = $request->comentario_ovarder;
+            $fondo_saco = $request->fondo_saco;
+            $conclusion = $request->conclusion;
+            $sugerencias = $request->sugerencias;
+            $fecha = date('Y-m-d');
+            $hora = date('H:i');
+            $usuario = $request->usuario;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "utero_tipo" => $utero_tipo,
+                "superficie_tipo" => $superficie_tipo,
+                "endometrio" => $endometrio,
+                "tumor_anexial" => $tumor_anexial,
+                "utero_dimensiones" => $utero_dimensiones,
+                "utero_longitud" => $utero_longitud,
+                "utero_tranverso" => $utero_tranverso,
+                "utero_antpost" => $utero_antpost,
+                "comentario_utero" => $comentario_utero,
+                "ovarizq_dimensiones" => $ovarizq_dimensiones,
+                "ovarizq_longitud" => $ovarizq_longitud,
+                "ovarizq_tranverso" => $ovarizq_tranverso,
+                "comentario_ovarizq" => $comentario_ovarizq,
+                "ovarder_dimensiones" => $ovarder_dimensiones,
+                "ovarder_longitud" => $ovarder_longitud,
+                "ovarder_tranverso" => $ovarder_tranverso,
+                "comentario_ovarder" => $comentario_ovarder,
+                "fondo_saco" => $fondo_saco,
+                "conclusion" => $conclusion,
+                "sugerencias" => $sugerencias,
+                "fecha" => $fecha,
+                "hora" => $hora,
+                "usuario" => $usuario,
+            ];
+
+            $this->$ecografia->crearEcografiaTransvaginal($ecografia);
+            return response()->json([
+                'message' => 'La ecografia transvaginal se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+
+    }
 
 }

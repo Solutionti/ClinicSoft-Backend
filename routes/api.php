@@ -152,6 +152,8 @@ Route::controller(EcografiasController::class)->group(function () {
   Route::post('crearEcografiaGenetica', 'crearEcografiaGenetica');
   Route::post('crearEcografiaMama', 'crearEcografiaMama');
   Route::post('crearEcografiaMorfologica', 'crearEcografiaMorfologica');
+  Route::post('crearEcografiaObstetrica', 'crearEcografiaObstetrica');
+  Route::post('crearEcografiaPelvica', 'crearEcografiaPelvica');
 });
 
 
