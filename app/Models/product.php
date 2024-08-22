@@ -66,7 +66,7 @@ class Product extends Model
     public function getInventories($cantidad, $signo) {
 
       $inventories = DB::table("productos")
-                         ->select("productos.*", 'categorias.nombre as categoria')
+                         ->select("productos.*", 'categorias.nombre as categorial')
                          ->join('categorias', 'productos.categoria', '=', 'categorias.codigo_categoria')
                          ->where('stock',$signo, $cantidad)
                          ->get();

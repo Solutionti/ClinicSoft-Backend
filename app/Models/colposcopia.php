@@ -37,7 +37,7 @@ class Colposcopia extends Model
        "imagen1" => $data["imagen1"],
        "imagen2" => $data["imagen2"],
        "usuario" => $data["usuario"],
-       "cpm" => $data["cmp"],
+       "cmp" => $data["cmp"],
       ];
 
       DB::table("colposcopias")

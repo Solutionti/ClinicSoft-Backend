@@ -325,7 +325,7 @@ class PdfsController extends Controller
     public function pdfColposcopia(Request $request) {
 
       $empresa = $this->Pdf->getEmpresa("1");
-      $colposcopias = $this->Pdf->pdfColposcopia(3);
+      $colposcopias = $this->Pdf->pdfColposcopia(6);
       
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -445,8 +445,8 @@ class PdfsController extends Controller
       $pdf->cell(40,5, 'Papanicolaou', 1);
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(58,5, $colposcopias[0]->papanicolaou, 1);
-      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 20 , 110, 70, 40, 'JPG');
-      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 120, 110, 70, 40, 'JPG');
+      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 20 , 110, 70, 40);
+      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 120, 110, 70, 40);
       $pdf->Ln(70);
       $pdf->SetFont('Arial', 'B', 8);
       $pdf->cell(58,5, 'CONCLUSIONES', 0);
