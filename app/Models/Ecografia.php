@@ -48,7 +48,7 @@ class Ecografia extends Model
 
     public function crearEcografiaMama($ecografia){
 
-        $ecografia =[
+        $ecografia = [
             "codigo_doctor" => $ecografia['codigo_doctor'],
             "pezon_izq" => $ecografia['pezon_izq'],
             "tcsc_izq" => $ecografia['tcsc_izq'],
@@ -103,4 +103,99 @@ class Ecografia extends Model
         DB::table("ecografia_morfologica")
            ->inser($ecografia);
     }
+
+    public function crearEcografiaObstetrica($ecografia){
+        $ecografia = [
+            "documento_paciente" => $ecografia['documento_paciente'],
+            "codigo_doctor" => $ecografia['codigo_doctor'],
+            "feto_embrion" => $ecografia['feto_embrion'],
+            "situacion_feto" => $ecografia['situacion_feto'],
+            "estado_feto" => $ecografia['estado_feto'],
+            "placenta" => $ecografia['placenta'],
+            "dpb" => $ecografia['dpb'],
+            "lcf" => $ecografia['lcf'],
+            "min" => $ecografia['min'],
+            "cc" => $ecografia['cc'],
+            "ca" => $ecografia['ca'],
+            "lf" => $ecografia['lf'],
+            "ila" => $ecografia['ila'],
+            "percentil" => $ecografia['percentil'],
+            "tipo_parto" => $ecografia['tipo_parto'],
+            "conclusion" => $ecografia['conclusion'],
+            "sugerencia" => $ecografia['sugerencia'],
+            "fecha" => $ecografia['fecha'],
+            "hora" => $ecografia['hora'],
+            "usuario" => $ecografia['usuario'],
+        ];
+        DB::table("ecografia_obstetrica")
+           ->inser($ecografia);
+    }
+
+    public function crearEcografiaPelvica($ecografia){
+        $ecografia = [
+            "documento_paciente" => $ecografia['documento_paciente'],
+            "codigo_doctor" => $ecografia['codigo_doctor'],
+            "utero_tipo" => $ecografia['utero_tipo'],
+            "superficie_tipo" => $ecografia['superficie_tipo'],
+            "endometrio" => $ecografia['endometrio'],
+            "tumor_anexial" => $ecografia['tumor_anexial'],
+            "utero_dimensiones" => $ecografia['utero_dimensiones'],
+            "utero_longitud" => $ecografia['utero_longitud'],
+            "utero_tranverso" => $ecografia['utero_tranverso'],
+            "utero_antpost" => $ecografia['utero_antpost'],
+            "comentario_utero" => $ecografia['comentario_utero'],
+            "ovarizq_dimensiones" => $ecografia['ovarizq_dimensiones'],
+            "ovarizq_longitud" => $ecografia['ovarizq_longitud'],
+            "ovarizq_tranverso" => $ecografia['ovarizq_tranverso'],
+            "comentario_ovarizq" => $ecografia['comentario_ovarizq'],
+            "ovarder_dimensiones" => $ecografia['ovarder_dimensiones'],
+            "ovarder_longitud" => $ecografia['ovarder_longitud'],
+            "ovarder_tranverso" => $ecografia['ovarder_tranverso'],
+            "comentario_ovarder" => $ecografia['comentario_ovarder'],
+            "fondo_saco" => $ecografia['fondo_saco'],
+            "miometrio" => $ecografia['miometrio'],
+            "conclusion" => $ecografia['conclusion'],
+            "sugerencias" => $ecografia['sugerencias'],
+            "fecha" => $ecografia['fecha'],
+            "hora" => $ecografia['hora'],
+            "usuario" => $ecografia['usuario'],
+        ];
+        DB::table('ecografia_pelvica')
+           ->inser($ecografia);
+    }
+
+
+    public function crearEcografiaTransvaginal($ecografia){
+        $ecografia = [
+            "documento_paciente" => $ecografia['documento_paciente'],
+            "codigo_doctor" => $ecografia['codigo_doctor'],
+            "utero_tipo" => $ecografia['utero_tipo'],
+            "superficie_tipo" => $ecografia['superficie_tipo'],
+            "endometrio" => $ecografia['endometrio'],
+            "tumor_anexial" => $ecografia['tumor_anexial'],
+            "utero_dimensiones" => $ecografia['utero_dimensiones'],
+            "utero_longitud" => $ecografia['utero_longitud'],
+            "utero_tranverso" => $ecografia['utero_tranverso'],
+            "utero_antpost" => $ecografia['utero_antpost'],
+            "comentario_utero" => $ecografia['comentario_utero'],
+            "ovarizq_dimensiones" => $ecografia['ovarizq_dimensiones'],
+            "ovarizq_longitud" => $ecografia['ovarizq_longitud'],
+            "ovarizq_tranverso" => $ecografia['ovarizq_tranverso'],
+            "comentario_ovarizq" => $ecografia['comentario_ovarizq'],
+            "ovarder_dimensiones" => $ecografia['ovarder_dimensiones'],
+            "ovarder_longitud" => $ecografia['ovarder_longitud'],
+            "ovarder_tranverso" => $ecografia['ovarder_tranverso'],
+            "comentario_ovarder" => $ecografia['comentario_ovarder'],
+            "fondo_saco" => $ecografia['fondo_saco'],
+            "conclusion" => $ecografia['conclusion'],
+            "sugerencias" => $ecografia['sugerencias'],
+            "fecha" => $ecografia['fecha'],
+            "hora" => $ecografia['hora'],
+            "usuario" => $ecografia['usuario'],
+        ];
+        DB::table('ecografia_transvaginal')
+           ->inser($ecografia);
+    }
+
+
 }
