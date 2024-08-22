@@ -71,5 +71,16 @@ class admission extends Model
           ->update($admission);
     }
 
+    public function getFarmaciaMedicamentos() {
+
+      $medicamentos = DB::Connection('farmacia')
+                      ->table("ecografia_mama")
+                      ->select("*")
+                      ->get();
+
+      return $medicamentos;
+      
+    }
+
 
 }

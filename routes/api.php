@@ -86,6 +86,9 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::post('createHistoriaClinica', 'createHistoriaClinica');
 
   Route::post('createHistoriaClinica', 'createHistoriaClinica');
+  
+  //api para medicamentos 
+  Route::get('getFarmaciaMedicamentos', 'getFarmaciaMedicamentos');
 });
 
 // RUTAS DE INVENTARIOS
