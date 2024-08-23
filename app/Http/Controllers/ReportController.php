@@ -42,5 +42,12 @@ class ReportController extends Controller{
       return $this->Report->getTransacciones(); 
     }
 
+    public function contarMesAMes(Request $request) {
+      $fechainicial = $request->fechainicial;
+      $fechafinal = $request->fechafinal;
+      
+      return $this->Report->contarMesAMes($fechainicial, $fechafinal); 
+    }
+
     
 }

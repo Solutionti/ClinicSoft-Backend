@@ -520,7 +520,8 @@ class AdmissionController extends Controller{
 
     return response()->json([
       'message' => 'La orden de labratorio se ha creado correctamente',
-      'status' => 200
+      'status' => 200,
+      'codigo' => $id
     ]);
 
   }

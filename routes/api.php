@@ -136,6 +136,7 @@ Route::controller(ReportController::class)->group(function () {
   Route::get('countEfectivo', 'countEfectivo');
   Route::get('countTargeta', 'countTargeta');
   Route::get('getTransacciones', 'getTransacciones');
+  Route::get('contarMesAMes', 'contarMesAMes');
 });
 
 Route::controller(PdfsController::class)->group(function () {
