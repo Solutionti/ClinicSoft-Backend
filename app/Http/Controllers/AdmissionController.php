@@ -369,7 +369,13 @@ class AdmissionController extends Controller{
     $comision = $request->input("comision");
     $turno = $request->input("turno");
     $usuario = $request->input("usuario");
-    $orden__ = $request->input("orden__");
+
+    if($cola_atencion == "Si") {
+      $orden__ =  $this->Admission->countAdmisionDoctor($medico) + 1;
+    }
+    else {
+      $orden__ = 1;
+    }
 
     $admission = [
       "documento" => $documento,

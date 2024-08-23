@@ -219,7 +219,7 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 6);
       $pdf->cell(40,4, '           ORDEN DE ATENCION', 1);
       $pdf->SetFont('Arial', '', 8);
-      $pdf->cell(15,4, '          '. $admisiones[0]->turno, 1);
+      $pdf->cell(15,4, '          '. $admisiones[0]->orden__, 1);
       $pdf->Ln(4);
       $pdf->SetFont('Arial', 'B', 6);
       $pdf->cell(20,4, 'ESPECIALIDAD', 1);

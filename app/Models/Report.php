@@ -110,7 +110,6 @@ class Report extends Model
                ->where("fecha","<=", $fechafinal)
                ->sum('total');
                      
-
         return $mes;
     }
 
