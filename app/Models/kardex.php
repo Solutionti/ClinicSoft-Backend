@@ -11,7 +11,7 @@ class kardex extends Model
     use HasFactory;
 
     public function getKardex($product,$fechaInicial,$fechaFinal) {
-      $kadexs = DB::table('kardexs')
+      $kadexs = DB::table('kardex')
                     ->select('*')
                     ->where('fecha','>=', $fechaInicial)
                     ->where('fecha','<=', $fechaFinal)
@@ -38,7 +38,7 @@ class kardex extends Model
         "saldo" => $data["saldo"],
       ];
 
-      DB::table("kardexs")
+      DB::table("kardex")
           ->insert($kadexs);
     }
 

@@ -369,7 +369,13 @@ class AdmissionController extends Controller{
     $comision = $request->input("comision");
     $turno = $request->input("turno");
     $usuario = $request->input("usuario");
-    $orden__ = $request->input("orden__");
+
+    if($cola_atencion == "Si") {
+      $orden__ =  $this->Admission->countAdmisionDoctor($medico) + 1;
+    }
+    else {
+      $orden__ = 1;
+    }
 
     $admission = [
       "documento" => $documento,
@@ -520,8 +526,13 @@ class AdmissionController extends Controller{
 
     return response()->json([
       'message' => 'La orden de labratorio se ha creado correctamente',
-      'status' => 200
+      'status' => 200,
+      'codigo' => $id
     ]);
 
+  }
+
+  public function getFarmaciaMedicamentos() {
+    return $this->Admission->getFarmaciaMedicamentos();
   }
 }

@@ -30,11 +30,11 @@ class ListController extends Controller {
       return $this->ListModel->getProvince($departamento);
     }
 
-    public function getDistrict() {
-      $departamento = $request->input("departamento");
-      $provincia = $request->input("provincia");
+    public function getDistrict(Request $request) {
+      $departamento = $request->departamento;
+      $provincia = $request->provincia;
 
-      return $this->ListModel->getDistrict($departamento, $provincia);
+      return $this->ListModel->getDistrict($provincia, $departamento);
     }
 
     public function getActivities() {

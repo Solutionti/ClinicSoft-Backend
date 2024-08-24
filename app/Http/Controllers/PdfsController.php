@@ -219,7 +219,7 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 6);
       $pdf->cell(40,4, '           ORDEN DE ATENCION', 1);
       $pdf->SetFont('Arial', '', 8);
-      $pdf->cell(15,4, '          '. $admisiones[0]->turno, 1);
+      $pdf->cell(15,4, '          '. $admisiones[0]->orden__, 1);
       $pdf->Ln(4);
       $pdf->SetFont('Arial', 'B', 6);
       $pdf->cell(20,4, 'ESPECIALIDAD', 1);
@@ -245,11 +245,12 @@ class PdfsController extends Controller
     }
 
     public function pdfFacturaLaboratorio(Request $request) {
-      $codigo = "25";
-      $paciente = "1110542802";
+      $codigo = $request->codigo;
+      
       $empresa = $this->Pdf->getEmpresa("1");
-      $laboratorio = $this->Pdf->pdfFacturaLaboratorio($codigo, $paciente);
-     
+      $laboratorio = $this->Pdf->pdfFacturaLaboratorio($codigo);
+      $detallelaboratorio = $this->Pdf->detalleLaboratorioPdf($codigo);
+
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -301,22 +302,29 @@ class PdfsController extends Controller
       $pdf->cell(20,4, 'DOCTOR', 1,);
       $pdf->SetFont('Arial', '', 6);
       $pdf->cell(35,4, $laboratorio[0]->doctor, 1);
+      $i = 0;
+      $total = 0;
+      foreach($detallelaboratorio as $detalle) {
+        $pdf->Ln(4);
+        $pdf->SetFont('Arial', 'B', 5);
+        $pdf->cell(55,4,$detalle->nombre .'   $'.$detalle->precio, 1);
+        $i = $i+2;
+        $total = $total + $detalle->precio;
+      }
       $pdf->Ln(4);
-      $pdf->SetFont('Arial', 'B', 6);
-      $pdf->cell(55,4, '-laboatorio', 1);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(30,4,'', 1);
+      $pdf->cell(25,4,"    TOTAL  /S ".$total, 1);
 
-      $pdf->SetDrawColor(0,24,0);
-      $pdf->SetFillColor(115,115,115);
-      $pdf->Rect(10,46,55,6, 'F');
-      $pdf->Ln(10);
+      $pdf->Ln(6);
       $pdf->SetFont('Arial', 'B', 6);
       $pdf->cell(55,4, '             RECARGATE DE ENERGIA POSITIVA',1,'L', false);
       $pdf->Ln(3);
       $pdf->MultiCell(55,4, utf8_decode($empresa[0]->texto1), 0,'L', false);
       $pdf->Ln(2);
       $pdf->SetFont('Arial', 'B', 6);
-      $pdf->Image($empresa[0]->qr, 10, 72, 17, 0, 'PNG');
-      $pdf->Image($empresa[0]->qr, 50, 72, 17, 0, 'PNG');
+      $pdf->Image($empresa[0]->qr, 10, 72+$i, 17, 0, 'PNG');
+      $pdf->Image($empresa[0]->qr, 50, 72+$i, 17, 0, 'PNG');
 
       $pdf->Output();
       exit;
@@ -325,7 +333,7 @@ class PdfsController extends Controller
     public function pdfColposcopia(Request $request) {
 
       $empresa = $this->Pdf->getEmpresa("1");
-      $colposcopias = $this->Pdf->pdfColposcopia(3);
+      $colposcopias = $this->Pdf->pdfColposcopia(6);
       
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -445,8 +453,8 @@ class PdfsController extends Controller
       $pdf->cell(40,5, 'Papanicolaou', 1);
       $pdf->SetFont('Arial', '', 7);
       $pdf->cell(58,5, $colposcopias[0]->papanicolaou, 1);
-      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 20 , 110, 70, 40, 'JPG');
-      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 120, 110, 70, 40, 'JPG');
+      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 20 , 110, 70, 40);
+      $pdf->Image('https://viajareacolombia.com/wp-content/uploads/2020/07/2_ibague.jpg', 120, 110, 70, 40);
       $pdf->Ln(70);
       $pdf->SetFont('Arial', 'B', 8);
       $pdf->cell(58,5, 'CONCLUSIONES', 0);
@@ -474,8 +482,12 @@ class PdfsController extends Controller
     }
 
     public function pdfKardex(Request $request) {
+      $producto = $request->producto;
+      $fechainicial = $request->fechainicial;
+      $fechafinal = $request->fechafinal;
+
       $empresa = $this->Pdf->getEmpresa("1");
-      $kardex = $this->Pdf->pdfKardex(1, "2022-04-22", "2022-04-22");
+      $kardex = $this->Pdf->pdfKardex($producto = $request->producto, $fechainicial, $fechafinal);
 
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -543,8 +555,11 @@ class PdfsController extends Controller
     }
 
     public function pdfInventario(Request $request) {
+      $valor = $request->valor;
+      $cantidad = $request->cantidad;
+
       $empresa = $this->Pdf->getEmpresa("1");
-      $productos = $this->Pdf->pdfInventario(1);
+      $productos = $this->Pdf->pdfInventario($cantidad, $valor);
       
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -567,14 +582,14 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(40,5, 'FECHA', 1);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(58,5, 'CONSULTA 2023-12-17', 1);
+      $pdf->cell(58,5, 'CONSULTA '. date("Y-m-d"), 1);
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(40,5, 'RESPONSABLE', 1);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(58,5, 'JERSON GALVEZ ENSUNCHO', 1);
+      $pdf->cell(58,5, 'USUARIO DE ATENCION', 1);
       $pdf->Ln(20);
       $pdf->SetFont('Arial', 'B', 8);
-      $pdf->cell(196,5, 'CONSULTA DE INVENTARIO DE FECHA 17-06-2024', 0);
+      $pdf->cell(196,5, 'CONSULTA DE INVENTARIO DE FECHA '. date("Y-m-d"), 0);
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', 'B', 7);
@@ -608,7 +623,13 @@ class PdfsController extends Controller
     }
 
     public function pdfCaja(Request $request) {
+      $doctor = $request->doctor;
+      $fechainicial = $request->fechainicial;
+      $fechafinal = $request->fechafinal;
 
+      $empresa = $this->Pdf->getEmpresa("1");
+      $comisiones = $this->Pdf->pdfCaja($doctor, $fechainicial, $fechafinal);
+      
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -618,16 +639,15 @@ class PdfsController extends Controller
       $pdf->SetFillColor(115,115,115);
       $pdf->Rect(10,  69,  196,  6, 'F');
       $pdf->SetDrawColor(0,24,0);
-      $pdf->SetFillColor(115,115,115);
-      $pdf->Rect(10,  99,  75,  6, 'F');
-      $pdf->Image('https://png.pngtree.com/template/20190530/ourmid/pngtree-bird-logo-vector-image_204552.jpg', 10, 5, 30, 0, 'JPG');
+      
+      $pdf->Image($empresa[0]->logo, 10, 12, 25, 0, 'PNG');
       $pdf->Ln(15);
       $pdf->SetFont('Arial', 'B', 10);
       $pdf->cell(128,5, '', 0);
       $pdf->cell(40,5, 'CENTRO MEDICO ESPECIALIZADO', 0);
       $pdf->Ln(5);
-      $pdf->cell(124,5, '', 0);
-      $pdf->cell(44,5, 'INFORME DIARIO DE CIERRE DE CAJA', 0);
+      $pdf->cell(130,5, '', 0);
+      $pdf->cell(42,5, 'INFORME ATENCION DOCTORES', 0);
       $pdf->Ln(20);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', 'B', 7);
@@ -652,23 +672,30 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(55,5, 'ESPECIALIDAD', 1);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(15,5, 'EFECTIVO', 1);
+      $pdf->cell(15,5, 'COMISION', 1);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(15,5, 'TARJETA', 1);
-      $pdf->Ln(5);
-      $pdf->SetTextColor(0,0,0);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(46,5, 'JERSON GALVEZ ENSUNCHO', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(10,5, '10', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(55,5, 'CUNIA PEREZ MARLENI', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(55,5, 'ECOGRAFIA TRANSVAGINAL', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(15,5, '60', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(15,5, '100', 1);
+      $pdf->cell(15,5, 'TOTAL', 1);
+      $total = 0;
+      foreach($comisiones as $comision){
+        $pdf->Ln(5);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(46,5, $comision->nombre.' '.$comision->apellido, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(10,5, $comision->codigo_pago, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(55,5, $comision->doctor, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(55,5,utf8_decode($comision->descripcion), 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(15,5, $comision->comision, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(15,5, $comision->total, 1);
+
+        $totaldoctor = $total + $comision->comision;
+        $total = $total + $comision->total;
+      }
+
       $pdf->Ln(5);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', '', 7);
@@ -676,13 +703,7 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(55,5, 'TOTAL DOCTOR', 1);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(30,5, '$ 2.000.000', 1);
-      $pdf->Ln(20);
-      $pdf->SetTextColor(0,0,0);
-      $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(30,5, 'IMPRESION', 1);
-      $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(45,5, '23:28 PM  17-06-2024', 1);
+      $pdf->cell(30,5, '$'. $totaldoctor. '      ||      $'. $total, 1);
 
       $pdf->Output();
       exit;
@@ -690,10 +711,12 @@ class PdfsController extends Controller
     }
 
     public function pdfGastos(Request $request) {
+      $fechainicial = $request->fechainicial;
+      $fechafinal = $request->fechafinal;
+
       $empresa = $this->Pdf->getEmpresa("1");
-      $gastos = $this->Pdf->pdfGastos('2023-08-07');
-      // print_r($gastos);
-      // exit;
+      $gastos = $this->Pdf->pdfGastos($fechainicial, $fechafinal);
+      
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -737,33 +760,42 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(40,5, 'TOTAL', 1);
 
+      $total = 0;
+      foreach($gastos as $gasto){
+        $pdf->Ln(5);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(30,5, $gasto->razon_social, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(56,5, $gasto->descripcion, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(30,5, $gasto->f_recepcion, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(40,5, $gasto->nro_doc, 1);
+        $pdf->SetFont('Arial', '', 7);
+        $pdf->cell(40,5,'$'.$gasto->monto, 1);
+
+        $total = $total + $gasto->monto;
+      }
+
       $pdf->Ln(5);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(30,5, $gastos[0]->razon_social, 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(56,5, $gastos[0]->descripcion, 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(30,5, $gastos[0]->f_recepcion, 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(40,5, $gastos[0]->nro_doc, 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(40,5,'$'.$gastos[0]->monto, 1);
-
-      $pdf->Ln(10);
-      $pdf->SetTextColor(0,0,0);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(140,5, '', 0);
+      $pdf->cell(156,5, '', 0);
       $pdf->SetFont('Arial', 'B', 7);
-      $pdf->cell(56,5, 'TOTAL  $', 1);
+      $pdf->cell(40,5, 'TOTAL  $'.$total, 1);
 
       $pdf->Output();
       exit;
     }
 
     public function pdfLaboratorio(Request $request) {
+
+      $fechainicial = $request->fechainicial;
+      $fechafinal = $request->fechafinal;
+
       $empresa = $this->Pdf->getEmpresa("1");
-      $laboratorio = $this->Pdf->pdfLaboratorio();
+      $laboratorio = $this->Pdf->pdfLaboratorio($fechainicial, $fechafinal);
       
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
@@ -806,7 +838,7 @@ class PdfsController extends Controller
       $pdf->cell(20,5, 'PAGO', 1);
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(20,5, 'VALOR', 1);
-
+      $total = 0;
       foreach($laboratorio as $laboratorios){
         $pdf->Ln(5);
         $pdf->SetTextColor(0,0,0);
@@ -817,18 +849,25 @@ class PdfsController extends Controller
         $pdf->SetFont('Arial', '', 7);
         $pdf->cell(80,5, $laboratorios->descripcion, 1);
         $pdf->SetFont('Arial', '', 7);
-        $pdf->cell(20,5, $laboratorios->tipo_deposito, 1);
+        if($laboratorios->tipo_deposito == "0"){
+          $pdf->cell(20,5,"EFECTIVO", 1);
+        }
+        else {
+          $pdf->cell(20,5, "TARJETA", 1);
+        }
         $pdf->SetFont('Arial', '', 7);
         $pdf->cell(20,5, '$'.$laboratorios->total, 1);
+
+        $total = ($total + $laboratorios->total);
       }
-      $pdf->Ln(15);
+      $pdf->Ln(5);
       $pdf->SetTextColor(0,0,0);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(145,5, '',0);
-      $pdf->SetFont('Arial', '', 7);
+      $pdf->cell(155,5, '',0);
+      $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(20,5, 'TOTAL', 1);
-      $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(30,5, '$ 90.000', 1);
+      $pdf->SetFont('Arial', 'B', 7);
+      $pdf->cell(20,5, '$'.$total, 1);
 
       $pdf->Output();
       exit;
@@ -838,8 +877,7 @@ class PdfsController extends Controller
     public function pdfPagos(Request $request) {
       $empresa = $this->Pdf->getEmpresa("1");
       $pagos = $this->Pdf->pdfPagos();
-      // print_r($pagos);
-      // exit;
+      
       $pdf = new Fpdf('p', 'mm', 'A4');
       $pdf->AddPage();
       $pdf->SetDrawColor(0,24,0);
@@ -885,6 +923,8 @@ class PdfsController extends Controller
       $pdf->SetFont('Arial', 'B', 7);
       $pdf->cell(25,5, 'TOTAL', 1);
       
+      $total = 0;
+      $descuento = 0;
       foreach($pagos as $pago){
         $pdf->Ln(5);
         $pdf->SetTextColor(0,0,0);
@@ -900,6 +940,9 @@ class PdfsController extends Controller
         $pdf->cell(20,5, $pago->fecha, 1);
         $pdf->SetFont('Arial', '', 7);
         $pdf->cell(25,5, $pago->total, 1);
+
+        $total = ($total + intval($pago->total));
+        $descuento = ($descuento + intval($pago->descuento));
       }
       $pdf->Ln(10);
       $pdf->SetTextColor(0,0,0);
@@ -913,13 +956,12 @@ class PdfsController extends Controller
       $pdf->SetTextColor(0,0,0);
       $pdf->cell(136,5, '', 0);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(30,5, '10%', 1);
+      $pdf->cell(30,5, '$'.$descuento, 1);
       $pdf->SetFont('Arial', '', 7);
-      $pdf->cell(30,5, '$ 20.000', 1);
+      $pdf->cell(30,5, '$'.$total, 1);
       $pdf->SetFont('Arial', '', 7);
       $pdf->Output();
       exit;
-
     }
 
 }

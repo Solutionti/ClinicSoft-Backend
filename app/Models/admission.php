@@ -42,6 +42,17 @@ class admission extends Model
         ->insert($admissions);
     }
 
+    public function countAdmisionDoctor($medico) {
+      $fecha = date("Y-m-d");
+      $cantidadDoctor = DB::table("admisiones")
+                          ->where("medico", $medico)
+                          ->where("cola_atencion", "Si")
+                          ->where("fecha", $fecha)
+                          ->count();
+
+      return $cantidadDoctor;
+    }
+
     public function ValidateAdmision($documento) {
       $admission = DB::table("admisiones")
                       ->where("paciente", $documento)
@@ -69,6 +80,17 @@ class admission extends Model
       DB::table("admisiones")
           ->where("paciente", $atencion)
           ->update($admission);
+    }
+
+    public function getFarmaciaMedicamentos() {
+
+      $medicamentos = DB::Connection('farmacia')
+                      ->table("ecografia_mama")
+                      ->select("*")
+                      ->get();
+
+      return $medicamentos;
+      
     }
 
 

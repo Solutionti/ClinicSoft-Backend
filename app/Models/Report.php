@@ -51,7 +51,6 @@ class Report extends Model
                     ->where("fecha", $fecha)
                     ->sum('total');
                     
-
       return $efectivo;
     }
 
@@ -103,6 +102,15 @@ class Report extends Model
                    ->get();
 
       return $transacciones;
+    }
+
+    public function contarMesAMes($fechainicial, $fechafinal) {
+      $mes = DB::table("pagos")
+               ->where("fecha", ">=" , $fechainicial)
+               ->where("fecha","<=", $fechafinal)
+               ->sum('total');
+                     
+        return $mes;
     }
 
 }
