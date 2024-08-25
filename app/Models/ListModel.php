@@ -104,7 +104,7 @@ class ListModel extends Model{
       ->select('codigo_cpt', 'nombre')
       ->get();
       
-      return $diagnosticos;
+      return $procedimientos;
     }
     
     public function getDocumentosPaciente($paciente) {

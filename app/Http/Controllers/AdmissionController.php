@@ -160,9 +160,12 @@ class AdmissionController extends Controller{
     // HISTORIAL DE CONSULTAS ULTIMAS 2
   }
 
-  public function SubirArchivosPdf() {
+  public function getcountCantidadHistorias(Request $request) {
 
+    $tphistoria = $request->tphistoria;
+    $paciente = $request->paciente;
 
+    return $this->History->countCantidadHistorias($tphistoria, $paciente) + 1;
   }
 
   public function createHistoriaClinica(Request $request) {

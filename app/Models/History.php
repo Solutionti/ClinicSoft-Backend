@@ -106,4 +106,13 @@ class History extends Model
       DB::table("documentos_pacientes")
         ->insert($pdf);
     }
+
+    public function countCantidadHistorias($tpconsulta, $paciente) {
+      $consulta = DB::table("historial_pacientes")
+                    ->where("tipo_consulta", $tpconsulta)
+                    ->where("paciente", $paciente)
+                    ->count();
+
+      return $consulta;
+    }
 }
