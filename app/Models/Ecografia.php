@@ -71,6 +71,7 @@ class Ecografia extends Model
     }
 
     public function crearEcografiaMorfologica($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -105,6 +106,7 @@ class Ecografia extends Model
     }
 
     public function crearEcografiaObstetrica($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -132,6 +134,7 @@ class Ecografia extends Model
     }
 
     public function crearEcografiaPelvica($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -166,6 +169,7 @@ class Ecografia extends Model
 
 
     public function crearEcografiaTransvaginal($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -226,6 +230,7 @@ class Ecografia extends Model
 
 
     public function crearEcografiaArteriales($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -276,6 +281,7 @@ class Ecografia extends Model
 
 
     public function crearEcografiaHisteronosografias($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -321,6 +327,7 @@ class Ecografia extends Model
     }
 
     public function crearEcografiaRenales($ecografia){
+
         $ecografia = [
             "documento_paciente" => $ecografia['documento_paciente'],
             "codigo_doctor" => $ecografia['codigo_doctor'],
@@ -366,4 +373,89 @@ class Ecografia extends Model
            ->inser($ecografia);
     }
 
+    public function crearEcografiaTiroides($ecografia){
+
+        $ecografia = [
+            "documento_paciente" => $ecografia['documento_paciente'],
+            "codigo_doctor" => $ecografia['codigo_doctor'],
+            "examen_solicitado" => $ecografia['examen_solicitado'],
+            "medico_tratante" => $ecografia['medico_tratante'],
+            "fecha" => $ecografia['fecha'],
+            "tiroides_ubicacion" => $ecografia['tiroides_ubicacion'],
+           "parenquima" => $ecografia['parenquima'],
+            "lesiones_focales" => $ecografia['lesiones_focales'],
+            "lobulo_derecho_longitud" => $ecografia['lobulo_derecho_longitud'],
+            "lobulo_derecho_ancho" => $ecografia['lobulo_derecho_ancho'],
+            "lobulo_derecho_profundidad" => $ecografia['lobulo_derecho_profundidad'],
+            "volumen_derecho" => $ecografia['volumen_derecho'],
+            "masas_quistes_derecho" => $ecografia['masas_quistes_derecho'],
+            "istmo" => $ecografia['istmo'],
+            "lobulo_izquierdo_longitud" => $ecografia['lobulo_izquierdo_longitud'],
+            "lobulo_izquierdo_ancho" => $ecografia['lobulo_izquierdo_ancho'],
+            "lobulo_izquierdo_profundidad" => $ecografia['lobulo_izquierdo_profundidad'],
+            "volumen_izquierdo" => $ecografia['volumen_izquierdo'],
+            "masas_quistes_izquierdo" => $ecografia['masas_quistes_izquierdo'],
+            "estructuras_vasculares" => $ecografia['estructuras_vasculares'],
+            "glandulas_submaxilares" => $ecografia['glandulas_submaxilares'],
+            "adenopatia_cervicales" => $ecografia['adenopatia_cervicales'],
+            "piel" => $ecografia['piel'],
+            "tcsc" => $ecografia['tcsc'],
+            "conclusiones" => $ecografia['conclusiones'],
+            "sugerencias" => $ecografia['sugerencias'],
+        ];
+        DB::table('ecografia_tiroides')
+           ->inser($ecografia);
+    }
+
+
+    public function crearEcografiaVenosas($ecografia){
+
+        $ecografia = [
+            "dni_paciente" => $ecografia['dni_paciente'],
+            "codigo_doctor" => $ecografia['codigo_doctor'],
+            "fecha" => $ecografia['fecha'],
+            "miembro_inferior_der" => $ecografia['miembro_inferior_der'],
+            "vena_derecho_femoral_comun" => $ecografia['vena_derecho_femoral_comun'],
+            "medida_derecho_femoral_comun" => $ecografia['medida_derecho_femoral_comun'],
+            "reflujo_derecho_femoral_comun" => $ecografia['reflujo_derecho_femoral_comun'],
+            "vena_derecho_safena_mayor_muslo" => $ecografia['vena_derecho_safena_mayor_muslo'],
+            "medida_derecho_safena_mayor_muslo" => $ecografia['medida_derecho_safena_mayor_muslo'],
+            "reflujo_derecho_safena_mayor_muslo" => $ecografia['reflujo_derecho_safena_mayor_muslo'],
+            "vena_derecho_safena_mayor_pierna" => $ecografia['vena_derecho_safena_mayor_pierna'],
+            "medida_derecho_safena_mayor_pierna" => $ecografia['medida_derecho_safena_mayor_pierna'],
+            "reflujo_derecho_safena_mayor_pierna" => $ecografia['reflujo_derecho_safena_mayor_pierna'],
+            "vena_derecho_poplitea" => $ecografia['vena_derecho_poplitea'],
+            "medida_derecho_poplitea" => $ecografia['medida_derecho_poplitea'],
+            "reflujo_derecho_poplitea" => $ecografia['reflujo_derecho_poplitea'],
+            "vena_derecho_safena_menor" => $ecografia['vena_derecho_safena_menor'],
+            "medida_derecho_safena_menor" => $ecografia['medida_derecho_safena_menor'],
+            "reflujo_derecho_safena_menor" => $ecografia['reflujo_derecho_safena_menor'],
+            "vena_derecho_perforantes" => $ecografia['vena_derecho_perforantes'],
+            "medida_derecho_perforantes" => $ecografia['medida_derecho_perforantes'],
+            "reflujo_derecho_perforantes" => $ecografia['reflujo_derecho_perforantes'],
+            "miembro_inferior_izq" => $ecografia['miembro_inferior_izq'],
+            "vena_izquierdo_femoral_comun" => $ecografia['vena_izquierdo_femoral_comun'],
+            "medida_izquierdo_femoral_comun" => $ecografia['medida_izquierdo_femoral_comun'],
+            "reflujo_izquierdo_femoral_comun" => $ecografia['reflujo_izquierdo_femoral_comun'],
+            "vena_izquierdo_safena_mayor_muslo" => $ecografia['vena_izquierdo_safena_mayor_muslo'],
+            "medida_izquierdo_safena_mayor_muslo" => $ecografia['medida_izquierdo_safena_mayor_muslo'],
+            "reflujo_izquierdo_safena_mayor_muslo" => $ecografia['reflujo_izquierdo_safena_mayor_muslo'],
+            "vena_izquierdo_safena_mayor_pierna" => $ecografia['vena_izquierdo_safena_mayor_pierna'],
+            "medida_izquierdo_safena_mayor_pierna" => $ecografia['medida_izquierdo_safena_mayor_pierna'],
+            "reflujo_izquierdo_safena_mayor_pierna" => $ecografia['reflujo_izquierdo_safena_mayor_pierna'],
+            "vena_izquierdo_poplitea" => $ecografia['vena_izquierdo_poplitea'],
+            "medida_izquierdo_poplitea" => $ecografia['medida_izquierdo_poplitea'],
+            "reflujo_izquierdo_poplitea" => $ecografia['reflujo_izquierdo_poplitea'],
+            "vena_izquierdo_safena_menor" => $ecografia['vena_izquierdo_safena_menor'],
+            "medida_izquierdo_safena_menor" => $ecografia['medida_izquierdo_safena_menor'],
+            "reflujo_izquierdo_safena_menor" => $ecografia['reflujo_izquierdo_safena_menor'],
+            "vena_izquierdo_perforantes" => $ecografia['vena_izquierdo_perforantes'],
+            "medida_izquierdo_perforantes" => $ecografia['medida_izquierdo_perforantes'],
+            "reflujo_izquierdo_perforantes" => $ecografia['reflujo_izquierdo_perforantes'],
+            "conclusion" => $ecografia['conclusion'],
+            "sugerencias" => $ecografia['sugerencias'],
+        ];
+        DB::table('ecografia_venosas')
+           ->inser($ecografia);
+    }
 }

@@ -160,8 +160,8 @@ Route::controller(EcografiasController::class)->group(function () {
   Route::post('crearEcografiaHisteronosografias', 'crearEcografiaHisteronosografias');
   Route::post('crearEcografiaProstaticas', 'crearEcografiaProstaticas');
   Route::post('crearEcografiaRenales', 'crearEcografiaRenales');
-
-
+  Route::post('crearEcografiaTiroides', 'crearEcografiaTiroides');
+  Route::post('crearEcografiaVenosas', 'crearEcografiaVenosas');
 });
 
 
