@@ -115,4 +115,37 @@ class History extends Model
 
       return $consulta;
     }
+
+    public function createMedicamentosPaciente() {
+      $medicamentos = [
+        "codigo_historia" => $datos["codigo_historia"],
+        "paciente" => $datos["paciente"],
+        "fecha" => $datos["fecha"],
+        "medicamento" => $datos["medicamento"],
+        "codigo_medicamento" => $datos["codigo_medicamento"],
+        "cantidad" => $datos["cantidad"],
+        "dosis" => $datos["dosis"],
+        "via_aplicacion" => $datos["via_aplicacion"],
+        "frecuencia" => $datos["frecuencia"],
+        "duracion" => $datos["duracion"],
+        "autorizo" => $datos["autorizo"],
+        "usuario" => $datos["usuario"],
+      ];
+      
+      DB::table("recetas_medicas")
+         ->insert($medicamentos);
+    }
+
+    public function createAlergiasPaciente(){
+
+      $alergias = [
+        "dni_paciente" => $datos["dni_paciente"],
+        "tipo_alergia" => $datos["tipo_alergia"],
+        "descripcion" => $datos["descripcion"],
+      ];
+      
+      DB::table("alergias")
+         ->insert($alergias);
+
+    }
 }
