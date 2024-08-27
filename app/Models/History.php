@@ -12,6 +12,7 @@ class History extends Model
 
     public function createHistoriaGeneral($data) {
       $general = [
+        "codigo_historia" => $data["codigo_historia"],
         "anamnesis" => $data["anamnesis"],
         "empresa" => $data["empresa"],
         "compania" => $data["compania"],
@@ -53,6 +54,7 @@ class History extends Model
 
     public function createHistoriaGinecologica($data) {
       $ginecologia = [
+        "codigo_historia" => $data["codigo_historia"],
         "familiares" => $data["familiares"],
         "patologicos" => $data["patologicos"],
         "gineco_obstetrico" => $data["gineco_obstetrico"],
@@ -147,5 +149,119 @@ class History extends Model
       DB::table("alergias")
          ->insert($alergias);
 
+    }
+
+    public function getAlergias($paciente) {
+      $alergias = DB::table("alergias")
+                    ->select("*")
+                    ->where("dni_paciente", $paciente)
+                    ->where("tipo_alergia", "Medicamento")
+                    ->get();
+
+      return $alergias;
+    }
+
+    public function getAlergiasOtras($paciente) {
+      $alergias = DB::table("alergias")
+                    ->select("*")
+                    ->where("dni_paciente", $paciente)
+                    ->where("tipo_alergia", "Otras")
+                    ->get();
+
+      return $alergias;
+    }
+
+    public function createAlergias($paciente, $tpalergia, $descripcion) {
+      $alergias = [
+        "dni_paciente" => $paciente,
+        "tipo_alergia" => $tpalergia,
+        "descripcion" => $descripcion,
+      ];
+      
+      DB::table("alergias")
+         ->insert($alergias);
+    }
+
+    public function crearMedicamentos($medicamentos) {
+
+      $medicamento = [
+        "codigo_historia" => $medicamentos["codigo_historia"],
+        "paciente" => $medicamentos["paciente"],
+        "fecha" => date("Y-m-d"),
+        "medicamento" => $medicamentos["medicamento"],
+        "codigo_medicamento" => $medicamentos["codigo_medicamento"],
+        "cantidad" => $medicamentos["cantidad"],
+        "dosis" => $medicamentos["dosis"],
+        "via_aplicacion" => $medicamentos["via_aplicacion"],
+        "frecuencia" => $medicamentos["frecuencia"],
+        "duracion" => $medicamentos["duracion"],
+        "autorizo" => $medicamentos["autorizo"],
+        "usuario" => $medicamentos["usuario"],
+      ];
+
+      DB::table("recetas_medicas")
+         ->insert($medicamento);
+    }
+
+    public function getMedicamentos($historia, $paciente) {
+      $medicamentos = DB::table("recetas_medicas")
+                         ->select("*")
+                         ->where("codigo_historia", $historia)
+                         ->where("paciente", $paciente)
+                         ->get();
+
+      return  $medicamentos;
+    }
+
+    public function getProcedimientos($historia, $paciente) {
+      $procedimientos = DB::table("procedimiento_historias")
+                           ->select("procedimiento_historias.*", "procedimientos.nombre")
+                           ->join("procedimientos", "procedimiento_historias.codigo_procedimiento", "procedimientos.codigo_cpt")
+                           ->where("procedimiento_historias.codigo_historia", $historia)
+                           ->where("procedimiento_historias.paciente", $paciente)
+                           ->get();
+
+      return $procedimientos;
+    }
+
+    public function getDiagnosticos($historia, $paciente) {
+      $diagnosticos = DB::table("diagnosticos")
+                           ->select("diagnosticos.*", "diagnosticoscie10.descripcion")
+                           ->join("diagnosticoscie10", "diagnosticos.codigo_diagnosti", "diagnosticoscie10.clave")
+                           ->where("diagnosticos.codigo_historia", $historia)
+                           ->where("diagnosticos.paciente", $paciente)
+                           ->get();
+
+      return $diagnosticos;
+    }
+
+    public function createDiagnosticos($datos) {
+      $diagnosticos = [
+        "codigo_historia" => $datos["codigo_historia"],
+        "paciente" => $datos["paciente"],
+        "codigo_diagnosti" => $datos["codigo_diagnosti"],
+        "tipo_especialidad" => $datos["tipo_especialidad"],
+        "historia" => $datos["historia"],
+        "fecha" => $datos["fecha"],
+        "usuario" => $datos["usuario"],
+      ];
+
+      DB::table("diagnosticos")
+          ->insert($diagnosticos);
+    }
+
+    public function createProcedimientos($datos) {
+      $procedimientos = [
+        "codigo_historia" => $datos["codigo_historia"],
+        "paciente" => $datos["paciente"],
+        "codigo_procedimiento" => $datos["codigo_procedimiento"],
+        "tipo_especialidad" => $datos["tipo_especialidad"],
+        "historia" => $datos["historia"],
+        "fecha" => $datos["fecha"],
+        "usuario" => $datos["usuario"],
+      ];
+
+      DB::table("procedimiento_historias")
+          ->insert($procedimientos);
     }
 }

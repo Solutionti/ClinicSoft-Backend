@@ -168,13 +168,85 @@ class AdmissionController extends Controller{
     return $this->History->countCantidadHistorias($tphistoria, $paciente) + 1;
   }
 
+  public function getAlergias(Request $request) {
+    $paciente = $request->paciente;
+
+    return $this->History->getAlergias($paciente);
+  }
+
+  public function getAlergiasOtras(Request $request) {
+    $paciente = $request->paciente;
+    
+    return $this->History->getAlergiasOtras($paciente);
+  }
+
+  public function createAlergias(Request $request) {
+    $paciente = $request->paciente;
+    $tpalergia = $request->tpalergia;
+    $descripcion = $request->descripcion;
+
+    $this->History->createAlergias($paciente, $tpalergia, $descripcion);
+
+    return response()->json([
+      'message' => 'La alergia se ha creado en la base de datos',
+      'status' => 200
+    ]);
+  }
+
+  public function crearMedicamentos(Request $request) {
+    
+    $codigo_historia = $request->codigo_historia;
+    $paciente = $request->paciente;
+    $medicamento = $request->medicamento;
+    $codigo_medicamento = $request->codigo_medicamento;
+    $cantidad = $request->cantidad;
+    $dosis = $request->dosis;
+    $via_aplicacion = $request->via_aplicacion;
+    $frecuencia = $request->frecuencia;
+    $duracion = $request->duracion;
+    $autorizo = $request->autorizo;
+    $usuario = $request->usuario;
+
+    $datos = [
+      "codigo_historia" => $codigo_historia,
+      "paciente" => $paciente,
+      "medicamento" => $medicamento,
+      "codigo_medicamento" => $codigo_medicamento,
+      "cantidad" => $cantidad,
+      "dosis" => $dosis,
+      "via_aplicacion" => $via_aplicacion,
+      "frecuencia" => $frecuencia,
+      "duracion" => $duracion,
+      "autorizo" => $autorizo,
+      "usuario" => $usuario,
+    ];
+
+    $this->History->crearMedicamentos($datos);
+
+    return response()->json([
+      'message' => 'El medicamento se ha creado en la base de datos',
+      'status' => 200
+    ]);
+  }
+
+  public function getMedicamentos(Request $request) {
+    $historia = $request->historia;
+    $paciente = $request->paciente;
+
+    return $this->History->getMedicamentos($historia, $paciente);
+  }
+
   public function createHistoriaClinica(Request $request) {
 
     $tphistoria = $request->input("tphistoria");
+    // procedimientos
+    $procedimientosarray = $request->input("procedimientosarray");
+    // diagnosticos
+    $diagnosticosarray = $request->input("diagnosticosarray");
+
     try {
-
       if($tphistoria == "1") {
-
+        $codigo_historia->codigo_historia;
         $anamnesis = $request->input("anamnesis");
         $empresa = $request->input("empresa");
         $compania = $request->input("compania");
@@ -211,6 +283,7 @@ class AdmissionController extends Controller{
         $usuario = $request->input("usuario");
 
         $data = [
+         "codigo_historia" => $codigo_historia,
          "anamnesis" => $anamnesis,
          "empresa" => $empresa,
          "compania" => $compania,
@@ -246,6 +319,7 @@ class AdmissionController extends Controller{
          "firma_medico" => $firma_medico,
          "usuario" => $usuario,
         ];
+        
         $this->History->createHistoriaGeneral($data);
 
         return response()->json([
@@ -254,6 +328,8 @@ class AdmissionController extends Controller{
         ]);
       }
       else if($tphistoria == "2") {
+      
+        $codigo_historia->codigo_historia;
         $familiares1 = $request->input("familiares11");
         $patologicos1 = $request->input("patologicos1");
         $gineco_obstetrico1 = $request->input("gineco_obstetrico1");
@@ -292,6 +368,7 @@ class AdmissionController extends Controller{
         $usuario1 = $request->input("usuario1");
 
         $data = [
+           "codigo_historia" => $codigo_historia,
            "familiares" => $familiares1,
            "patologicos" => $patologicos1,
            "gineco_obstetrico" => $gineco_obstetrico1,
@@ -335,6 +412,33 @@ class AdmissionController extends Controller{
           'message' => 'La historia ginecologica se ha creado en la base de datos',
           'status' => 200
         ]);
+      }
+
+      // insert procedimientos
+      foreach($procedimientosarray as $procedimientos) {
+        $datos1 = [
+          "codigo_historia" => $procedimientos->historia,
+          "paciente" => $procedimientos->paciente,
+          "codigo_procedimiento" => $procedimientos->codprocedimiento,
+          "tipo_especialidad" => $procedimientos->especialidad,
+          "historia" => $procedimientos->historia,
+          "fecha" => date("Y-m-d"),
+          "usuario" => $procedimientos->usuario,
+        ];
+          $this->History->createProcedimientos($datos1); 
+      }
+      // insert diagnosticos
+      foreach($diagnosticosarray as $diagnosticos) {
+        $datos2 = [
+        "codigo_historia" => $diagnostico->historia,
+        "paciente" => $diagnostico->paciente,
+        "codigo_diagnosti" => $diagnostico->codigodiagnostico,
+        "tipo_especialidad" => $diagnostico->tpespecialidad,
+        "historia" => $diagnostico->historia,
+        "fecha" => date("Y-m-d"),
+        "usuario" => $diagnostico->usuario,
+        ];
+        $this->History->createDiagnosticos($datos2); 
       }
     }
     catch(\exception $e) {
@@ -538,4 +642,20 @@ class AdmissionController extends Controller{
   public function getFarmaciaMedicamentos() {
     return $this->Admission->getFarmaciaMedicamentos();
   }
+
+  public function getProcedimientos(Request $requets) {
+    $historia = $request->historia;
+    $paciente = $request->paciente;
+
+    return $this->History->getProcedimientos($historia, $paciente);
+  }
+
+  public function getDiagnosticos(Request $requets) {
+    $historia = $request->historia;
+    $paciente = $request->paciente;
+
+    return $this->History->getDiagnosticos($historia, $paciente);
+  }
+
+  
 }

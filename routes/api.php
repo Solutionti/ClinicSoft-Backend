@@ -85,7 +85,14 @@ Route::controller(AdmissionController::class)->group(function () {
   //historia clinica
   Route::get('getcountCantidadHistorias', 'getcountCantidadHistorias');
   Route::post('createHistoriaClinica', 'createHistoriaClinica');
-
+  Route::get('getAlergias', 'getAlergias');
+  Route::get('getAlergiasOtras', 'getAlergiasOtras');
+  Route::post('createAlergias', 'createAlergias');
+  Route::post('crearMedicamentos', 'crearMedicamentos');
+  Route::get('getMedicamentos', 'getMedicamentos');
+  Route::get('getProcedimientos', 'getProcedimientos');
+  Route::get('getDiagnosticos', 'getDiagnosticos');
+  
 });
 
 // RUTAS DE INVENTARIOS
