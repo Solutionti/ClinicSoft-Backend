@@ -25,8 +25,8 @@ class Pdf extends Model
 
     public function pdfFacturaAdmision($admision) {
       $admision = DB::table("admisiones")
-                    ->select("admisiones.*", "doctores.nombre as doctor", "especialidades.descripcion", "pacientes.nombre", "pacientes.apellido")
-                    ->join("doctores", 'admisiones.medico','doctores.codigo_doctor')
+                    ->select("admisiones.*", DB::raw("CONCAT(users.nombre, ' ', users.apellido) as doctor"), "especialidades.descripcion", "pacientes.nombre", "pacientes.apellido")
+                    ->join("users", 'admisiones.medico','users.id')
                     ->join("pacientes", 'admisiones.paciente','pacientes.documento')
                     ->join('especialidades', 'admisiones.especialidad','especialidades.codigo_especialidad')
                     ->where("codigo_atencion", $admision)
@@ -37,9 +37,9 @@ class Pdf extends Model
 
     public function pdfFacturaLaboratorio($codigo) {
         $laboratorio = DB::table("laboratorio")
-        ->select("laboratorio.*", "doctores.nombre as doctor", "pacientes.nombre", "pacientes.apellido", "pacientes.password")
+        ->select("laboratorio.*", DB::raw("CONCAT(users.nombre, ' ', users.apellido) as doctor"), "pacientes.nombre", "pacientes.apellido", "pacientes.password")
         ->join("pacientes", "laboratorio.dni_paciente", "pacientes.documento")
-        ->join("doctores", "laboratorio.medico", "doctores.codigo_doctor")
+        ->join("users", "laboratorio.medico", "users.id")
         ->where("laboratorio.codigo_laboratorio", $codigo)
         ->get();
 
@@ -98,9 +98,9 @@ class Pdf extends Model
 
     public function pdfCaja($doctor, $fechainicial, $fechafinal) {
         $caja = DB::table("pagos")
-        ->select("pagos.*", "pacientes.nombre", "pacientes.apellido", "doctores.nombre as doctor", "especialidades.descripcion")
+        ->select("pagos.*", "pacientes.nombre", "pacientes.apellido", DB::raw("CONCAT(users.nombre, ' ', users.apellido) as doctor"), "especialidades.descripcion")
         ->join("pacientes", "pagos.dni_paciente", "pacientes.documento")
-        ->join("doctores", "pagos.medico", "doctores.codigo_doctor")
+        ->join("users", "pagos.medico", "users.id")
         ->join("especialidades", "pagos.especialidad", "especialidades.codigo_especialidad")
         ->where(function ($query) use ($doctor) {
             if($doctor != null){
@@ -139,9 +139,9 @@ class Pdf extends Model
 
     public function pdfPagos() {
         $pagos = DB::table("pagos")
-        ->select("pagos.*", "pacientes.nombre", "pacientes.apellido", "doctores.nombre as doctor", "especialidades.descripcion as especialidad")
+        ->select("pagos.*", "pacientes.nombre", "pacientes.apellido", DB::raw("CONCAT(users.nombre, ' ', users.apellido) as doctor"), "especialidades.descripcion as especialidad")
         ->join("pacientes", "pagos.dni_paciente", "pacientes.documento")
-        ->join("doctores", "pagos.medico", "doctores.codigo_doctor")
+        ->join("users", "pagos.medico", "users.id")
         ->join("especialidades", "pagos.especialidad", "especialidades.codigo_especialidad")
         ->where("pagos.fecha", date("Y-m-d"))
         ->get();
