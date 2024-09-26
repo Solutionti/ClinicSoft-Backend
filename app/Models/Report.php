@@ -29,7 +29,9 @@ class Report extends Model
     }
 
     public function CountDoctors() {
-        $doctores = DB::table("doctores")->count();
+        $doctores = DB::table("users")
+                      ->where("rol_usuario", "Doctor")
+                      ->count();
 
         return $doctores;
     }

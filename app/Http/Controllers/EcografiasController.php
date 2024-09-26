@@ -416,6 +416,545 @@ class EcografiasController extends Controller {
                 'message' => $e->getMessage()
               ]);
         }
+    }
+
+
+    public function crearEcografiaAbdominales(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $motivo_examen = $request->motivo_examen;
+            $fecha = date('Y-m-d');
+            $estomago = $request->estomago;
+            $higado = $request->higado;
+            $coledoco_diametro = $request->coledoco_diametro;
+            $vesicula_volumen = $request->vesicula_volumen;
+            $vesicula_paredes = $request->vesicula_paredes;
+            $pancreas_volumen = $request->pancreas_volumen;
+            $pancreas_ecoestructura = $request->pancreas_ecoestructura;
+            $bazo_volumen = $request->bazo_volumen;
+            $bazo_ecoestructura = $request->bazo_ecoestructura;
+            $rinones_derecho = $request->rinones_derecho;
+            $rinones_izquierdo = $request->rinones_izquierdo;
+            $otros_hallazgos = $request->otros_hallazgos;
+            $conclusiones = $request->conclusiones;
+            $sugerencias = $request->sugerencias;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "motivo_examen" => $motivo_examen,
+                "fecha" => $fecha,
+                "estomago" => $estomago,
+                "higado" => $higado,
+                "coledoco_diametro" => $coledoco_diametro,
+                "vesicula_volumen" => $vesicula_volumen,
+                "vesicula_paredes" => $vesicula_paredes,
+                "pancreas_volumen" => $pancreas_volumen,
+                "pancreas_ecoestructura" => $pancreas_ecoestructura,
+                "bazo_volumen" => $bazo_volumen,
+                "bazo_ecoestructura" => $bazo_ecoestructura,
+                "rinones_derecho" => $rinones_derecho,
+                "rinones_izquierdo" => $rinones_izquierdo,
+                "otros_hallazgos" => $otros_hallazgos,
+                "conclusiones" => $conclusiones,
+                "sugerencias" => $sugerencias,
+            ];
+
+            $this->$ecografia->crearEcografiaAbdominales($ecografia);
+            return response()->json([
+                'message' => 'La ecografia abdominales se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaArteriales(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $fecha = date('Y-m-d');
+            $miembro_inferior = $request->miembro_inferior;
+            $arteria_derecho_femoral_comun = $request->arteria_derecho_femoral_comun;
+            $vps_derecho_femoral_comun = $request->vps_derecho_femoral_comun;
+            $onda_derecho_femoral_comun = $request->onda_derecho_femoral_comun;
+            $arteria_derecho_femoral_superficial = $request->arteria_derecho_femoral_superficial;
+            $vps_derecho_femoral_superficial = $request->vps_derecho_femoral_superficial;
+            $onda_derecho_femoral_superficial = $request->onda_derecho_femoral_superficial;
+            $arteria_derecho_poplitea = $request->arteria_derecho_poplitea;
+            $vps_derecho_poplitea = $request->vps_derecho_poplitea;
+            $onda_derecho_poplitea = $request->onda_derecho_poplitea;
+            $arteria_derecho_tibial_posterior = $request->arteria_derecho_tibial_posterior;
+            $vps_derecho_tibial_posterior = $request->vps_derecho_tibial_posterior;
+            $onda_derecho_tibial_posterior = $request->onda_derecho_tibial_posterior;
+            $arteria_derecho_tibial_anterior = $request->arteria_derecho_tibial_anterior;
+            $vps_derecho_tibial_anterior = $request->vps_derecho_tibial_anterior;
+            $onda_derecho_tibial_anterior = $request->onda_derecho_tibial_anterior;
+            $arteria_derecho_pedia = $request->arteria_derecho_pedia;
+            $vps_derecho_pedia = $request->vps_derecho_pedia;
+            $onda_derecho_pedia = $request->onda_derecho_pedia;
+            $arteria_izquierdo_femoral_comun = $request->arteria_izquierdo_femoral_comun;
+            $vps_izquierdo_femoral_comun = $request->vps_izquierdo_femoral_comun;
+            $onda_izquierdo_femoral_comun = $request->onda_izquierdo_femoral_comun;
+            $arteria_izquierdo_femoral_superficial = $request->arteria_izquierdo_femoral_superficial;
+            $vps_izquierdo_femoral_superficial = $request->vps_izquierdo_femoral_superficial;
+            $onda_izquierdo_femoral_superficial = $request->onda_izquierdo_femoral_superficial;
+            $arteria_izquierdo_poplitea = $request->arteria_izquierdo_poplitea;
+            $vps_izquierdo_poplitea = $request->vps_izquierdo_poplitea;
+            $onda_izquierdo_poplitea = $request->onda_izquierdo_poplitea;
+            $arteria_izquierdo_tibial_posterior = $request->arteria_izquierdo_tibial_posterior;
+            $vps_izquierdo_tibial_posterior = $request->vps_izquierdo_tibial_posterior;
+            $onda_izquierdo_tibial_posterior = $request->onda_izquierdo_tibial_posterior;
+            $arteria_izquierdo_tibial_anterior = $request->arteria_izquierdo_tibial_anterior;
+            $vps_izquierdo_tibial_anterior = $request->vps_izquierdo_tibial_anterior;
+            $onda_izquierdo_tibial_anterior = $request->onda_izquierdo_tibial_anterior;
+            $arteria_izquierdo_pedia = $request->arteria_izquierdo_pedia;
+            $vps_izquierdo_pedia = $request->vps_izquierdo_pedia;
+            $onda_izquierdo_pedia = $request->onda_izquierdo_pedia;
+            $conclusion = $request->conclusion;
+            $sugerencia = $request->sugerencia;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "fecha" => $fecha,
+                "miembro_inferior" => $miembro_inferior,
+                "arteria_derecho_femoral_comun" => $arteria_derecho_femoral_comun,
+                "vps_derecho_femoral_comun" => $vps_derecho_femoral_comun,
+                "onda_derecho_femoral_comun" => $onda_derecho_femoral_comun,
+                "arteria_derecho_femoral_superficial" => $arteria_derecho_femoral_superficial,
+                "vps_derecho_femoral_superficial" => $vps_derecho_femoral_superficial,
+                "onda_derecho_femoral_superficial" => $onda_derecho_femoral_superficial,
+                "arteria_derecho_poplitea" => $arteria_derecho_poplitea,
+                "vps_derecho_poplitea" => $vps_derecho_poplitea,
+                "onda_derecho_poplitea" => $onda_derecho_poplitea,
+                "arteria_derecho_tibial_posterior" => $arteria_derecho_tibial_posterior,
+                "vps_derecho_tibial_posterior" => $vps_derecho_tibial_posterior,
+                "onda_derecho_tibial_posterior" => $onda_derecho_tibial_posterior,
+                "arteria_derecho_tibial_anterior" => $arteria_derecho_tibial_anterior,
+                "vps_derecho_tibial_anterior" => $vps_derecho_tibial_anterior,
+                "onda_derecho_tibial_anterior" => $onda_derecho_tibial_anterior,
+                "arteria_derecho_pedia" => $arteria_derecho_pedia,
+                "vps_derecho_pedia" => $vps_derecho_pedia,
+                "onda_derecho_pedia" => $onda_derecho_pedia,
+                "arteria_izquierdo_femoral_comun" => $arteria_izquierdo_femoral_comun,
+                "vps_izquierdo_femoral_comun" => $vps_izquierdo_femoral_comun,
+                "onda_izquierdo_femoral_comun" => $onda_izquierdo_femoral_comun,
+                "arteria_izquierdo_femoral_superficial" => $arteria_izquierdo_femoral_superficial,
+                "vps_izquierdo_femoral_superficial" => $vps_izquierdo_femoral_superficial,
+                "onda_izquierdo_femoral_superficial" => $onda_izquierdo_femoral_superficial,
+                "arteria_izquierdo_poplitea" => $arteria_izquierdo_poplitea,
+                "vps_izquierdo_poplitea" => $vps_izquierdo_poplitea,
+                "onda_izquierdo_poplitea" => $onda_izquierdo_poplitea,
+                "arteria_izquierdo_tibial_posterior" => $arteria_izquierdo_tibial_posterior,
+                "vps_izquierdo_tibial_posterior" => $vps_izquierdo_tibial_posterior,
+                "onda_izquierdo_tibial_posterior" => $onda_izquierdo_tibial_posterior,
+                "arteria_izquierdo_tibial_anterior" => $arteria_izquierdo_tibial_anterior,
+                "vps_izquierdo_tibial_anterior" => $vps_izquierdo_tibial_anterior,
+                "onda_izquierdo_tibial_anterior" => $onda_izquierdo_tibial_anterior,
+                "arteria_izquierdo_pedia" => $arteria_izquierdo_pedia,
+                "vps_izquierdo_pedia" => $vps_izquierdo_pedia,
+                "onda_izquierdo_pedia" => $onda_izquierdo_pedia,
+                "conclusion" => $conclusion,
+                "sugerencia" => $sugerencia,
+            ];
+            $this->$ecografia->crearEcografiaArteriales($ecografia);
+            return response()->json([
+                'message' => 'La ecografia arteriales se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+    public function crearEcografiaHisteronosografias(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $fecha = $request->fecha;
+            $informe = $request->informe;
+            $paciente_tolera_procedimiento = $request->paciente_tolera_procedimiento;
+            $conclusiones = $request->conclusiones;
+            $sugerencias = $request->sugerencias;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "fecha" => $fecha,
+                "informe" => $informe,
+                "paciente_tolera_procedimiento" => $paciente_tolera_procedimiento,
+                "conclusiones" => $conclusiones,
+                "sugerencias" => $sugerencias,
+            ];
+
+            $this->$ecografia->crearEcografiaHisteronosografias($ecografia);
+            return response()->json([
+                'message' => 'La ecografia histeronosografias se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaProstaticas(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $motivo_examen = $request->motivo_examen;
+            $fecha = $request->fecha;
+            $repelcion_vejiga = $request->repelcion_vejiga;
+            $paredes_vejiga = $request->paredes_vejiga;
+            $contenido_aneocoico = $request->contenido_aneocoico;
+            $imagenes_expansivas = $request->imagenes_expansivas;
+            $calculos = $request->calculos;
+            $calculos_medida = $request->calculos_medida;
+            $vol_pre_miccional = $request->vol_pre_miccional;
+            $vol_post_miccional = $request->vol_post_miccional;
+            $retencion = $request->retencion;
+            $descripcion_vejiga = $request->descripcion_vejiga;
+            $bordes_prostata = $request->bordes_prostata;
+            $dimensiones_transverso = $request->dimensiones_transverso;
+            $dimensiones_antero_posterior = $request->dimensiones_antero_posterior;
+            $dimensiones_longitudinal = $request->dimensiones_longitudinal;
+            $volumen = $request->volumen;
+            $observaciones = $request->observaciones;
+            $conclusiones = $request->conclusiones;
+            $sugerencias = $request->sugerencias;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "motivo_examen" => $motivo_examen,
+                "fecha" => $fecha,
+                "repelcion_vejiga" => $repelcion_vejiga,
+                "paredes_vejiga" => $paredes_vejiga,
+                "contenido_aneocoico" => $contenido_aneocoico,
+                "imagenes_expansivas" => $imagenes_expansivas,
+                "calculos" => $calculos,
+                "calculos_medida" => $calculos_medida,
+                "vol_pre_miccional" => $vol_pre_miccional,
+                "vol_post_miccional" => $vol_post_miccional,
+                "retencion" => $retencion,
+                "descripcion_vejiga" => $descripcion_vejiga,
+                "bordes_prostata" => $bordes_prostata,
+                "dimensiones_transverso" => $dimensiones_transverso,
+                "dimensiones_antero_posterior" => $dimensiones_antero_posterior,
+                "dimensiones_longitudinal" => $dimensiones_longitudinal,
+                "volumen" => $volumen,
+                "observaciones" => $observaciones,
+                "conclusiones" => $conclusiones,
+                "sugerencias" => $sugerencias,
+            ];
+
+            $this->$ecografia->crearEcografiaProstaticas($ecografia);
+            return response()->json([
+                'message' => 'La ecografia prostaticas se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaRenales(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $motivo_examen = $request->motivo_examen;
+            $fecha = date('Y-m-d');
+            $morfologia_movilidad_derecho = $request->morfologia_movilidad_derecho;
+            $ecogenicidad_derecho = $request->ecogenicidad_derecho;
+            $medidas_longitud_derecho = $request->medidas_longitud_derecho;
+            $medidas_parenquima_derecho = $request->medidas_parenquima_derecho;
+            $imagenes_expansivas_solidas_derecho = $request->imagenes_expansivas_solidas_derecho;
+            $imagenes_expansivas_quisticas_derecho = $request->imagenes_expansivas_quisticas_derecho;
+            $hidronefrosis_derecho = $request->hidronefrosis_derecho;
+            $micro_litiasis_derecho = $request->micro_litiasis_derecho;
+            $calculos_derecho = $request->calculos_derecho;
+            $calculos_medida_derecho = $request->calculos_medida_derecho;
+            $descripcion_otros_derecho = $request->descripcion_otros_derecho;
+            $morfologia_movilidad_izquierdo = $request->morfologia_movilidad_izquierdo;
+            $ecogenicidad_izquierdo = $request->ecogenicidad_izquierdo;
+            $medidas_longitud_izquierdo = $request->medidas_longitud_izquierdo;
+            $medidas_parenquima_izquierdo = $request->medidas_parenquima_izquierdo;
+            $imagenes_expansivas_solidas_izquierdo = $request->imagenes_expansivas_solidas_izquierdo;
+            $imagenes_expansivas_quisticas_izquierdo = $request->imagenes_expansivas_quisticas_izquierdo;
+            $hidronefrosis_izquierdo = $request->hidronefrosis_izquierdo;
+            $micro_litiasis_izquierdo = $request->micro_litiasis_izquierdo;
+            $calculos_izquierdo = $request->calculos_izquierdo;
+            $calculos_medida_izquierdo = $request->calculos_medida_izquierdo;
+            $descripcion_otros_izquierdo = $request->descripcion_otros_izquierdo;
+            $repelcion_vejiga = $request->repelcion_vejiga;
+            $paredes_vejiga = $request->paredes_vejiga;
+            $contenido_aneocoico = $request->contenido_aneocoico;
+            $imagenes_expansivas_vejiga = $request->imagenes_expansivas_vejiga;
+            $calculos_vejiga = $request->calculos_vejiga;
+            $calculos_medida_vejiga = $request->calculos_medida_vejiga;
+            $vol_pre_miccional = $request->vol_pre_miccional;
+            $vol_post_miccional = $request->vol_post_miccional;
+            $retencion = $request->retencion;
+            $descripcion_vejiga = $request->descripcion_vejiga;
+            $observaciones = $request->observaciones;
+            $conclusiones = $request->conclusiones;
+            $sugerencias = $request->sugerencias;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "motivo_examen" => $motivo_examen,
+                "fecha" => $fecha,
+                "morfologia_movilidad_derecho" => $morfologia_movilidad_derecho,
+                "ecogenicidad_derecho" => $ecogenicidad_derecho,
+                "medidas_longitud_derecho" => $medidas_longitud_derecho,
+                "medidas_parenquima_derecho" => $medidas_parenquima_derecho,
+                "imagenes_expansivas_solidas_derecho" => $imagenes_expansivas_solidas_derecho,
+                "imagenes_expansivas_quisticas_derecho" => $imagenes_expansivas_quisticas_derecho,
+               "hidronefrosis_derecho" => $hidronefrosis_derecho,
+                "micro_litiasis_derecho" => $micro_litiasis_derecho,
+                "calculos_derecho" => $calculos_derecho,
+                "calculos_medida_derecho" => $calculos_medida_derecho,
+                "descripcion_otros_derecho" => $descripcion_otros_derecho,
+                "morfologia_movilidad_izquierdo" => $morfologia_movilidad_izquierdo,
+                "ecogenicidad_izquierdo" => $ecogenicidad_izquierdo,
+                "medidas_longitud_izquierdo" => $medidas_longitud_izquierdo,
+                "medidas_parenquima_izquierdo" => $medidas_parenquima_izquierdo,
+                "imagenes_expansivas_solidas_izquierdo" => $imagenes_expansivas_solidas_izquierdo,
+                "imagenes_expansivas_quisticas_izquierdo" => $imagenes_expansivas_quisticas_izquierdo,
+                "hidronefrosis_izquierdo" => $hidronefrosis_izquierdo,
+                "micro_litiasis_izquierdo" => $micro_litiasis_izquierdo,
+                "calculos_izquierdo" => $calculos_izquierdo,
+                "calculos_medida_izquierdo" => $calculos_medida_izquierdo,
+                "descripcion_otros_izquierdo" => $descripcion_otros_izquierdo,
+                "repelcion_vejiga" => $repelcion_vejiga,
+                "paredes_vejiga" => $paredes_vejiga,
+                "contenido_aneocoico" => $contenido_aneocoico,
+                "imagenes_expansivas_vejiga" => $imagenes_expansivas_vejiga,
+                "calculos_vejiga" => $calculos_vejiga,
+                "calculos_medida_vejiga" => $calculos_medida_vejiga,
+                "vol_pre_miccional" => $vol_pre_miccional,
+                "vol_post_miccional" => $vol_post_miccional,
+                "retencion" => $retencion,
+                "descripcion_vejiga" => $descripcion_vejiga,
+                "observaciones" => $observaciones,
+                "conclusiones" => $conclusiones,
+                "sugerencias" => $sugerencias,
+            ];
+
+            $this->$ecografia->crearEcografiaRenales($ecografia);
+            return response()->json([
+                'message' => 'La ecografia renales se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaTiroides(Request $request){
+        try{
+            $documento_paciente = $request->documento_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $examen_solicitado = $request->examen_solicitado;
+            $medico_tratante = $request->medico_tratante;
+            $fecha = date('Y-m-d');
+            $tiroides_ubicacion = $request->tiroides_ubicacion;
+            $parenquima = $request->parenquima;
+            $lesiones_focales = $request->lesiones_focales;
+            $lobulo_derecho_longitud = $request->lobulo_derecho_longitud;
+            $lobulo_derecho_ancho = $request->lobulo_derecho_ancho;
+            $lobulo_derecho_profundidad = $request->lobulo_derecho_profundidad;
+            $volumen_derecho = $request->volumen_derecho;
+            $masas_quistes_derecho = $request->masas_quistes_derecho;
+            $istmo = $request->istmo;
+            $lobulo_izquierdo_longitud = $request->lobulo_izquierdo_longitud;
+            $lobulo_izquierdo_ancho = $request->lobulo_izquierdo_ancho;
+            $lobulo_izquierdo_profundidad = $request->lobulo_izquierdo_profundidad;
+            $volumen_izquierdo = $request->volumen_izquierdo;
+            $masas_quistes_izquierdo = $request->masas_quistes_izquierdo;
+            $estructuras_vasculares = $request->estructuras_vasculares;
+            $glandulas_submaxilares = $request->glandulas_submaxilares;
+            $adenopatia_cervicales = $request->adenopatia_cervicales;
+            $piel = $request->piel;
+            $tcsc = $request->tcsc;
+            $conclusiones = $request->conclusiones;
+            $sugerencias = $request->sugerencias;
+
+            $ecografia = [
+                "documento_paciente" => $documento_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "examen_solicitado" => $examen_solicitado,
+                "medico_tratante" => $medico_tratante,
+                "fecha" => $fecha,
+                "tiroides_ubicacion" => $tiroides_ubicacion,
+                "parenquima" => $parenquima,
+                "lesiones_focales" => $lesiones_focales,
+                "lobulo_derecho_longitud" => $lobulo_derecho_longitud,
+                "lobulo_derecho_ancho" => $lobulo_derecho_ancho,
+                "lobulo_derecho_profundidad" => $lobulo_derecho_profundidad,
+                "volumen_derecho" => $volumen_derecho,
+                "masas_quistes_derecho" => $masas_quistes_derecho,
+                "istmo" => $istmo,
+                "lobulo_izquierdo_longitud" => $lobulo_izquierdo_longitud,
+                "lobulo_izquierdo_ancho" => $lobulo_izquierdo_ancho,
+                "lobulo_izquierdo_profundidad" => $lobulo_izquierdo_profundidad,
+                "volumen_izquierdo" => $volumen_izquierdo,
+                "masas_quistes_izquierdo" => $masas_quistes_izquierdo,
+                "estructuras_vasculares" => $estructuras_vasculares,
+                "glandulas_submaxilares" => $glandulas_submaxilares,
+                "adenopatia_cervicales" => $adenopatia_cervicales,
+                "piel" => $piel,
+                "tcsc" => $tcsc,
+                "conclusiones" => $conclusiones,
+                "sugerencias" => $sugerencias,
+            ];
+
+            $this->$ecografia->crearEcografiaTiroides($ecografia);
+            return response()->json([
+                'message' => 'La ecografia tiroides se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
+    }
+
+
+    public function crearEcografiaVenosas(Request $request){
+        try{
+            $dni_paciente = $request->dni_paciente;
+            $codigo_doctor = $request->codigo_doctor;
+            $fecha = $request->fecha;
+            $miembro_inferior_der = $request->miembro_inferior_der;
+            $vena_derecho_femoral_comun = $request->vena_derecho_femoral_comun;
+            $medida_derecho_femoral_comun = $request->medida_derecho_femoral_comun;
+            $reflujo_derecho_femoral_comun = $request->reflujo_derecho_femoral_comun;
+            $vena_derecho_safena_mayor_muslo = $request->vena_derecho_safena_mayor_muslo;
+            $medida_derecho_safena_mayor_muslo = $request->medida_derecho_safena_mayor_muslo;
+            $reflujo_derecho_safena_mayor_muslo = $request->reflujo_derecho_safena_mayor_muslo;
+            $vena_derecho_safena_mayor_pierna = $request->vena_derecho_safena_mayor_pierna;
+            $medida_derecho_safena_mayor_pierna = $request->medida_derecho_safena_mayor_pierna;
+            $reflujo_derecho_safena_mayor_pierna = $request->reflujo_derecho_safena_mayor_pierna;
+            $vena_derecho_poplitea = $request->vena_derecho_poplitea;
+            $medida_derecho_poplitea = $request->medida_derecho_poplitea;
+            $reflujo_derecho_poplitea = $request->reflujo_derecho_poplitea;
+            $vena_derecho_safena_menor = $request->vena_derecho_safena_menor;
+            $medida_derecho_safena_menor = $request->medida_derecho_safena_menor;
+            $reflujo_derecho_safena_menor = $request->reflujo_derecho_safena_menor;
+            $vena_derecho_perforantes = $request->vena_derecho_perforantes;
+            $medida_derecho_perforantes = $request->medida_derecho_perforantes;
+            $reflujo_derecho_perforantes = $request->reflujo_derecho_perforantes;
+            $miembro_inferior_izq = $request->miembro_inferior_izq;
+            $vena_izquierdo_femoral_comun = $request->vena_izquierdo_femoral_comun;
+            $medida_izquierdo_femoral_comun = $request->medida_izquierdo_femoral_comun;
+            $reflujo_izquierdo_femoral_comun = $request->reflujo_izquierdo_femoral_comun;
+            $vena_izquierdo_safena_mayor_muslo = $request->vena_izquierdo_safena_mayor_muslo;
+            $medida_izquierdo_safena_mayor_muslo = $request->medida_izquierdo_safena_mayor_muslo;
+            $reflujo_izquierdo_safena_mayor_muslo = $request->reflujo_izquierdo_safena_mayor_muslo;
+            $vena_izquierdo_safena_mayor_pierna = $request->vena_izquierdo_safena_mayor_pierna;
+            $medida_izquierdo_safena_mayor_pierna = $request->medida_izquierdo_safena_mayor_pierna;
+            $reflujo_izquierdo_safena_mayor_pierna = $request->reflujo_izquierdo_safena_mayor_pierna;
+            $vena_izquierdo_poplitea = $request->vena_izquierdo_poplitea;
+            $medida_izquierdo_poplitea = $request->medida_izquierdo_poplitea;
+            $reflujo_izquierdo_poplitea = $request->reflujo_izquierdo_poplitea;
+            $vena_izquierdo_safena_menor = $request->vena_izquierdo_safena_menor;
+            $medida_izquierdo_safena_menor = $request->medida_izquierdo_safena_menor;
+            $reflujo_izquierdo_safena_menor = $request->reflujo_izquierdo_safena_menor;
+            $vena_izquierdo_perforantes = $request->vena_izquierdo_perforantes;
+            $medida_izquierdo_perforantes = $request->medida_izquierdo_perforantes;
+            $reflujo_izquierdo_perforantes = $request->reflujo_izquierdo_perforantes;
+            $conclusion = $request->conclusion;
+            $sugerencias = $request->sugerencias;
+
+            $ecografia = [
+                "dni_paciente" => $dni_paciente,
+                "codigo_doctor" => $codigo_doctor,
+                "fecha" => $fecha,
+                "miembro_inferior_der" => $miembro_inferior_der,
+                "vena_derecho_femoral_comun" => $vena_derecho_femoral_comun,
+                "medida_derecho_femoral_comun" => $medida_derecho_femoral_comun,
+                "reflujo_derecho_femoral_comun" => $reflujo_derecho_femoral_comun,
+                "vena_derecho_safena_mayor_muslo" => $vena_derecho_safena_mayor_muslo,
+                "medida_derecho_safena_mayor_muslo" => $medida_derecho_safena_mayor_muslo,
+                "reflujo_derecho_safena_mayor_muslo" => $reflujo_derecho_safena_mayor_muslo,
+                "vena_derecho_safena_mayor_pierna" => $vena_derecho_safena_mayor_pierna,
+                "medida_derecho_safena_mayor_pierna" => $medida_derecho_safena_mayor_pierna,
+                "reflujo_derecho_safena_mayor_pierna" => $reflujo_derecho_safena_mayor_pierna,
+                "vena_derecho_poplitea" => $vena_derecho_poplitea,
+                "medida_derecho_poplitea" => $medida_derecho_poplitea,
+                "reflujo_derecho_poplitea" => $reflujo_derecho_poplitea,
+                "vena_derecho_safena_menor" => $vena_derecho_safena_menor,
+                "medida_derecho_safena_menor" => $medida_derecho_safena_menor,
+                "reflujo_derecho_safena_menor" => $reflujo_derecho_safena_menor,
+                "vena_derecho_perforantes" => $vena_derecho_perforantes,
+                "medida_derecho_perforantes" => $medida_derecho_perforantes,
+                "reflujo_derecho_perforantes" => $reflujo_derecho_perforantes,
+                "miembro_inferior_izq" => $miembro_inferior_izq,
+                "vena_izquierdo_femoral_comun" => $vena_izquierdo_femoral_comun,
+                "medida_izquierdo_femoral_comun" => $medida_izquierdo_femoral_comun,
+                "reflujo_izquierdo_femoral_comun" => $reflujo_izquierdo_femoral_comun,
+                "vena_izquierdo_safena_mayor_muslo" => $vena_izquierdo_safena_mayor_muslo,
+                "medida_izquierdo_safena_mayor_muslo" => $medida_izquierdo_safena_mayor_muslo,
+                "reflujo_izquierdo_safena_mayor_muslo" => $reflujo_izquierdo_safena_mayor_muslo,
+                "vena_izquierdo_safena_mayor_pierna" => $vena_izquierdo_safena_mayor_pierna,
+                "medida_izquierdo_safena_mayor_pierna" => $medida_izquierdo_safena_mayor_pierna,
+                "reflujo_izquierdo_safena_mayor_pierna" => $reflujo_izquierdo_safena_mayor_pierna,
+                "vena_izquierdo_poplitea" => $vena_izquierdo_poplitea,
+                "medida_izquierdo_poplitea" => $medida_izquierdo_poplitea,
+                "reflujo_izquierdo_poplitea" => $reflujo_izquierdo_poplitea,
+                "vena_izquierdo_safena_menor" => $vena_izquierdo_safena_menor,
+                "medida_izquierdo_safena_menor" => $medida_izquierdo_safena_menor,
+                "reflujo_izquierdo_safena_menor" => $reflujo_izquierdo_safena_menor,
+                "vena_izquierdo_perforantes" => $vena_izquierdo_perforantes,
+                "medida_izquierdo_perforantes" => $medida_izquierdo_perforantes,
+                "reflujo_izquierdo_perforantes" => $reflujo_izquierdo_perforantes,
+                "conclusion" => $conclusion,
+                "sugerencias" => $sugerencias,
+            ];
+
+            $this->$ecografia->crearEcografiaVenosas($ecografia);
+            return response()->json([
+                'message' => 'La ecografia venosas se ha creado en la base de datos',
+                'status' => 200
+              ]);
+        }
+        catch(\exception $e){
+            return response()->json([
+                'status' => 400,
+                'message' => $e->getMessage()
+              ]);
+        }
 
     }
 

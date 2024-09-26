@@ -16,8 +16,8 @@ class Payment extends Model
       $fecha = date("Y-m-d");
       $payments = DB::table("pagos")
                     ->join('pacientes', 'pagos.dni_paciente', '=', 'pacientes.documento')
-                    ->join('doctores', 'pagos.medico', '=', 'doctores.codigo_doctor')
-                    ->select('pagos.*', 'pacientes.nombre', 'pacientes.apellido', 'doctores.nombre as medico')
+                    ->join('users', 'pagos.medico', '=', 'users.id')
+                    ->select('pagos.*', 'pacientes.nombre', 'pacientes.apellido', DB::raw("CONCAT(users.nombre, ' ', users.apellido) as medico"))
                     ->where('pagos.fecha', $fecha)
                     ->get();
 

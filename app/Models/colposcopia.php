@@ -12,8 +12,8 @@ class Colposcopia extends Model
 
     public function getColposcopias() {
       $colposcopias = DB::table("colposcopias")
-                      ->select("colposcopias.*", 'doctores.nombre as medico')
-                      ->join('doctores', 'colposcopias.medico', 'doctores.codigo_doctor')
+                      ->select("colposcopias.*", DB::raw("CONCAT(users.nombre, ' ', users.apellido) as medicos"))
+                      ->join('users', 'colposcopias.medico', 'users.id')
                       ->orderBy('codigo_colposcopia', 'DESC')
                       ->get();
 

@@ -20,8 +20,9 @@ class ListModel extends Model{
     }
 
     public function getDoctor() {
-      $doctor = DB::table('doctores')
-                ->select('codigo_doctor','nombre')
+      $doctor = DB::table('users')
+                ->select('id as codigo_doctor','nombre', 'apellido')
+                ->where('rol_usuario', 'Doctor')
                 ->where('estado', 'Activo')
                 ->get();
 
@@ -104,7 +105,7 @@ class ListModel extends Model{
       ->select('codigo_cpt', 'nombre')
       ->get();
       
-      return $diagnosticos;
+      return $procedimientos;
     }
     
     public function getDocumentosPaciente($paciente) {

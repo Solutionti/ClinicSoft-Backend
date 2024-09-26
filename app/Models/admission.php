@@ -12,16 +12,16 @@ class admission extends Model
 
     public function getAdmission($estado) {
       $admissions = DB::table("admisiones")
-                    ->select('admisiones.*', 'doctores.nombre as medicos', 'especialidades.descripcion as especialidades', 'pacientes.nombre', 'pacientes.apellido')
+                    ->select('admisiones.*',DB::raw("CONCAT(users.nombre, ' ', users.apellido) as medicos"), 'especialidades.descripcion as especialidades', 'pacientes.nombre', 'pacientes.apellido')
                     ->join('pacientes', 'admisiones.paciente', '=', 'pacientes.documento')
-                    ->join('doctores', 'admisiones.medico', '=', 'doctores.codigo_doctor')
+                    ->join('users', 'admisiones.medico', '=', 'users.id')
                     ->join('especialidades', 'admisiones.especialidad', '=', 'especialidades.codigo_especialidad')
                     ->where("admisiones.estado", $estado)
                     ->get();
 
       return $admissions;
     }
-
+    
     public function createAdmission($data) {
       $admissions = [
         "paciente" => $data["documento"],

@@ -82,13 +82,17 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getLaboratoryTable', 'getLaboratoryTable');
   Route::post('CreateExamenLaboratory', 'CreateExamenLaboratory');
 
-  //
+  //historia clinica
+  Route::get('getcountCantidadHistorias', 'getcountCantidadHistorias');
   Route::post('createHistoriaClinica', 'createHistoriaClinica');
-
-  Route::post('createHistoriaClinica', 'createHistoriaClinica');
+  Route::get('getAlergias', 'getAlergias');
+  Route::get('getAlergiasOtras', 'getAlergiasOtras');
+  Route::post('createAlergias', 'createAlergias');
+  Route::post('crearMedicamentos', 'crearMedicamentos');
+  Route::get('getMedicamentos', 'getMedicamentos');
+  Route::get('getProcedimientos', 'getProcedimientos');
+  Route::get('getDiagnosticos', 'getDiagnosticos');
   
-  //api para medicamentos 
-  Route::get('getFarmaciaMedicamentos', 'getFarmaciaMedicamentos');
 });
 
 // RUTAS DE INVENTARIOS
@@ -136,7 +140,6 @@ Route::controller(ReportController::class)->group(function () {
   Route::get('countEfectivo', 'countEfectivo');
   Route::get('countTargeta', 'countTargeta');
   Route::get('getTransacciones', 'getTransacciones');
-  Route::get('contarMesAMes', 'contarMesAMes');
 });
 
 Route::controller(PdfsController::class)->group(function () {
@@ -158,6 +161,14 @@ Route::controller(EcografiasController::class)->group(function () {
   Route::post('crearEcografiaMorfologica', 'crearEcografiaMorfologica');
   Route::post('crearEcografiaObstetrica', 'crearEcografiaObstetrica');
   Route::post('crearEcografiaPelvica', 'crearEcografiaPelvica');
+  Route::post('crearEcografiaTransvaginal', 'crearEcografiaTransvaginal');
+  Route::post('crearEcografiaAbdominales', 'crearEcografiaAbdominales');
+  Route::post('crearEcografiaArteriales', 'crearEcografiaArteriales');
+  Route::post('crearEcografiaHisteronosografias', 'crearEcografiaHisteronosografias');
+  Route::post('crearEcografiaProstaticas', 'crearEcografiaProstaticas');
+  Route::post('crearEcografiaRenales', 'crearEcografiaRenales');
+  Route::post('crearEcografiaTiroides', 'crearEcografiaTiroides');
+  Route::post('crearEcografiaVenosas', 'crearEcografiaVenosas');
 });
 
 
