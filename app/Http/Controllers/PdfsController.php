@@ -12,6 +12,18 @@ class PdfsController extends Controller
       $this->Pdf = new Pdf();
     }
 
+    public function pruebaConsentimiento() {
+      $mensaje = "";
+      $pdf = new Fpdf('p', 'mm', 'A4');
+      $pdf->AddPage();
+      $pdf->SetFont('Arial', '', 10);
+      $pdf->Ln(10);
+      $pdf->MultiCell(190,4, utf8_decode($mensaje), 0);
+
+      $pdf->Output();
+      exit;
+    }
+
     public function pdfHistoriaClinica(Request $request) {
 
       $empresa = $this->Pdf->getEmpresa("1");

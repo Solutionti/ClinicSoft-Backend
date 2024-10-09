@@ -27,6 +27,7 @@ class Generic extends Model
     public function getTransaccion() {
       $transaccion = DB::table("transacciones")
                         ->select("*")
+                        ->take(10)
                         ->get();
 
       return $transaccion;

@@ -33,6 +33,7 @@ class LoginController extends Controller
       $user->estado = $request->estado;
       $user->usuario_creacion = $request->usuario_creacion;
       $user->cmp = $request->cmp;
+      $user->color = $request->color;
       $user->save();
 
       return response()->json([

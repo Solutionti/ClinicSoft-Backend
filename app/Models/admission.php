@@ -38,8 +38,10 @@ class admission extends Model
         "orden__" => $data["orden__"],
       ];
 
-      DB::table("admisiones")
-        ->insert($admissions);
+      $id = DB::table("admisiones")
+        ->insertGetId($admissions);
+
+      return $id;
     }
 
     public function countAdmisionDoctor($medico) {
@@ -56,7 +58,7 @@ class admission extends Model
     public function ValidateAdmision($documento) {
       $admission = DB::table("admisiones")
                       ->where("paciente", $documento)
-                      // ->where("estado", "Registrado")
+                      ->where("estado", "Registrado")
                       ->get();
 
       return $admission;
@@ -78,7 +80,7 @@ class admission extends Model
         "estado" => $estado
       ];
       DB::table("admisiones")
-          ->where("paciente", $atencion)
+          ->where("codigo_atencion", $atencion)
           ->update($admission);
     }
 
@@ -91,6 +93,30 @@ class admission extends Model
 
       return $medicamentos;
       
+    }
+
+    public function getCitas($doctor) {
+      $citas = DB::table("citas")
+                  ->select("citas.nombre as title", "citas.fecha as start", "users.color as color" ,"citas.comentarios as description")
+                  ->join("users", "citas.doctor", "users.id")
+                  ->where(function ($query) use ($doctor) {
+                    if($doctor != 0){
+                      $query->where('doctor', $doctor);
+                    }
+                  })
+                  ->get();
+                  
+      return $citas;
+    }
+
+    public function UpdatePagosCancelada($atencion) {
+      $pago = [ 
+        "estado" => "Cancelada"
+      ];
+      
+      DB::table("pagos")
+         ->where("atencion", $atencion)
+         ->update($pago);
     }
 
 

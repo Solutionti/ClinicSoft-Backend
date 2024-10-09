@@ -92,7 +92,8 @@ Route::controller(AdmissionController::class)->group(function () {
   Route::get('getMedicamentos', 'getMedicamentos');
   Route::get('getProcedimientos', 'getProcedimientos');
   Route::get('getDiagnosticos', 'getDiagnosticos');
-  
+  Route::get('getCitas/{id?}', 'getCitas');
+ 
 });
 
 // RUTAS DE INVENTARIOS
@@ -140,9 +141,12 @@ Route::controller(ReportController::class)->group(function () {
   Route::get('countEfectivo', 'countEfectivo');
   Route::get('countTargeta', 'countTargeta');
   Route::get('getTransacciones', 'getTransacciones');
+  Route::get('contarMesAMes', 'contarMesAMes');
+  
 });
 
 Route::controller(PdfsController::class)->group(function () {
+  Route::get('pruebaConsentimiento', 'pruebaConsentimiento');
   Route::get('pdfHistoriaClinica', 'pdfHistoriaClinica');
   Route::get('pdfFacturaAdmision', 'pdfFacturaAdmision');
   Route::get('pdfFacturaLaboratorio', 'pdfFacturaLaboratorio');

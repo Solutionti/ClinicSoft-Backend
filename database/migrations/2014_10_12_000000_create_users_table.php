@@ -23,7 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('estado');
             $table->string('usuario_creacion');
             $table->string('cmp');
-            $table->timestamps();
+            $table->string('color');
+            // $table->timestamps();
         });
     }
 

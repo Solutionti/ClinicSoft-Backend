@@ -21,7 +21,7 @@ class ListModel extends Model{
 
     public function getDoctor() {
       $doctor = DB::table('users')
-                ->select('id as codigo_doctor','nombre', 'apellido')
+                ->select('id as codigo_doctor','nombre', 'apellido', 'color')
                 ->where('rol_usuario', 'Doctor')
                 ->where('estado', 'Activo')
                 ->get();

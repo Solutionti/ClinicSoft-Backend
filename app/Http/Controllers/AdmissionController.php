@@ -505,11 +505,12 @@ class AdmissionController extends Controller{
         throw new \Exception('Ya existe una admision abierta para el paciente');
       }
 
-      $this->Admission->createAdmission($admission);
+      $id = $this->Admission->createAdmission($admission);
 
       return response()->json([
         'message' => 'La admisión se ha creado en la base de datos',
-        'status' => 200
+        'status' => 200,
+        'admision' => $id
       ]);
     }
     catch(\Exception $e) {
@@ -571,6 +572,10 @@ class AdmissionController extends Controller{
     $estado = $request->input("estado");
     $atencion = $request->input("atencion");
 
+    if($estado == "Cancelada"){
+      $this->Admission->UpdatePagosCancelada($atencion);
+    }
+    
     $this->Admission->PasateStatusAdmission($estado, $atencion);
 
     return response()->json([
@@ -655,6 +660,19 @@ class AdmissionController extends Controller{
     $paciente = $request->paciente;
 
     return $this->History->getDiagnosticos($historia, $paciente);
+  }
+
+  public function getCitas($doctor) {
+    // $citas = [
+    //     "title" => 'Jerson galvez',
+    //     "start" => '2024-08-28T10:58',
+    //     "color" => '#5e72e4',
+    //     "description" => 'Project meeting with team'
+    // ];
+
+    $citas = $this->Admission->getCitas($doctor);
+    
+    return response()->json($citas);
   }
 
   
